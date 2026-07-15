@@ -6,11 +6,12 @@ interface SupportStepProps {
   value: SupportMode | null
   onSelect: (support: SupportMode) => void
   onBack: () => void
+  position?: string
 }
 
-export function SupportStep({ value, onSelect, onBack }: SupportStepProps) {
+export function SupportStep({ value, onSelect, onBack, position }: SupportStepProps) {
   return (
-    <IntakeScreen title="Are you handling this alone, or with family?" onBack={onBack}>
+    <IntakeScreen title="Are you handling this alone, or with family?" onBack={onBack} position={position}>
       <div className="flex flex-col gap-3">
         <OptionButton label="On my own" selected={value === "alone"} onClick={() => onSelect("alone")} />
         <OptionButton

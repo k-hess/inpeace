@@ -6,9 +6,10 @@ export function CanWaitSection({ items }: { items: PlanCard[] }) {
   return (
     <section className="mb-16">
       <p className="kicker mb-4">It can wait</p>
-      <p className="mb-6 max-w-lg text-muted-foreground">
-        The house can wait. The accounts can wait. Almost everything people panic about in these first
-        few weeks has no real deadline attached to it.
+      <h2 className="font-serif text-2xl leading-snug text-foreground sm:text-3xl">Almost everything can wait.</h2>
+      <p className="mt-5 mb-6 max-w-lg text-muted-foreground">
+        Almost everything people panic about in these first few weeks has no real deadline attached to
+        it.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         {items.map((item) => (

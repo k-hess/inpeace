@@ -1,4 +1,9 @@
+import { formatDateLong } from "#/lib/date-utils"
 import type { Rule } from "#/data/states/types"
+
+function nextAprilFifteenth(dateOfDeath: Date): Date {
+  return new Date(dateOfDeath.getFullYear() + 1, 3, 15)
+}
 
 /** Practical, state-agnostic tasks woven into the timeline alongside the state rules. */
 export const commonPacingRules: Rule[] = [
@@ -8,7 +13,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "Order copies of the death certificate",
-      body: "You'll need more than you'd think — banks, insurance, the DMV, and others will each want an original. Ordering around eleven now saves you from re-ordering later. There's a tracker for this further down the page.",
+      body: "You'll need more than you'd think — banks, insurance, the DMV, and others will each want an original. Ordering a small stack now saves you from re-ordering later; there's a tracker for this further down the page.",
     }),
   },
   {
@@ -27,8 +32,8 @@ export const commonPacingRules: Rule[] = [
     id: "pacing-have-will",
     phase: "this-week",
     trigger: (answers) => answers.will === "yes",
-    copy: () => ({
-      title: "You already have the will",
+    copy: (ctx) => ({
+      title: `You already have ${ctx.answers.firstName ? `${ctx.answers.firstName}'s` : "the"} will`,
       body: "That's one real thing off the list. Keep it somewhere you can get to easily — you'll want it on hand for the attorney conversation and for opening accounts later.",
     }),
   },
@@ -48,6 +53,17 @@ export const commonPacingRules: Rule[] = [
     copy: () => ({
       title: "Retirement accounts and investments are usually simpler",
       body: "Accounts like a 401k, IRA, or brokerage account typically pass directly to whoever's named as beneficiary, outside of probate entirely. It's worth confirming the named beneficiary is still correct, but this part is usually simpler than people fear.",
+    }),
+  },
+  {
+    id: "pacing-final-tax-return",
+    phase: "months-ahead",
+    trigger: () => true,
+    copy: (ctx) => ({
+      title: "Their final tax return — next spring, not now",
+      body: `A final return still gets filed for the year they died — due ${formatDateLong(
+        nextAprilFifteenth(ctx.dateOfDeath),
+      )}. Nothing about it needs attention now; it's on the list so it never surprises you.`,
     }),
   },
 ]

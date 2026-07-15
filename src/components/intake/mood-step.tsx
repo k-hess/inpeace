@@ -6,6 +6,7 @@ interface MoodStepProps {
   value: MoodAnswer
   onSelect: (mood: MoodAnswer) => void
   onSkip: () => void
+  position?: string
 }
 
 const OPTIONS: { value: Exclude<MoodAnswer, null>; label: string }[] = [
@@ -14,10 +15,11 @@ const OPTIONS: { value: Exclude<MoodAnswer, null>; label: string }[] = [
   { value: "not-sure", label: "I'm not sure" },
 ]
 
-export function MoodStep({ value, onSelect, onSkip }: MoodStepProps) {
+export function MoodStep({ value, onSelect, onSkip, position }: MoodStepProps) {
   return (
     <IntakeScreen
       kicker="Before anything else"
+      position={position}
       title="How are you holding up?"
       description="There's no wrong answer, and this doesn't change anything below except how we talk to you."
     >

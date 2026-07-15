@@ -34,13 +34,13 @@ function PlanRoute() {
       <div className="page-wrap flex min-h-[70vh] flex-col items-center justify-center gap-4 py-16 text-center">
         <p className="font-serif text-2xl text-foreground">A few questions first</p>
         <p className="max-w-sm text-muted-foreground">
-          We need a little more information before a plan makes sense.
+          Your plan comes from a few short questions — about five of them.
         </p>
         <Link
           to="/start"
           className="mt-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
         >
-          Start the intake
+          Answer a few questions
         </Link>
       </div>
     )

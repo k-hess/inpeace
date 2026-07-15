@@ -8,16 +8,18 @@ interface AssetsStepProps {
   onToggle: (asset: AssetKey) => void
   onNext: () => void
   onBack: () => void
+  position?: string
 }
 
 const ASSET_ORDER: AssetKey[] = ["home", "retirement", "bank", "investments", "crypto", "car"]
 
-export function AssetsStep({ value, onToggle, onNext, onBack }: AssetsStepProps) {
+export function AssetsStep({ value, onToggle, onNext, onBack, position }: AssetsStepProps) {
   return (
     <IntakeScreen
       title="What did they leave behind?"
-      description="Select everything that applies — it's fine to be approximate."
+      description="Check the ones you know about. Nothing needs to be complete or exact."
       onBack={onBack}
+      position={position}
     >
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3">

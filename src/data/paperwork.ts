@@ -8,7 +8,7 @@ export function recommendedCertificateCount(assets: AssetKey[]): number {
 export interface FamilyTask {
   id: string
   label: string
-  assignee: "You" | "Sam" | "Alex"
+  assignee: "You" | "Sister" | "Brother"
 }
 
 /**
@@ -18,13 +18,13 @@ export interface FamilyTask {
 export function buildFamilyTasks(assets: AssetKey[], will: WillStatus | null): FamilyTask[] {
   const tasks: FamilyTask[] = [
     { id: "family-certificates", label: "Order the death certificates", assignee: "You" },
-    { id: "family-will", label: will === "yes" ? "Bring the will to the attorney call" : "Check for a will", assignee: "Sam" },
-    { id: "family-banks", label: "Call the banks and financial institutions", assignee: "Alex" },
-    { id: "family-mail", label: "Keep an eye on the mail and bills", assignee: "Sam" },
+    { id: "family-will", label: will === "yes" ? "Bring the will to the attorney call" : "Check for a will", assignee: "Sister" },
+    { id: "family-banks", label: "Call the banks and financial institutions", assignee: "Brother" },
+    { id: "family-mail", label: "Keep an eye on the mail and bills", assignee: "Sister" },
   ]
 
   if (assets.includes("home")) {
-    tasks.push({ id: "family-home", label: "Check on the house once a week", assignee: "Alex" })
+    tasks.push({ id: "family-home", label: "Check on the house once a week", assignee: "Brother" })
   }
   if (assets.includes("crypto")) {
     tasks.push({ id: "family-crypto", label: "Secure the crypto seed phrase", assignee: "You" })

@@ -51,7 +51,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     quiet: true,
     copy: () => ({
       title: "When accounts start to transfer",
-      body: "Down the line, once accounts begin moving into your name, an introduction to a vetted, fee-only financial advisor is available if it's ever useful. No pressure, no pitch — just there if you want it.",
+      body: "Down the line, once accounts begin moving into your name, an introduction to a vetted, fee-only financial advisor is there if it's ever useful. You ask, or nothing happens.",
     }),
   },
 ]

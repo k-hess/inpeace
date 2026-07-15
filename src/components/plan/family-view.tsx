@@ -5,19 +5,19 @@ import type { FamilyTask } from "#/data/paperwork"
 
 const CHIP_COLORS: Record<FamilyTask["assignee"], string> = {
   You: "bg-accent text-accent-foreground",
-  Sam: "bg-secondary text-secondary-foreground",
-  Alex: "bg-secondary text-secondary-foreground",
+  Sister: "bg-secondary text-secondary-foreground",
+  Brother: "bg-secondary text-secondary-foreground",
 }
 
-export function FamilyView({ tasks }: { tasks: FamilyTask[] }) {
+export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstName: string | null }) {
   const [done, setDone] = useState<Record<string, boolean>>({})
 
   return (
     <div className="rounded-2xl border border-border bg-card px-6 py-6">
       <p className="font-medium text-foreground">Shared with your family</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        Everyone on this sees the same list — no more wondering who called the bank or ordered the
-        certificates.
+        Everyone here sees the same list{firstName ? ` for ${firstName}` : ""} — no more wondering who
+        called the bank or ordered the certificates.
       </p>
 
       <ul className="mt-5 flex flex-col gap-2">

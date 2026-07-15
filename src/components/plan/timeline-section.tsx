@@ -16,7 +16,7 @@ function PeopleCard({ card }: { card: PlanCard }) {
     <div
       className={cn(
         "rounded-2xl px-6 py-5",
-        card.quiet ? "quiet-card" : "border border-accent bg-accent/30",
+        card.quiet ? "quiet-card" : "border border-border bg-accent/20",
       )}
     >
       <div className="flex items-start gap-3">

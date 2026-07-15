@@ -6,14 +6,16 @@ interface StateStepProps {
   value: StateCode | null
   onSelect: (state: StateCode) => void
   onBack: () => void
+  position?: string
 }
 
-export function StateStep({ value, onSelect, onBack }: StateStepProps) {
+export function StateStep({ value, onSelect, onBack, position }: StateStepProps) {
   return (
     <IntakeScreen
-      title="Which state are they in?"
-      description="The rules for what happens next vary a lot by state — this just helps us point you to the right ones."
+      title="Which state did they live in?"
+      description="The rules for what happens next vary a lot by state. We're starting with Texas and California."
       onBack={onBack}
+      position={position}
     >
       <div className="flex flex-col gap-3">
         <OptionButton label="Texas" selected={value === "TX"} onClick={() => onSelect("TX")} />

@@ -6,11 +6,12 @@ interface WillStepProps {
   value: WillStatus | null
   onSelect: (will: WillStatus) => void
   onBack: () => void
+  position?: string
 }
 
-export function WillStep({ value, onSelect, onBack }: WillStepProps) {
+export function WillStep({ value, onSelect, onBack, position }: WillStepProps) {
   return (
-    <IntakeScreen title="Was there a will?" onBack={onBack}>
+    <IntakeScreen title="Was there a will?" onBack={onBack} position={position}>
       <div className="flex flex-col gap-3">
         <OptionButton label="Yes" selected={value === "yes"} onClick={() => onSelect("yes")} />
         <OptionButton label="No" selected={value === "no"} onClick={() => onSelect("no")} />
