@@ -59,14 +59,20 @@ export function Footer() {
           </button>
         </div>
       ) : (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="text-[11px] tracking-wide text-muted-foreground/35 hover:text-muted-foreground/70"
-          aria-label="Demo tools"
-        >
-          demo
-        </button>
+        <div className="flex flex-col items-center gap-3">
+          <p className="text-sm text-muted-foreground/70">
+            Harbor is with you for as long as this takes.
+          </p>
+          <p className="text-[11px] text-muted-foreground/40">© 2026 Harbor</p>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="text-[11px] tracking-wide text-muted-foreground/35 hover:text-muted-foreground/70"
+            aria-label="Demo tools"
+          >
+            demo
+          </button>
+        </div>
       )}
     </footer>
   )

@@ -4,6 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import appCss from '../styles.css?url'
 import { IntakeProvider } from '#/store/intake-context'
+import { Header } from '#/components/layout/header'
 import { Footer } from '#/components/layout/footer'
 
 export const Route = createRootRoute({
@@ -47,6 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <IntakeProvider>
           <div className="flex min-h-screen flex-col">
+            <Header />
             <div className="flex-1">{children}</div>
             <Footer />
           </div>
