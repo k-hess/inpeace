@@ -10,7 +10,7 @@ import { useIntake } from "#/store/intake-context"
  */
 export function Footer() {
   const [open, setOpen] = useState(false)
-  const { loadScenario, reset } = useIntake()
+  const { loadScenario, reset, togglePricing } = useIntake()
   const navigate = useNavigate()
 
   return (
@@ -38,6 +38,16 @@ export function Footer() {
             }}
           >
             Scenario B — California
+          </button>
+          <button
+            type="button"
+            className="rounded-full border border-border bg-card px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
+            onClick={() => {
+              togglePricing()
+              setOpen(false)
+            }}
+          >
+            Pricing
           </button>
           <button
             type="button"

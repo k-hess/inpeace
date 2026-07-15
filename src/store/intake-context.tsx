@@ -31,12 +31,20 @@ interface IntakeContextValue {
   patch: (partial: Partial<IntakeAnswers>) => void
   reset: () => void
   loadScenario: (key: "a" | "b") => void
+  /**
+   * Interview-prop only: shows a demo pricing section on the plan page.
+   * Deliberately plain component state — it never persists to sessionStorage,
+   * so it can't leak into a fresh session or a real walkthrough.
+   */
+  showPricing: boolean
+  togglePricing: () => void
 }
 
 const IntakeContext = createContext<IntakeContextValue | null>(null)
 
 export function IntakeProvider({ children }: { children: ReactNode }) {
   const [answers, setAnswers] = useState<IntakeAnswers>(() => readStoredAnswers())
+  const [showPricing, setShowPricing] = useState(false)
 
   const value = useMemo<IntakeContextValue>(
     () => ({
@@ -57,8 +65,10 @@ export function IntakeProvider({ children }: { children: ReactNode }) {
         persistAnswers(next)
         setAnswers(next)
       },
+      showPricing,
+      togglePricing: () => setShowPricing((v) => !v),
     }),
-    [answers],
+    [answers, showPricing],
   )
 
   return <IntakeContext.Provider value={value}>{children}</IntakeContext.Provider>
