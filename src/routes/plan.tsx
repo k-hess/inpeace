@@ -9,6 +9,9 @@ type PlanSearch = { demo?: "a" | "b" }
 export const Route = createFileRoute("/plan")({
   component: PlanRoute,
   ssr: false,
+  head: () => ({
+    meta: [{ title: "Harbor — Your plan" }],
+  }),
   validateSearch: (search: Record<string, unknown>): PlanSearch => ({
     demo: search.demo === "a" || search.demo === "b" ? search.demo : undefined,
   }),
@@ -34,7 +37,7 @@ function PlanRoute() {
           We need a little more information before a plan makes sense.
         </p>
         <Link
-          to="/"
+          to="/start"
           className="mt-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
         >
           Start the intake

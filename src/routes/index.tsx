@@ -1,8 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { IntakeWizard } from '#/components/intake/intake-wizard'
+import { LandingScreen } from '#/components/landing/landing-screen'
 
-export const Route = createFileRoute('/')({ component: Home, ssr: false })
+export const Route = createFileRoute('/')({
+  component: Home,
+  ssr: false,
+  head: () => ({
+    meta: [{ title: 'Harbor' }],
+  }),
+})
 
 function Home() {
-  return <IntakeWizard />
+  return <LandingScreen />
 }
