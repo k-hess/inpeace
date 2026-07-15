@@ -10,17 +10,18 @@ import { useIntake } from "#/store/intake-context"
  */
 export function Header() {
   return (
-    <header className="border-b border-border/70">
+    <header>
       <div className="page-wrap flex items-center justify-between py-5">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 font-serif text-lg text-foreground transition hover:text-foreground/80"
+          className="inline-flex items-center gap-2 font-serif text-lg tracking-[-0.01em] text-foreground transition hover:text-foreground/80"
         >
-          <Waves className="h-3.5 w-3.5 text-primary/55" aria-hidden />
+          <Waves className="h-3.5 w-3.5 text-primary/70" aria-hidden />
           Harbor
         </Link>
         <HeaderAction />
       </div>
+      <hr className="horizon" aria-hidden />
     </header>
   )
 }

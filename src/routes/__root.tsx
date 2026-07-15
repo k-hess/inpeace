@@ -45,10 +45,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <IntakeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <div className="flex-1">{children}</div>
-            <Footer />
+          <div className="relative flex min-h-screen flex-col">
+            <div className="dawn" aria-hidden />
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
           </div>
         </IntakeProvider>
         <Scripts />
