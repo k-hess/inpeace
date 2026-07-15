@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Harbor's palette: warm stone/sand neutrals with a single muted sage
+ * accent. No red anywhere — the "protect yourself" cards use amber, which
+ * reads as a gentle caution rather than an alarm.
+ */
+:root {
+  --stone-25: oklch(0.985 0.004 80);
+  --stone-50: oklch(0.975 0.006 75);
+  --stone-100: oklch(0.955 0.009 75);
+  --stone-200: oklch(0.912 0.013 72);
+  --stone-300: oklch(0.845 0.018 68);
+  --stone-500: oklch(0.58 0.02 62);
+  --stone-600: oklch(0.46 0.018 58);
+  --stone-700: oklch(0.35 0.016 55);
+  --stone-800: oklch(0.27 0.014 50);
+  --stone-900: oklch(0.19 0.012 45);
+
+  --sage-200: oklch(0.88 0.035 145);
+  --sage-400: oklch(0.7 0.06 148);
+  --sage-500: oklch(0.58 0.07 148);
+  --sage-600: oklch(0.47 0.065 150);
+
+  --amber-100: oklch(0.94 0.045 85);
+  --amber-400: oklch(0.75 0.11 75);
+  --amber-600: oklch(0.55 0.11 65);
+
+  --background: var(--stone-50);
+  --foreground: var(--stone-800);
+  --card: oklch(0.99 0.003 80);
+  --card-foreground: var(--stone-800);
+  --popover: oklch(0.99 0.003 80);
+  --popover-foreground: var(--stone-800);
+  --primary: var(--sage-600);
+  --primary-foreground: oklch(0.98 0.006 145);
+  --secondary: var(--stone-100);
+  --secondary-foreground: var(--stone-700);
+  --muted: var(--stone-100);
+  --muted-foreground: var(--stone-500);
+  --accent: var(--sage-200);
+  --accent-foreground: var(--sage-600);
+  --destructive: var(--amber-600);
+  --destructive-foreground: oklch(0.98 0.02 85);
+  --border: var(--stone-200);
+  --input: var(--stone-200);
+  --ring: var(--sage-400);
+  --radius: 1rem;
+
+  --protect-bg: var(--amber-100);
+  --protect-border: oklch(0.82 0.07 75);
+  --protect-foreground: oklch(0.4 0.09 60);
+}
+
+.dark {
+  --background: var(--stone-900);
+  --foreground: var(--stone-100);
+  --card: var(--stone-800);
+  --card-foreground: var(--stone-100);
+  --popover: var(--stone-800);
+  --popover-foreground: var(--stone-100);
+  --primary: var(--sage-400);
+  --primary-foreground: var(--stone-900);
+  --secondary: var(--stone-700);
+  --secondary-foreground: var(--stone-100);
+  --muted: var(--stone-700);
+  --muted-foreground: var(--stone-300);
+  --accent: oklch(0.32 0.04 148);
+  --accent-foreground: var(--sage-200);
+  --destructive: var(--amber-400);
+  --destructive-foreground: var(--stone-900);
+  --border: var(--stone-700);
+  --input: var(--stone-700);
+  --ring: var(--sage-500);
+
+  --protect-bg: oklch(0.28 0.035 70);
+  --protect-border: oklch(0.4 0.06 70);
+  --protect-foreground: var(--amber-100);
+}
+
+@theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.page-wrap {
+  width: min(760px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.kicker {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+}
+
+.protect-card {
+  background: var(--protect-bg);
+  border: 1px solid var(--protect-border);
+  color: var(--protect-foreground);
+}
+
+.quiet-card {
+  background: transparent;
+  border: 1px dashed var(--border);
+  opacity: 0.72;
+}
+
+.quiet-card:hover {
+  opacity: 0.92;
+}
+
+.rise-in {
+  animation: rise-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
