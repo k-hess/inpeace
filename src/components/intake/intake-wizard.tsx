@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import { useIntake } from "#/store/intake-context"
 import { MoodStep } from "#/components/intake/mood-step"
@@ -7,14 +7,23 @@ import { DateStep } from "#/components/intake/date-step"
 import { WillStep } from "#/components/intake/will-step"
 import { AssetsStep } from "#/components/intake/assets-step"
 import { SupportStep } from "#/components/intake/support-step"
-import type { AssetKey } from "#/types/intake"
+import { isIntakeComplete, type AssetKey } from "#/types/intake"
 
 const STEP_COUNT = 6
 
 export function IntakeWizard() {
-  const { answers, patch } = useIntake()
+  const { answers, patch, reset } = useIntake()
   const [step, setStep] = useState(0)
   const navigate = useNavigate()
+
+  // A completed prior run (e.g. from viewing a demo scenario) shouldn't leak
+  // into what's supposed to be a fresh intake. Mid-intake resume is fine —
+  // only a fully-answered set of prior answers gets cleared.
+  useEffect(() => {
+    if (isIntakeComplete(answers)) reset()
+    // Only run once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function next() {
     setStep((s) => Math.min(s + 1, STEP_COUNT - 1))
@@ -30,6 +39,8 @@ export function IntakeWizard() {
     patch({ assets: nextAssets })
   }
 
+  const position = `${step + 1} of ${STEP_COUNT}`
+
   switch (step) {
     case 0:
       return (
@@ -40,6 +51,7 @@ export function IntakeWizard() {
             next()
           }}
           onSkip={next}
+          position={position}
         />
       )
     case 1:
@@ -51,17 +63,20 @@ export function IntakeWizard() {
             patch({ state })
             next()
           }}
+          position={position}
         />
       )
     case 2:
       return (
         <DateStep
           value={answers.dateOfDeath}
+          firstName={answers.firstName}
           onBack={back}
-          onContinue={(dateOfDeath) => {
-            patch({ dateOfDeath })
+          onContinue={(dateOfDeath, firstName) => {
+            patch({ dateOfDeath, firstName })
             next()
           }}
+          position={position}
         />
       )
     case 3:
@@ -73,10 +88,19 @@ export function IntakeWizard() {
             patch({ will })
             next()
           }}
+          position={position}
         />
       )
     case 4:
-      return <AssetsStep value={answers.assets} onBack={back} onToggle={toggleAsset} onNext={next} />
+      return (
+        <AssetsStep
+          value={answers.assets}
+          onBack={back}
+          onToggle={toggleAsset}
+          onNext={next}
+          position={position}
+        />
+      )
     case 5:
       return (
         <SupportStep
@@ -86,6 +110,7 @@ export function IntakeWizard() {
             patch({ support })
             navigate({ to: "/plan" })
           }}
+          position={position}
         />
       )
     default:
