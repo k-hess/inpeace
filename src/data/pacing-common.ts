@@ -8,7 +8,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "Order copies of the death certificate",
-      body: "You'll need more than you'd think — banks, insurance, the DMV, and others will each want an original. Ordering ten to twelve now saves you from re-ordering later. There's a tracker for this further down the page.",
+      body: "You'll need more than you'd think — banks, insurance, the DMV, and others will each want an original. Ordering around eleven now saves you from re-ordering later. There's a tracker for this further down the page.",
     }),
   },
   {
