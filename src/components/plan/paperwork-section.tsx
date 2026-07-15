@@ -10,10 +10,10 @@ export function PaperworkSection({
   firstName: string | null
 }) {
   return (
-    <section>
+    <section className="mb-16">
       <p className="kicker mb-4">Paperwork</p>
       <div className="flex flex-col gap-4">
-        <DeathCertTracker recommendedCopies={paperwork.recommendedCopies} />
+        <DeathCertTracker key={paperwork.recommendedCopies} recommendedCopies={paperwork.recommendedCopies} />
         {paperwork.showFamilyView ? <FamilyView tasks={paperwork.familyTasks} firstName={firstName} /> : null}
       </div>
     </section>

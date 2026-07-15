@@ -8,8 +8,7 @@ export function CanWaitSection({ items }: { items: PlanCard[] }) {
       <p className="kicker mb-4">It can wait</p>
       <h2 className="font-serif text-2xl leading-snug text-foreground sm:text-3xl">Almost everything can wait.</h2>
       <p className="mt-5 mb-6 max-w-lg text-muted-foreground">
-        Almost everything people panic about in these first few weeks has no real deadline attached to
-        it.
+        Most of what people panic about in these first few weeks has no real deadline attached to it.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         {items.map((item) => (

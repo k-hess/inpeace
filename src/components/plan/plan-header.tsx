@@ -6,7 +6,7 @@ interface PlanHeaderProps {
 }
 
 export function PlanHeader({ headline, sub, stateName, firstName }: PlanHeaderProps) {
-  const kicker = firstName ? `A plan for the months after ${firstName}` : `Your plan · ${stateName}`
+  const kicker = firstName ? `A plan for the months after losing ${firstName} · ${stateName}` : `Your plan · ${stateName}`
 
   return (
     <header className="rise-in mb-14">
