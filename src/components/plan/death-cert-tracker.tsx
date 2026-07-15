@@ -15,7 +15,7 @@ export function DeathCertTracker({ recommendedCopies }: { recommendedCopies: num
   const [status, setStatus] = useState<CertStatus>("not-started")
 
   return (
-    <div className="rounded-2xl border border-border bg-card px-6 py-6">
+    <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">Death certificates</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
         We'd suggest ordering around {recommendedCopies} copies — enough for banks, insurance, the DMV,

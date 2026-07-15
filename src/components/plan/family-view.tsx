@@ -13,7 +13,7 @@ export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstNam
   const [done, setDone] = useState<Record<string, boolean>>({})
 
   return (
-    <div className="rounded-2xl border border-border bg-card px-6 py-6">
+    <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">Shared with your family</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
         Everyone here sees the same list{firstName ? ` for ${firstName}` : ""} — no more wondering who
