@@ -22,8 +22,10 @@ export interface PlanPhase {
 }
 
 export interface PlanData {
-  introLine: string
+  headline: string
+  sub: string
   stateName: string
+  firstName: string | null
   phases: PlanPhase[]
   canWait: PlanCard[]
   protection: PlanCard[]
@@ -42,16 +44,24 @@ const PHASE_LABELS: Record<Phase, string> = {
 
 const PHASE_ORDER: Phase[] = ["this-week", "this-month", "months-ahead"]
 
-function introLine(mood: MoodAnswer): string {
+function introCopy(mood: MoodAnswer): { headline: string; sub: string } {
   switch (mood) {
-    case "okay":
-      return "There's less to do right now than it feels like. Here's what actually matters this week — and what can wait."
     case "a-lot":
-      return "It makes sense that it's a lot. You don't have to hold all of it at once — here's just the part that matters this week, and a longer list of things that can simply wait."
+      return {
+        headline: "It makes sense that it's a lot.",
+        sub: "You don't have to hold all of it at once. Here's the part that matters this week — and a longer list of things that can simply wait.",
+      }
     case "not-sure":
-      return "That's a fair place to be. You don't need to have a handle on all of it — here's what actually matters this week, and what can wait."
+      return {
+        headline: "That's a fair place to be.",
+        sub: "You don't need a handle on all of it yet. Here's what matters this week — and what can wait.",
+      }
+    case "okay":
     default:
-      return "There's less to do right now than it feels like. Here's what actually matters this week — and what can wait."
+      return {
+        headline: "There's less to do right now than it feels like.",
+        sub: "Here's what actually matters this week — and what can wait.",
+      }
   }
 }
 
@@ -89,9 +99,13 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     .filter((card) => card.trigger(answers))
     .map((card) => ({ id: card.id, ...card.copy(ctx) }))
 
+  const { headline, sub } = introCopy(answers.mood)
+
   return {
-    introLine: introLine(answers.mood),
+    headline,
+    sub,
     stateName: stateConfig.name,
+    firstName: answers.firstName,
     phases,
     canWait,
     protection,

@@ -26,6 +26,8 @@ export interface IntakeAnswers {
   will: WillStatus | null
   assets: AssetKey[]
   support: SupportMode | null
+  /** Optional — offered on the date step. Used to personalize a few spots in the plan. */
+  firstName: string | null
 }
 
 export const EMPTY_ANSWERS: IntakeAnswers = {
@@ -35,6 +37,7 @@ export const EMPTY_ANSWERS: IntakeAnswers = {
   will: null,
   assets: [],
   support: null,
+  firstName: null,
 }
 
 /**

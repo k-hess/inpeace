@@ -11,6 +11,7 @@ export const scenarios: Record<"a" | "b", IntakeAnswers> = {
     will: "no",
     assets: ["bank", "car"],
     support: "alone",
+    firstName: null,
   },
   // California, will, home + retirement + investments, with siblings, died 6 weeks ago.
   b: {
@@ -20,5 +21,6 @@ export const scenarios: Record<"a" | "b", IntakeAnswers> = {
     will: "yes",
     assets: ["home", "retirement", "investments"],
     support: "family",
+    firstName: "Robert",
   },
 }
