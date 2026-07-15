@@ -6,12 +6,16 @@ import { ClosingSection } from "#/components/landing/closing-section"
 
 export function LandingScreen() {
   return (
-    <div className="page-wrap py-14 sm:py-20">
-      <HeroSection />
-      <PillarsSection />
+    <div className="py-10 sm:py-14">
+      <div className="page-wrap">
+        <HeroSection />
+        <PillarsSection />
+      </div>
       <ItCanWaitSection />
-      <HowItWorksSection />
-      <ClosingSection />
+      <div className="page-wrap">
+        <HowItWorksSection />
+        <ClosingSection />
+      </div>
     </div>
   )
 }

@@ -21,12 +21,12 @@ const PILLARS: Pillar[] = [
 
 export function PillarsSection() {
   return (
-    <section className="mb-20">
+    <section className="mb-24">
       <div className="grid gap-4 sm:grid-cols-3">
         {PILLARS.map((pillar) => (
-          <div key={pillar.title} className="rounded-2xl border border-border bg-card px-6 py-6">
-            <p className="font-medium text-foreground">{pillar.title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.body}</p>
+          <div key={pillar.title} className="card-surface rounded-2xl px-6 py-7">
+            <p className="font-serif text-lg leading-snug text-balance text-foreground">{pillar.title}</p>
+            <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{pillar.body}</p>
           </div>
         ))}
       </div>
