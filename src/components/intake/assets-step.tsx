@@ -26,7 +26,7 @@ export function AssetsStep({ value, onToggle, onNext, onBack, position }: Assets
           {ASSET_ORDER.map((asset) => (
             <label
               key={asset}
-              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-border bg-card px-5 py-4 transition hover:border-primary/50 hover:bg-accent/40"
+              className="flex cursor-pointer items-center gap-3 rounded-2xl border border-border/70 bg-card px-5 py-4 shadow-[var(--shadow-card)] transition hover:border-primary/40 hover:bg-accent/25 has-focus-visible:ring-2 has-focus-visible:ring-ring/60 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background"
             >
               <Checkbox checked={value.includes(asset)} onCheckedChange={() => onToggle(asset)} />
               <span className="text-base font-medium text-foreground">{ASSET_LABELS[asset]}</span>

@@ -36,7 +36,7 @@ export function MoodStep({ value, onSelect, onSkip, position }: MoodStepProps) {
       <button
         type="button"
         onClick={onSkip}
-        className="mt-6 text-sm text-muted-foreground underline decoration-border underline-offset-4 transition hover:text-foreground"
+        className="mt-6 rounded-full text-sm text-muted-foreground underline decoration-border underline-offset-4 transition outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
       >
         Skip this one
       </button>
