@@ -1,4 +1,4 @@
-import { formatDateLong } from "#/lib/date-utils"
+import { addMonths, formatDateLong } from "#/lib/date-utils"
 import type { Rule } from "#/data/states/types"
 
 function nextAprilFifteenth(dateOfDeath: Date): Date {
@@ -64,6 +64,72 @@ export const commonPacingRules: Rule[] = [
       body: `A final return still gets filed for the year they died — due ${formatDateLong(
         nextAprilFifteenth(ctx.dateOfDeath),
       )}. Nothing about it needs attention now; it's on the list so it never surprises you.`,
+    }),
+  },
+
+  // Veteran-specific cards — state-agnostic, surfaced only when the quiet
+  // "they served in the military" checkbox on the assets step is on.
+  {
+    id: "pacing-va-honors",
+    phase: "this-week",
+    trigger: (answers) => answers.veteran,
+    copy: () => ({
+      title: "Military honors and a national cemetery",
+      body: "Since they served, they're eligible for burial in a national cemetery and for military honors at the service — a folded flag, a bugler, a small ceremony of respect. The funeral home can arrange this directly with the VA; it's not something you have to coordinate yourself.",
+    }),
+  },
+  {
+    id: "pacing-va-burial-allowance",
+    phase: "this-month",
+    trigger: (answers) => answers.veteran,
+    computeDate: (ctx) => addMonths(ctx.dateOfDeath, 24),
+    copy: (ctx) => ({
+      title: "A VA burial allowance",
+      body: `A benefit toward funeral and burial costs may be available since they served. There's no rush on this one — the claim window runs two years from the date of death, so you'd have until ${formatDateLong(
+        addMonths(ctx.dateOfDeath, 24),
+      )} if it's ever useful.`,
+    }),
+  },
+  {
+    id: "pacing-va-survivor-benefits",
+    phase: "months-ahead",
+    trigger: (answers) => answers.veteran,
+    copy: () => ({
+      title: "A survivor benefits check, when you're ready",
+      body: "It's worth a call to the VA at some point to ask whether a survivor's pension or dependency compensation applies. Nothing to decide now — just something to keep in your back pocket for a quieter month.",
+    }),
+  },
+
+  // Longer-horizon care notes — these close out the months-ahead phase on
+  // purpose, so the timeline ends on a note of care rather than a task.
+  {
+    id: "pacing-thank-you-notes",
+    phase: "months-ahead",
+    closing: true,
+    trigger: () => true,
+    copy: () => ({
+      title: "Thank-you notes, whenever you're ready",
+      body: "If people brought food, sent flowers, or showed up — a note back is a nice thing, not an obligation. There's no deadline on this one. Weeks or months from now is fine.",
+    }),
+  },
+  {
+    id: "pacing-grief-support-reoffer",
+    phase: "months-ahead",
+    closing: true,
+    trigger: () => true,
+    copy: () => ({
+      title: "Checking back in on support, around the three-month mark",
+      body: "The early flood of help tends to quiet down right around when grief settles in for real. If a counselor or support group didn't feel right at first, it's worth another look a few months out — a lot of people find the timing works better the second time.",
+    }),
+  },
+  {
+    id: "pacing-one-year-remembrance",
+    phase: "months-ahead",
+    closing: true,
+    trigger: () => true,
+    copy: () => ({
+      title: "The one-year mark",
+      body: "Anniversaries have a way of landing harder than expected, even when the practical work is long finished. Nothing to prepare for — just worth knowing it's there, in case you want to mark it, or just want to be gentle with yourself that week.",
     }),
   },
 ]

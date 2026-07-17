@@ -28,6 +28,8 @@ export interface IntakeAnswers {
   support: SupportMode | null
   /** Optional — offered on the date step. Used to personalize a few spots in the plan. */
   firstName: string | null
+  /** Optional — a quiet checkbox on the assets step. Surfaces VA-specific pacing cards. */
+  veteran: boolean
 }
 
 export const EMPTY_ANSWERS: IntakeAnswers = {
@@ -38,6 +40,7 @@ export const EMPTY_ANSWERS: IntakeAnswers = {
   assets: [],
   support: null,
   firstName: null,
+  veteran: false,
 }
 
 /**

@@ -75,6 +75,9 @@ export function Footer() {
             <p className="font-serif text-sm italic text-muted-foreground/80">
               Harbor is with you for as long as this takes.
             </p>
+            <p className="text-[11px] text-muted-foreground/60">
+              Private by default. Nothing you share is ever sold or used to target you.
+            </p>
             <p className="text-[11px] text-muted-foreground/50">© 2026 Harbor</p>
             <button
               type="button"

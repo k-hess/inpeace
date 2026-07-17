@@ -17,6 +17,9 @@ export function HeroSection() {
           <Link to="/start">Take a few minutes</Link>
         </Button>
         <p className="text-xs text-muted-foreground">Free to start. No account needed.</p>
+        <p className="text-xs text-muted-foreground">
+          Private by default. Nothing you share is ever sold or used to target you.
+        </p>
       </div>
     </section>
   )

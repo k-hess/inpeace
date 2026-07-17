@@ -42,23 +42,23 @@
  * resting on sand rather than outlines drawn on the same sheet.
  */
 :root {
-  --stone-25: oklch(0.985 0.004 80);
-  --stone-50: oklch(0.975 0.006 75);
-  --stone-75: oklch(0.963 0.009 76);
-  --stone-100: oklch(0.955 0.009 75);
-  --stone-200: oklch(0.912 0.013 72);
-  --stone-300: oklch(0.845 0.018 68);
-  --stone-500: oklch(0.505 0.019 60);
-  --stone-600: oklch(0.46 0.018 58);
-  --stone-700: oklch(0.35 0.016 55);
-  --stone-800: oklch(0.27 0.014 50);
-  --stone-900: oklch(0.19 0.012 45);
+  --stone-25: oklch(0.985 0.008 82);
+  --stone-50: oklch(0.973 0.012 78);
+  --stone-75: oklch(0.96 0.016 76);
+  --stone-100: oklch(0.95 0.018 74);
+  --stone-200: oklch(0.905 0.026 70);
+  --stone-300: oklch(0.835 0.032 66);
+  --stone-500: oklch(0.5 0.028 55);
+  --stone-600: oklch(0.455 0.026 53);
+  --stone-700: oklch(0.345 0.022 50);
+  --stone-800: oklch(0.265 0.018 46);
+  --stone-900: oklch(0.185 0.015 42);
 
-  --sage-200: oklch(0.88 0.035 145);
-  --sage-300: oklch(0.8 0.05 147);
-  --sage-400: oklch(0.7 0.06 148);
-  --sage-500: oklch(0.58 0.07 148);
-  --sage-600: oklch(0.47 0.065 150);
+  --sage-200: oklch(0.88 0.045 140);
+  --sage-300: oklch(0.8 0.062 141);
+  --sage-400: oklch(0.7 0.075 142);
+  --sage-500: oklch(0.58 0.085 143);
+  --sage-600: oklch(0.47 0.078 145);
 
   --amber-100: oklch(0.94 0.045 85);
   --amber-400: oklch(0.75 0.11 75);
@@ -66,9 +66,9 @@
 
   --background: var(--stone-75);
   --foreground: var(--stone-800);
-  --card: oklch(0.993 0.004 82);
+  --card: oklch(0.99 0.01 80);
   --card-foreground: var(--stone-800);
-  --popover: oklch(0.993 0.004 82);
+  --popover: oklch(0.99 0.01 80);
   --popover-foreground: var(--stone-800);
   --primary: var(--sage-600);
   --primary-foreground: oklch(0.98 0.006 145);
@@ -92,8 +92,8 @@
 
   /* Warm, barely-there elevation for cards resting on the sand ground. */
   --shadow-card:
-    0 1px 2px oklch(0.27 0.014 50 / 0.04),
-    0 2px 10px -2px oklch(0.27 0.014 50 / 0.05);
+    0 1px 2px oklch(0.265 0.018 46 / 0.04),
+    0 2px 10px -2px oklch(0.265 0.018 46 / 0.05);
 }
 
 .dark {
@@ -109,7 +109,7 @@
   --secondary-foreground: var(--stone-100);
   --muted: var(--stone-700);
   --muted-foreground: var(--stone-300);
-  --accent: oklch(0.32 0.04 148);
+  --accent: oklch(0.32 0.05 143);
   --accent-foreground: var(--sage-200);
   --destructive: var(--amber-400);
   --destructive-foreground: var(--stone-900);

@@ -26,6 +26,11 @@ export interface Rule {
   copy: (ctx: RuleContext) => RuleCopy
   /** Only present when a rule has a real computed date worth surfacing. */
   computeDate?: (ctx: RuleContext) => Date
+  /**
+   * Care notes that close out a phase. They sort after every other rule in
+   * the same phase so the timeline ends on reassurance rather than a task.
+   */
+  closing?: boolean
 }
 
 export interface StateConfig {

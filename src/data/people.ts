@@ -55,3 +55,18 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     }),
   },
 ]
+
+/**
+ * The concierge card — interview-prop only, shown in PlanScreen when the
+ * demo pricing toggle is on (see IntakeContext's showPricing). It isn't part
+ * of the pacing engine: it doesn't depend on state, dates, or intake
+ * answers, only on that toggle, so PlanScreen renders it directly rather
+ * than routing it through the phase/trigger system above. Cross-references
+ * the "Harbor, guided" tier in pricing-section.tsx — same offer, described
+ * as a person rather than a price.
+ */
+export const conciergeCard = {
+  quiet: true as const,
+  title: "Someone who has done this hundreds of times, on call for the months ahead.",
+  body: "That's the guided tier above — one person who knows the paperwork, the calls, and the pacing, checking in with you through the months rather than just today.",
+}

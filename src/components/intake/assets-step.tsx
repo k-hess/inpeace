@@ -1,6 +1,7 @@
 import { IntakeScreen } from "#/components/intake/intake-screen"
 import { Button } from "#/components/ui/button"
 import { Checkbox } from "#/components/ui/checkbox"
+import { useIntake } from "#/store/intake-context"
 import { ASSET_LABELS, type AssetKey } from "#/types/intake"
 
 interface AssetsStepProps {
@@ -14,6 +15,11 @@ interface AssetsStepProps {
 const ASSET_ORDER: AssetKey[] = ["home", "retirement", "bank", "investments", "crypto", "car"]
 
 export function AssetsStep({ value, onToggle, onNext, onBack, position }: AssetsStepProps) {
+  // Wired directly to the store rather than via props: the veteran flag
+  // doesn't fit the wizard's per-step callback shape, and it's optional
+  // context rather than one of the required intake questions.
+  const { answers, patch } = useIntake()
+
   return (
     <IntakeScreen
       title="What did they leave behind?"
@@ -33,6 +39,13 @@ export function AssetsStep({ value, onToggle, onNext, onBack, position }: Assets
             </label>
           ))}
         </div>
+        <label className="flex cursor-pointer items-center gap-3 px-1 py-1 has-focus-visible:ring-2 has-focus-visible:ring-ring/60 has-focus-visible:ring-offset-2 has-focus-visible:ring-offset-background">
+          <Checkbox
+            checked={answers.veteran}
+            onCheckedChange={() => patch({ veteran: !answers.veteran })}
+          />
+          <span className="text-sm text-muted-foreground">They served in the military</span>
+        </label>
         <Button size="lg" className="w-fit rounded-full px-6" onClick={onNext}>
           Continue
         </Button>

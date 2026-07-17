@@ -3,7 +3,10 @@ import { Check } from "lucide-react"
 import { cn } from "#/lib/utils"
 import type { FamilyTask } from "#/data/paperwork"
 
-const CHIP_COLORS: Record<FamilyTask["assignee"], string> = {
+export type Assignee = FamilyTask["assignee"]
+
+/** Shared assignee-chip palette — reused anywhere a task shows who's handling it. */
+export const ASSIGNEE_CHIP_COLORS: Record<Assignee, string> = {
   You: "bg-accent text-accent-foreground",
   Sister: "bg-secondary text-secondary-foreground",
   Brother: "bg-secondary text-secondary-foreground",
@@ -11,6 +14,16 @@ const CHIP_COLORS: Record<FamilyTask["assignee"], string> = {
 
 export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstName: string | null }) {
   const [done, setDone] = useState<Record<string, boolean>>({})
+
+  const yourWork = tasks.reduce(
+    (acc, task) => {
+      if (task.assignee !== "You") return acc
+      acc.total += 1
+      if (done[task.id]) acc.done += 1
+      return acc
+    },
+    { done: 0, total: 0 },
+  )
 
   return (
     <div className="card-surface rounded-2xl px-6 py-6">
@@ -48,12 +61,24 @@ export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstNam
                 {task.label}
               </span>
             </button>
-            <span className={cn("shrink-0 rounded-full px-2.5 py-1 text-xs font-medium", CHIP_COLORS[task.assignee])}>
+            <span
+              className={cn(
+                "shrink-0 rounded-full px-2.5 py-1 text-xs font-medium",
+                ASSIGNEE_CHIP_COLORS[task.assignee],
+              )}
+            >
               {task.assignee}
             </span>
           </li>
         ))}
       </ul>
+
+      {yourWork.total > 0 && tasks.length > 1 ? (
+        <p className="mt-4 text-sm text-muted-foreground">
+          You're carrying {yourWork.total} of these {tasks.length}
+          {yourWork.done > 0 ? `, and you've done ${yourWork.done} already` : ""} — everyone here can see that.
+        </p>
+      ) : null}
     </div>
   )
 }

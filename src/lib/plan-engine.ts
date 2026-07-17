@@ -6,7 +6,13 @@ import { commonPacingRules } from "#/data/pacing-common"
 import { canWaitItems } from "#/data/can-wait"
 import { protectionCards } from "#/data/protection"
 import { peopleCards } from "#/data/people"
-import { buildFamilyTasks, recommendedCertificateCount, type FamilyTask } from "#/data/paperwork"
+import {
+  buildFamilyTasks,
+  buildNotifications,
+  recommendedCertificateCount,
+  type FamilyTask,
+  type NotificationItem,
+} from "#/data/paperwork"
 import type { IntakeAnswers, MoodAnswer } from "#/types/intake"
 
 export interface PlanCard extends RuleCopy {
@@ -33,6 +39,7 @@ export interface PlanData {
     recommendedCopies: number
     showFamilyView: boolean
     familyTasks: FamilyTask[]
+    notifications: NotificationItem[]
   }
 }
 
@@ -68,6 +75,7 @@ function introCopy(mood: MoodAnswer): { headline: string; sub: string } {
 function resolveRules(rules: Rule[], phase: Phase, answers: IntakeAnswers, ctx: RuleContext): PlanCard[] {
   return rules
     .filter((rule) => rule.phase === phase && rule.trigger(answers))
+    .sort((a, b) => Number(a.closing ?? false) - Number(b.closing ?? false))
     .map((rule) => ({ id: rule.id, ...rule.copy(ctx) }))
 }
 
@@ -113,6 +121,7 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
       recommendedCopies: recommendedCertificateCount(answers.assets),
       showFamilyView: answers.support === "family",
       familyTasks: buildFamilyTasks(answers.assets, answers.will),
+      notifications: buildNotifications(answers.assets, answers.will),
     },
   }
 }

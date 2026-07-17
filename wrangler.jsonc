@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Static-assets Workers deploy: every route is `ssr: false`, so this is a
+  // client-only SPA. There is no Worker script ("main") — Cloudflare serves
+  // the prerendered shell + hashed assets from dist/client directly, and
+  // falls back to index.html for client-side routed paths.
+  "name": "harbor",
+  // ParkerStreet account — Kyle's wrangler default account is Dinero, so
+  // this must stay explicit or `wrangler deploy` will target the wrong account.
+  "account_id": "285ea0b4ac60627a33ba52a1c9870699",
+  "compatibility_date": "2026-07-16",
+  "assets": {
+    "directory": "./dist/client",
+    "not_found_handling": "single-page-application"
+  }
+}

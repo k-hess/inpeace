@@ -4,6 +4,7 @@ import appCss from '../styles.css?url'
 import { IntakeProvider } from '#/store/intake-context'
 import { Header } from '#/components/layout/header'
 import { Footer } from '#/components/layout/footer'
+import { PassphraseGate } from '#/components/gate/passphrase-gate'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -45,14 +46,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <IntakeProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="dawn" aria-hidden />
+          <PassphraseGate>
             <div className="relative flex min-h-screen flex-col">
-              <Header />
-              <div className="flex-1">{children}</div>
-              <Footer />
+              <div className="dawn" aria-hidden />
+              <div className="relative flex min-h-screen flex-col">
+                <Header />
+                <div className="flex-1">{children}</div>
+                <Footer />
+              </div>
             </div>
-          </div>
+          </PassphraseGate>
         </IntakeProvider>
         <Scripts />
       </body>
