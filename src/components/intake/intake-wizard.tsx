@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "@tanstack/react-router"
 import { useIntake } from "#/store/intake-context"
-import { MoodStep } from "#/components/intake/mood-step"
 import { StateStep } from "#/components/intake/state-step"
 import { DateStep } from "#/components/intake/date-step"
 import { WillStep } from "#/components/intake/will-step"
@@ -9,7 +8,7 @@ import { AssetsStep } from "#/components/intake/assets-step"
 import { SupportStep } from "#/components/intake/support-step"
 import { isIntakeComplete, type AssetKey } from "#/types/intake"
 
-const STEP_COUNT = 6
+const STEP_COUNT = 5
 
 export function IntakeWizard() {
   const { answers, patch, reset } = useIntake()
@@ -44,21 +43,8 @@ export function IntakeWizard() {
   switch (step) {
     case 0:
       return (
-        <MoodStep
-          value={answers.mood}
-          onSelect={(mood) => {
-            patch({ mood })
-            next()
-          }}
-          onSkip={next}
-          position={position}
-        />
-      )
-    case 1:
-      return (
         <StateStep
           value={answers.state}
-          onBack={back}
           onSelect={(state) => {
             patch({ state })
             next()
@@ -66,7 +52,7 @@ export function IntakeWizard() {
           position={position}
         />
       )
-    case 2:
+    case 1:
       return (
         <DateStep
           value={answers.dateOfDeath}
@@ -79,7 +65,7 @@ export function IntakeWizard() {
           position={position}
         />
       )
-    case 3:
+    case 2:
       return (
         <WillStep
           value={answers.will}
@@ -91,7 +77,7 @@ export function IntakeWizard() {
           position={position}
         />
       )
-    case 4:
+    case 3:
       return (
         <AssetsStep
           value={answers.assets}
@@ -101,7 +87,7 @@ export function IntakeWizard() {
           position={position}
         />
       )
-    case 5:
+    case 4:
       return (
         <SupportStep
           value={answers.support}

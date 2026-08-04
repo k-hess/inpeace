@@ -5,7 +5,7 @@ import type { StateCode } from "#/types/intake"
 interface StateStepProps {
   value: StateCode | null
   onSelect: (state: StateCode) => void
-  onBack: () => void
+  onBack?: () => void
   position?: string
 }
 

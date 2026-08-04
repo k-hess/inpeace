@@ -2,8 +2,6 @@
 // no persistence, no network. State lives in sessionStorage via the
 // intake store (see src/store/intake-context.tsx).
 
-export type MoodAnswer = "okay" | "a-lot" | "not-sure" | null
-
 export type StateCode = "TX" | "CA"
 
 export type WillStatus = "yes" | "no" | "not-sure"
@@ -19,7 +17,6 @@ export type AssetKey =
 export type SupportMode = "alone" | "family"
 
 export interface IntakeAnswers {
-  mood: MoodAnswer
   state: StateCode | null
   /** ISO date string, e.g. "2026-06-24" */
   dateOfDeath: string | null
@@ -33,7 +30,6 @@ export interface IntakeAnswers {
 }
 
 export const EMPTY_ANSWERS: IntakeAnswers = {
-  mood: null,
   state: null,
   dateOfDeath: null,
   will: null,
@@ -45,7 +41,7 @@ export const EMPTY_ANSWERS: IntakeAnswers = {
 
 /**
  * True once every required (non-skippable) question has an answer.
- * Assets is allowed to be an empty selection, and mood is always optional.
+ * Assets is allowed to be an empty selection.
  */
 export function isIntakeComplete(answers: IntakeAnswers): boolean {
   return Boolean(answers.state && answers.dateOfDeath && answers.will && answers.support)

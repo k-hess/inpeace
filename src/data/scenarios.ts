@@ -10,7 +10,6 @@ import type { IntakeAnswers } from "#/types/intake"
 export const scenarios: Record<"a" | "b", IntakeAnswers> = {
   // Texas, no will, bank + car + crypto, alone, died 3 weeks ago, veteran.
   a: {
-    mood: "a-lot",
     state: "TX",
     dateOfDeath: toISODate(addDays(new Date(), -21)),
     will: "no",
@@ -21,7 +20,6 @@ export const scenarios: Record<"a" | "b", IntakeAnswers> = {
   },
   // California, will, home + retirement + investments, with siblings, died 6 weeks ago.
   b: {
-    mood: "okay",
     state: "CA",
     dateOfDeath: toISODate(addDays(new Date(), -42)),
     will: "yes",

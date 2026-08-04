@@ -13,7 +13,7 @@ import {
   type FamilyTask,
   type NotificationItem,
 } from "#/data/paperwork"
-import type { IntakeAnswers, MoodAnswer } from "#/types/intake"
+import type { IntakeAnswers } from "#/types/intake"
 
 export interface PlanCard extends RuleCopy {
   id: string
@@ -51,25 +51,9 @@ const PHASE_LABELS: Record<Phase, string> = {
 
 const PHASE_ORDER: Phase[] = ["this-week", "this-month", "months-ahead"]
 
-function introCopy(mood: MoodAnswer): { headline: string; sub: string } {
-  switch (mood) {
-    case "a-lot":
-      return {
-        headline: "It makes sense that it's a lot.",
-        sub: "You don't have to hold all of it at once. Here's the part that matters this week — and a longer list of things that can simply wait.",
-      }
-    case "not-sure":
-      return {
-        headline: "That's a fair place to be.",
-        sub: "You don't need a handle on all of it yet. Here's what matters this week — and what can wait.",
-      }
-    case "okay":
-    default:
-      return {
-        headline: "There's less to do right now than it feels like.",
-        sub: "Here's what actually matters this week — and what can wait.",
-      }
-  }
+const INTRO = {
+  headline: "There's less to do right now than it feels like.",
+  sub: "Here's what actually matters this week — and what can wait.",
 }
 
 function resolveRules(rules: Rule[], phase: Phase, answers: IntakeAnswers, ctx: RuleContext): PlanCard[] {
@@ -107,7 +91,7 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     .filter((card) => card.trigger(answers))
     .map((card) => ({ id: card.id, ...card.copy(ctx) }))
 
-  const { headline, sub } = introCopy(answers.mood)
+  const { headline, sub } = INTRO
 
   return {
     headline,
