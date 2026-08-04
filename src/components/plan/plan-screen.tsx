@@ -3,9 +3,14 @@ import { useIntake } from "#/store/intake-context"
 import { PlanHeader } from "#/components/plan/plan-header"
 import { ProtectionSection } from "#/components/plan/protection-section"
 import { TimelineSection } from "#/components/plan/timeline-section"
+import { FuneralGuidanceSection } from "#/components/plan/funeral-guidance-section"
 import { CareCircleSection } from "#/components/plan/care-circle-section"
 import { CanWaitSection } from "#/components/plan/can-wait-section"
 import { PaperworkSection } from "#/components/plan/paperwork-section"
+import { LiabilitiesSection } from "#/components/plan/liabilities-section"
+import { EdgeCasesSection } from "#/components/plan/edge-cases-section"
+import { ChoosingSection } from "#/components/plan/choosing-section"
+import { RippleSection } from "#/components/plan/ripple-section"
 import { PricingSection } from "#/components/plan/pricing-section"
 import { conciergeCard } from "#/data/people"
 import type { PlanData } from "#/lib/plan-engine"
@@ -39,9 +44,14 @@ export function PlanScreen({ plan }: { plan: PlanData; answers: IntakeAnswers })
       <PlanHeader headline={plan.headline} sub={plan.sub} stateName={plan.stateName} firstName={plan.firstName} />
       <ProtectionSection cards={plan.protection} />
       <TimelineSection phases={plan.phases} />
+      <FuneralGuidanceSection />
       <CareCircleSection />
       <CanWaitSection items={plan.canWait} />
       <PaperworkSection paperwork={plan.paperwork} firstName={plan.firstName} />
+      <LiabilitiesSection cards={plan.liabilities} />
+      <EdgeCasesSection cards={plan.edgeCases} />
+      <ChoosingSection />
+      <RippleSection />
       {showPricing ? (
         <>
           <PricingSection />

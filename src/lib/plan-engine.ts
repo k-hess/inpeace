@@ -5,6 +5,8 @@ import type { Phase, Rule, RuleContext, RuleCopy } from "#/data/states/types"
 import { commonPacingRules } from "#/data/pacing-common"
 import { canWaitItems } from "#/data/can-wait"
 import { protectionCards } from "#/data/protection"
+import { liabilityCards } from "#/data/liabilities"
+import { edgeCaseCards } from "#/data/edge-cases"
 import { peopleCards } from "#/data/people"
 import {
   buildFamilyTasks,
@@ -13,7 +15,10 @@ import {
   type FamilyTask,
   type NotificationItem,
 } from "#/data/paperwork"
-import type { IntakeAnswers } from "#/types/intake"
+import { accessNote, inventoryGroups } from "#/data/inventory"
+import { conversationNote, questionGroups, type QuestionGroup } from "#/data/questions-to-ask"
+import { religionTimingNote } from "#/data/religion"
+import type { IntakeAnswers, JourneyMode } from "#/types/intake"
 
 export interface PlanCard extends RuleCopy {
   id: string
@@ -35,6 +40,8 @@ export interface PlanData {
   phases: PlanPhase[]
   canWait: PlanCard[]
   protection: PlanCard[]
+  liabilities: PlanCard[]
+  edgeCases: PlanCard[]
   paperwork: {
     recommendedCopies: number
     showFamilyView: boolean
@@ -91,6 +98,14 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     .filter((card) => card.trigger(answers))
     .map((card) => ({ id: card.id, ...card.copy(ctx) }))
 
+  const liabilities = liabilityCards
+    .filter((card) => card.trigger(answers))
+    .map((card) => ({ id: card.id, ...card.copy(ctx) }))
+
+  const edgeCases = edgeCaseCards
+    .filter((card) => card.trigger(answers))
+    .map((card) => ({ id: card.id, ...card.copy(ctx) }))
+
   const { headline, sub } = INTRO
 
   return {
@@ -101,11 +116,72 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     phases,
     canWait,
     protection,
+    liabilities,
+    edgeCases,
     paperwork: {
       recommendedCopies: recommendedCertificateCount(answers.assets),
       showFamilyView: answers.support === "family",
       familyTasks: buildFamilyTasks(answers.assets, answers.will),
       notifications: buildNotifications(answers.assets, answers.will),
     },
+  }
+}
+
+export interface GatheringPlanData {
+  mode: Extract<JourneyMode, "for-family" | "for-self">
+  headline: string
+  sub: string
+  stateName: string
+  groups: {
+    id: string
+    label: string
+    blurb: string
+    items: { id: string; label: string; whereToLook: string; easilyMissed?: boolean }[]
+  }[]
+  accessNote: { title: string; body: string }
+  questionGroups: QuestionGroup[]
+  conversationNote: { title: string; body: string }
+  religionNote: { title: string; body: string } | null
+}
+
+const GATHERING_INTRO: Record<Extract<JourneyMode, "for-family" | "for-self">, { headline: string; sub: string }> = {
+  "for-self": {
+    headline: "Getting this together now is a gift to whoever would otherwise have to guess.",
+    sub: "None of this is morbid, and none of it is urgent — it's just easier to gather at your own pace than to have someone else piece it together later.",
+  },
+  "for-family": {
+    headline: "The conversation is the hard part. This is the list that makes it concrete.",
+    sub: "You don't need to ask everything at once. This turns a vague, uncomfortable topic into a short set of questions and a list of what to look for.",
+  },
+}
+
+export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | null {
+  if (!answers.state) return null
+  if (answers.mode !== "for-family" && answers.mode !== "for-self") return null
+
+  const mode = answers.mode
+  const stateConfig = answers.state === "TX" ? texas : california
+
+  const groups = inventoryGroups
+    .map((group) => ({
+      id: group.id,
+      label: group.label,
+      blurb: group.blurb,
+      items: group.items.filter((item) => !item.trigger || item.trigger(answers)),
+    }))
+    .filter((group) => group.items.length > 0)
+
+  const { headline, sub } = GATHERING_INTRO[mode]
+
+  return {
+    mode,
+    headline,
+    sub,
+    stateName: stateConfig.name,
+    groups,
+    accessNote,
+    questionGroups,
+    conversationNote,
+    religionNote: religionTimingNote(answers.religion),
   }
 }

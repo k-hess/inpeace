@@ -2,7 +2,7 @@ import { IntakeScreen } from "#/components/intake/intake-screen"
 import { Button } from "#/components/ui/button"
 import { Checkbox } from "#/components/ui/checkbox"
 import { useIntake } from "#/store/intake-context"
-import { ASSET_LABELS, type AssetKey } from "#/types/intake"
+import { ASSET_LABELS, type AssetKey, type JourneyMode } from "#/types/intake"
 
 interface AssetsStepProps {
   value: AssetKey[]
@@ -10,20 +10,36 @@ interface AssetsStepProps {
   onNext: () => void
   onBack: () => void
   position?: string
+  mode?: JourneyMode
 }
 
 const ASSET_ORDER: AssetKey[] = ["home", "retirement", "bank", "investments", "crypto", "car"]
 
-export function AssetsStep({ value, onToggle, onNext, onBack, position }: AssetsStepProps) {
+const COPY_BY_MODE: Partial<Record<JourneyMode, { title: string; description: string }>> = {
+  "for-self": {
+    title: "What do you have?",
+    description: "Check the ones that apply. Nothing needs to be complete or exact.",
+  },
+  "for-family": {
+    title: "What do they have?",
+    description: "Check the ones you know about. Nothing needs to be complete or exact.",
+  },
+}
+
+export function AssetsStep({ value, onToggle, onNext, onBack, position, mode }: AssetsStepProps) {
   // Wired directly to the store rather than via props: the veteran flag
   // doesn't fit the wizard's per-step callback shape, and it's optional
   // context rather than one of the required intake questions.
   const { answers, patch } = useIntake()
+  const copy = (mode && COPY_BY_MODE[mode]) ?? {
+    title: "What did they leave behind?",
+    description: "Check the ones you know about. Nothing needs to be complete or exact.",
+  }
 
   return (
     <IntakeScreen
-      title="What did they leave behind?"
-      description="Check the ones you know about. Nothing needs to be complete or exact."
+      title={copy.title}
+      description={copy.description}
       onBack={onBack}
       position={position}
     >

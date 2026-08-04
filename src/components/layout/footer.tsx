@@ -45,6 +45,28 @@ export function Footer() {
               type="button"
               className="rounded-full border border-border bg-card px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
               onClick={() => {
+                loadScenario("c")
+                navigate({ to: "/plan" })
+                setOpen(false)
+              }}
+            >
+              Scenario C — For family
+            </button>
+            <button
+              type="button"
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
+              onClick={() => {
+                loadScenario("d")
+                navigate({ to: "/plan" })
+                setOpen(false)
+              }}
+            >
+              Scenario D — For self
+            </button>
+            <button
+              type="button"
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
+              onClick={() => {
                 togglePricing()
                 setOpen(false)
               }}

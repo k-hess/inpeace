@@ -6,7 +6,7 @@ interface Step {
 const STEPS: Step[] = [
   {
     title: "Answer a few questions",
-    body: "About five of them. Nothing to prepare, nothing to get right.",
+    body: "A few short questions. Nothing to prepare, nothing to get right.",
   },
   {
     title: "See your plan",

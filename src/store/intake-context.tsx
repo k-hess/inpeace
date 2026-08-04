@@ -30,7 +30,7 @@ interface IntakeContextValue {
   answers: IntakeAnswers
   patch: (partial: Partial<IntakeAnswers>) => void
   reset: () => void
-  loadScenario: (key: "a" | "b") => void
+  loadScenario: (key: "a" | "b" | "c" | "d") => void
   /**
    * Interview-prop only: shows a demo pricing section on the plan page.
    * Deliberately plain component state — it never persists to sessionStorage,
