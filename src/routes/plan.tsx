@@ -10,7 +10,7 @@ export const Route = createFileRoute("/plan")({
   component: PlanRoute,
   ssr: false,
   head: () => ({
-    meta: [{ title: "Harbor — Your plan" }],
+    meta: [{ title: "In Peace — Your plan" }],
   }),
   validateSearch: (search: Record<string, unknown>): PlanSearch => ({
     demo: search.demo === "a" || search.demo === "b" ? search.demo : undefined,

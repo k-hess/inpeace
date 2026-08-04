@@ -17,7 +17,7 @@ export function Header() {
           className="inline-flex items-center gap-2 font-serif text-lg tracking-[-0.01em] text-foreground transition hover:text-foreground/80"
         >
           <Waves className="h-3.5 w-3.5 text-primary/70" aria-hidden />
-          Harbor
+          In Peace
         </Link>
         <HeaderAction />
       </div>

@@ -2,7 +2,7 @@ import { createContext, useContext, useMemo, useState, type ReactNode } from "re
 import { EMPTY_ANSWERS, type IntakeAnswers } from "#/types/intake"
 import { scenarios } from "#/data/scenarios"
 
-const STORAGE_KEY = "harbor.intake.answers"
+const STORAGE_KEY = "inpeace.intake.answers"
 
 function readStoredAnswers(): IntakeAnswers {
   if (typeof window === "undefined") return EMPTY_ANSWERS

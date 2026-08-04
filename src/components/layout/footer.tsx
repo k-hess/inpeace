@@ -73,12 +73,12 @@ export function Footer() {
         ) : (
           <div className="flex flex-col items-center gap-3">
             <p className="font-serif text-sm italic text-muted-foreground/80">
-              Harbor is with you for as long as this takes.
+              In Peace is with you for as long as this takes.
             </p>
             <p className="text-[11px] text-muted-foreground/60">
               Private by default. Nothing you share is ever sold or used to target you.
             </p>
-            <p className="text-[11px] text-muted-foreground/50">© 2026 Harbor</p>
+            <p className="text-[11px] text-muted-foreground/50">© 2026 In Peace</p>
             <button
               type="button"
               onClick={() => setOpen(true)}

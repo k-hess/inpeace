@@ -62,7 +62,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
  * of the pacing engine: it doesn't depend on state, dates, or intake
  * answers, only on that toggle, so PlanScreen renders it directly rather
  * than routing it through the phase/trigger system above. Cross-references
- * the "Harbor, guided" tier in pricing-section.tsx — same offer, described
+ * the "In Peace, guided" tier in pricing-section.tsx — same offer, described
  * as a person rather than a price.
  */
 export const conciergeCard = {

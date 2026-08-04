@@ -4,7 +4,7 @@
   // client-only SPA. There is no Worker script ("main") — Cloudflare serves
   // the prerendered shell + hashed assets from dist/client directly, and
   // falls back to index.html for client-side routed paths.
-  "name": "harbor",
+  "name": "inpeace",
   // ParkerStreet account — Kyle's wrangler default account is Dinero, so
   // this must stay explicit or `wrangler deploy` will target the wrong account.
   "account_id": "285ea0b4ac60627a33ba52a1c9870699",

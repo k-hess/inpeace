@@ -9,7 +9,7 @@ export function HeroSection() {
         Nobody hands you a map. <em className="text-primary italic">This is one.</em>
       </h1>
       <p className="mx-auto mt-7 max-w-lg text-lg leading-relaxed text-pretty text-muted-foreground">
-        Harbor turns the months after a loss into a calm, personal plan — what matters this week,
+        In Peace turns the months after a loss into a calm, personal plan — what matters this week,
         what can wait, and who can help.
       </p>
       <div className="mt-10 flex flex-col items-center gap-3">

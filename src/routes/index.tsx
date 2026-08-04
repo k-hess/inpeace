@@ -5,7 +5,7 @@ export const Route = createFileRoute('/')({
   component: Home,
   ssr: false,
   head: () => ({
-    meta: [{ title: 'Harbor' }],
+    meta: [{ title: 'In Peace' }],
   }),
 })
 

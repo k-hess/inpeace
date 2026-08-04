@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "rea
 import { Waves } from "lucide-react"
 import { Button } from "#/components/ui/button"
 
-const STORAGE_KEY = "harbor.gate"
+const STORAGE_KEY = "inpeace.gate"
 const PASSPHRASE = "driftwood"
 
 /**
@@ -57,7 +57,7 @@ export function PassphraseGate({ children }: { children: ReactNode }) {
       <div className="card-surface rise-in relative w-full max-w-sm rounded-2xl p-8 text-center">
         <div className="mb-6 inline-flex items-center gap-2 font-serif text-lg tracking-[-0.01em] text-foreground">
           <Waves className="h-3.5 w-3.5 text-primary/70" aria-hidden />
-          Harbor
+          In Peace
         </div>
         <p className="kicker mb-4">Private preview</p>
         <h1 className="display text-2xl text-foreground">A quiet way in.</h1>
@@ -65,7 +65,7 @@ export function PassphraseGate({ children }: { children: ReactNode }) {
           This build is shared by invitation only. Enter the passphrase to continue.
         </p>
         <form onSubmit={handleSubmit} className="mt-7 flex flex-col items-center gap-3">
-          <label htmlFor="harbor-passphrase" className="sr-only">
+          <label htmlFor="inpeace-passphrase" className="sr-only">
             Passphrase
           </label>
           <PassphraseInput
@@ -106,7 +106,7 @@ function PassphraseInput({
   return (
     <input
       ref={ref}
-      id="harbor-passphrase"
+      id="inpeace-passphrase"
       name="passphrase"
       type="password"
       autoComplete="off"
