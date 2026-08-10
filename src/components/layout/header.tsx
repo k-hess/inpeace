@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router"
 import { Waves } from "lucide-react"
 import { useIntake } from "#/store/intake-context"
@@ -31,7 +32,21 @@ function HeaderAction() {
   const navigate = useNavigate()
   const { reset } = useIntake()
 
-  if (pathname === "/") {
+  // Deploy is a single static-assets shell (see wrangler.jsonc): only "/"
+  // gets a real prerendered HTML file, and Cloudflare's SPA fallback serves
+  // that exact same file for every other path. So the very first paint of
+  // e.g. /start or /plan is actually last built for "/" — if this action
+  // renders its real, pathname-driven content immediately, hydration is
+  // handed a <button>Start over</button> where the server-shipped markup
+  // has an <a href="/start">Begin</a>, a tag-type mismatch that trips
+  // React's hydration error #418 once on load. Rendering the "/" version
+  // unconditionally until after mount keeps the first client render
+  // identical to whatever shell was actually served, then swaps to the
+  // correct action in a normal post-hydration update.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted || pathname === "/") {
     return (
       <Link
         to="/start"
