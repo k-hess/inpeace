@@ -1,10 +1,10 @@
 import type { PlanCard } from "#/lib/plan-engine"
 
-export function ProtectionSection({ cards }: { cards: PlanCard[] }) {
+export function ProtectionSection({ cards, id }: { cards: PlanCard[]; id: string }) {
   if (cards.length === 0) return null
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Protect yourself</p>
       <p className="mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
         Not because anything is wrong — these are just the few mistakes that can't be undone.

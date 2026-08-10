@@ -85,13 +85,13 @@ function RedFlags() {
   )
 }
 
-export function FuneralGuidanceSection() {
+export function FuneralGuidanceSection({ id }: { id: string }) {
   if (costRanges.length === 0 && yourRights.length === 0 && whatToAsk.length === 0 && redFlags.length === 0) {
     return null
   }
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">The funeral home</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         You have more say here than it feels like.

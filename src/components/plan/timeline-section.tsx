@@ -46,12 +46,12 @@ function PeopleCard({ card }: { card: PlanCard }) {
  * screens — a sage marker per phase, a hairline connecting them — so the
  * long scroll reads as one path rather than stacked headings.
  */
-export function TimelineSection({ phases }: { phases: PlanPhase[] }) {
+export function TimelineSection({ phases, id }: { phases: PlanPhase[]; id: string }) {
   const visible = phases.filter((phase) => phase.tasks.length > 0 || phase.people.length > 0)
   if (visible.length === 0) return null
 
   return (
-    <section className="relative mb-16 flex flex-col gap-12 sm:gap-14">
+    <section id={id} className="section-anchor relative mb-16 flex flex-col gap-12 sm:gap-14">
       <div className="absolute top-2 bottom-4 left-[3px] hidden w-px bg-border sm:block" aria-hidden />
       {visible.map((phase) => (
         <div key={phase.phase} className="relative sm:pl-10">

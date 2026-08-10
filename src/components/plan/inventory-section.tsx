@@ -3,7 +3,7 @@ import { Checkbox } from "#/components/ui/checkbox"
 import { cn } from "#/lib/utils"
 import type { GatheringPlanData } from "#/lib/plan-engine"
 
-export function InventorySection({ groups }: { groups: GatheringPlanData["groups"] }) {
+export function InventorySection({ groups, id }: { groups: GatheringPlanData["groups"]; id: string }) {
   // Checked state lives here, the same local-state pattern as the death
   // certificate and notification trackers on the "after" plan — nothing
   // persists, it's just a way to work through the list in one sitting.
@@ -11,12 +11,12 @@ export function InventorySection({ groups }: { groups: GatheringPlanData["groups
 
   if (groups.length === 0) return null
 
-  function toggle(id: string) {
-    setChecked((prev) => ({ ...prev, [id]: !prev[id] }))
+  function toggle(itemId: string) {
+    setChecked((prev) => ({ ...prev, [itemId]: !prev[itemId] }))
   }
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">The inventory</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">Where to look for each thing.</h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">

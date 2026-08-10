@@ -5,13 +5,15 @@ export function QuestionsSection({
   questionGroups,
   conversationNote,
   mode,
+  id,
 }: {
   questionGroups: QuestionGroup[]
   conversationNote: { title: string; body: string }
   mode: Extract<JourneyMode, "for-family" | "for-self">
+  id: string
 }) {
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">The conversation</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         {mode === "for-self"

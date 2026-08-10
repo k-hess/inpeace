@@ -53,12 +53,14 @@ function CertUses() {
 export function PaperworkSection({
   paperwork,
   firstName,
+  id,
 }: {
   paperwork: PlanData["paperwork"]
   firstName: string | null
+  id: string
 }) {
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Paperwork</p>
       <div className="flex flex-col gap-4">
         <DeathCertTracker key={paperwork.recommendedCopies} recommendedCopies={paperwork.recommendedCopies} />

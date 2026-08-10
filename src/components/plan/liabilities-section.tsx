@@ -1,10 +1,10 @@
 import type { PlanCard } from "#/lib/plan-engine"
 
-export function LiabilitiesSection({ cards }: { cards: PlanCard[] }) {
+export function LiabilitiesSection({ cards, id }: { cards: PlanCard[]; id: string }) {
   if (cards.length === 0) return null
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Debts</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         The debts don't become yours.

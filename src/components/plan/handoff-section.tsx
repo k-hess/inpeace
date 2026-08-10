@@ -28,13 +28,13 @@ const PLACEHOLDER_PEOPLE: HandoffPerson[] = [
   },
 ]
 
-export function HandoffSection() {
+export function HandoffSection({ id }: { id: string }) {
   useEffect(() => {
     track("handoff_section_viewed", {})
   }, [])
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Who can open this</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         This only helps if it reaches someone.

@@ -315,6 +315,31 @@ body {
   }
 }
 
+/*
+ * Anchor offset for the "On this page" plan navigation. Mobile needs
+ * clearance for the sticky chip bar; the site header itself is never
+ * sticky, so desktop only needs a little breathing room above the heading.
+ */
+.section-anchor {
+  scroll-margin-top: 4.5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-anchor {
+    scroll-margin-top: 2rem;
+  }
+}
+
+/* Quiet horizontal scroller for the mobile chip bar — no visible scrollbar. */
+.chip-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chip-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

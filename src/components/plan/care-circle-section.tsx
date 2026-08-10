@@ -24,7 +24,7 @@ function seedClaims(): Record<string, Claim> {
  * put the answer. Claiming is local state only; "Share this list" is a
  * visual placeholder and intentionally does nothing yet.
  */
-export function CareCircleSection() {
+export function CareCircleSection({ id }: { id: string }) {
   const [claims, setClaims] = useState<Record<string, Claim>>(() => seedClaims())
 
   function toggle(slot: CareCircleSlot) {
@@ -39,7 +39,7 @@ export function CareCircleSection() {
   }
 
   return (
-    <section className="mb-16">
+    <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Let people help</p>
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
         <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
