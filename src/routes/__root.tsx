@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 
 import appCss from '../styles.css?url'
 import { IntakeProvider } from '#/store/intake-context'
 import { Header } from '#/components/layout/header'
 import { Footer } from '#/components/layout/footer'
+import { initAnalytics } from '#/lib/analytics'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -38,6 +40,11 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  // Client-only, guarded so a PostHog failure never breaks rendering.
+  useEffect(() => {
+    initAnalytics()
+  }, [])
+
   return (
     <html lang="en">
       <head>

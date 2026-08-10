@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router"
+import { track } from "#/lib/analytics"
 
 /**
  * The ripple: after someone dies, the people around them tend to start
@@ -15,10 +16,18 @@ export function RippleSection() {
         own family's affairs, or their parents'. Whenever that day comes, this is here.
       </p>
       <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <Link to="/start" className="font-medium underline decoration-dashed underline-offset-4 hover:text-foreground">
+        <Link
+          to="/start"
+          className="font-medium underline decoration-dashed underline-offset-4 hover:text-foreground"
+          onClick={() => track("ripple_link_clicked", { target: "for-family" })}
+        >
           Get a parent or family member organized
         </Link>
-        <Link to="/start" className="font-medium underline decoration-dashed underline-offset-4 hover:text-foreground">
+        <Link
+          to="/start"
+          className="font-medium underline decoration-dashed underline-offset-4 hover:text-foreground"
+          onClick={() => track("ripple_link_clicked", { target: "for-self" })}
+        >
           Do it for yourself
         </Link>
       </div>

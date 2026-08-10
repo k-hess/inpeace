@@ -8,6 +8,7 @@ import { WillStep } from "#/components/intake/will-step"
 import { AssetsStep } from "#/components/intake/assets-step"
 import { SupportStep } from "#/components/intake/support-step"
 import { ReligionStep } from "#/components/intake/religion-step"
+import { track } from "#/lib/analytics"
 import { isIntakeComplete, type AssetKey, type JourneyMode } from "#/types/intake"
 
 type StepKey = "mode" | "state" | "date" | "will" | "assets" | "support" | "religion"
@@ -40,7 +41,11 @@ export function IntakeWizard() {
   const key = steps[Math.min(step, stepCount - 1)]
   const position = `${step + 1} of ${stepCount}`
 
-  function next() {
+  function next(modeOverride?: JourneyMode) {
+    // Selecting a door patches `answers.mode` and calls next() in the same
+    // tick — the closed-over `answers.mode` is still stale then, so the
+    // caller passes the new mode explicitly for that one step.
+    track("intake_step_completed", { step: key, mode: modeOverride ?? answers.mode ?? "unknown" })
     setStep((s) => Math.min(s + 1, stepCount - 1))
   }
 
@@ -61,7 +66,7 @@ export function IntakeWizard() {
       reset()
     }
     patch({ mode })
-    next()
+    next(mode)
   }
 
   switch (key) {
@@ -139,10 +144,12 @@ export function IntakeWizard() {
           onBack={back}
           onSelect={(religion) => {
             patch({ religion })
+            track("intake_step_completed", { step: "religion", mode: answers.mode ?? "unknown" })
             navigate({ to: "/plan" })
           }}
           onSkip={() => {
             patch({ religion: "unspecified" })
+            track("intake_step_completed", { step: "religion", mode: answers.mode ?? "unknown" })
             navigate({ to: "/plan" })
           }}
           position={position}

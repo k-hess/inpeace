@@ -1,9 +1,10 @@
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import { createFileRoute, Link } from "@tanstack/react-router"
 import { useIntake } from "#/store/intake-context"
 import { buildGatheringPlan, buildPlan } from "#/lib/plan-engine"
 import { PlanScreen } from "#/components/plan/plan-screen"
 import { GatheringScreen } from "#/components/plan/gathering-screen"
+import { track } from "#/lib/analytics"
 
 type DemoKey = "a" | "b" | "c" | "d"
 type PlanSearch = { demo?: DemoKey }
@@ -36,6 +37,17 @@ function PlanRoute() {
     () => (answers.mode !== "after" ? buildGatheringPlan(answers) : null),
     [answers],
   )
+
+  // Fires once per mount, the first time a plan is actually available —
+  // not on every answers change, so switching demo scenarios mid-session
+  // doesn't re-fire it.
+  const firedRef = useRef(false)
+  useEffect(() => {
+    if (firedRef.current) return
+    if (!plan && !gatheringPlan) return
+    firedRef.current = true
+    track("plan_viewed", { mode: answers.mode, state: answers.state ?? "unknown", demo: Boolean(demo) })
+  }, [plan, gatheringPlan, answers.mode, answers.state, demo])
 
   if (!plan && !gatheringPlan) {
     return (
