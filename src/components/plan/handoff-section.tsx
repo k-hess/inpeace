@@ -1,3 +1,6 @@
+import { useEffect } from "react"
+import { track } from "#/lib/analytics"
+
 /**
  * Prototype surface only — for user interviews, not a real permissions
  * model. There's no auth, no real sharing, and no backend behind this.
@@ -14,18 +17,22 @@ interface HandoffPerson {
 
 const PLACEHOLDER_PEOPLE: HandoffPerson[] = [
   {
-    name: "Jordan",
+    name: "Sam",
     relation: "Spouse — who can open this",
     note: "Would see everything: the full inventory, the access notes, and anything you've added since.",
   },
   {
-    name: "Priya",
+    name: "Renee",
     relation: "Sister — backup",
-    note: "Would only be notified if Jordan can't be reached, and would see the same list.",
+    note: "Would only be notified if Sam can't be reached, and would see the same list.",
   },
 ]
 
 export function HandoffSection() {
+  useEffect(() => {
+    track("handoff_section_viewed", {})
+  }, [])
+
   return (
     <section className="mb-16">
       <p className="kicker kicker-rule mb-4">Who can open this</p>
