@@ -12,9 +12,40 @@ import { EdgeCasesSection } from "#/components/plan/edge-cases-section"
 import { ChoosingSection } from "#/components/plan/choosing-section"
 import { RippleSection } from "#/components/plan/ripple-section"
 import { PricingSection } from "#/components/plan/pricing-section"
+import { SectionChipBar, SectionRail, useActiveSection, type PlanNavSection } from "#/components/plan/section-nav"
 import { conciergeCard } from "#/data/people"
+import { costRanges, redFlags, whatToAsk, yourRights } from "#/data/funeral-guidance"
+import { choosingGuides } from "#/data/choosing"
 import type { PlanData } from "#/lib/plan-engine"
 import type { IntakeAnswers } from "#/types/intake"
+
+/**
+ * The "On this page" section list for the after-death plan. Built here,
+ * next to where the sections are actually composed, rather than hardcoded
+ * once — each entry's visibility mirrors the exact null-guard the section
+ * component itself uses, so the nav never lists a destination that didn't
+ * render. The closing ripple section is deliberately left out: it's a
+ * coda, not a destination worth navigating to.
+ */
+function buildNavSections(plan: PlanData): PlanNavSection[] {
+  const timelineVisible = plan.phases.some((phase) => phase.tasks.length > 0 || phase.people.length > 0)
+  const funeralVisible = costRanges.length > 0 || yourRights.length > 0 || whatToAsk.length > 0 || redFlags.length > 0
+  const choosingVisible = choosingGuides.length > 0
+
+  const sections: (PlanNavSection | false)[] = [
+    plan.protection.length > 0 && { id: "protect", label: "Protect yourself" },
+    timelineVisible && { id: "timeline", label: "The timeline" },
+    funeralVisible && { id: "funeral", label: "The funeral home" },
+    { id: "care-circle", label: "Let people help" },
+    plan.canWait.length > 0 && { id: "can-wait", label: "It can wait" },
+    { id: "paperwork", label: "Paperwork" },
+    plan.liabilities.length > 0 && { id: "liabilities", label: "Debts" },
+    plan.edgeCases.length > 0 && { id: "edge-cases", label: "Easy to miss" },
+    choosingVisible && { id: "choosing", label: "Choosing well" },
+  ]
+
+  return sections.filter((section): section is PlanNavSection => Boolean(section))
+}
 
 /**
  * The concierge card behind the demo pricing toggle. Lives here rather than
@@ -36,28 +67,36 @@ function ConciergeCard() {
   )
 }
 
-export function PlanScreen({ plan }: { plan: PlanData; answers: IntakeAnswers }) {
+export function PlanScreen({ plan, answers }: { plan: PlanData; answers: IntakeAnswers }) {
   const { showPricing } = useIntake()
+  const navSections = buildNavSections(plan)
+  const activeId = useActiveSection(navSections.map((section) => section.id))
 
   return (
-    <div className="page-wrap py-14 sm:py-20">
-      <PlanHeader headline={plan.headline} sub={plan.sub} stateName={plan.stateName} firstName={plan.firstName} />
-      <ProtectionSection cards={plan.protection} />
-      <TimelineSection phases={plan.phases} />
-      <FuneralGuidanceSection />
-      <CareCircleSection />
-      <CanWaitSection items={plan.canWait} />
-      <PaperworkSection paperwork={plan.paperwork} firstName={plan.firstName} />
-      <LiabilitiesSection cards={plan.liabilities} />
-      <EdgeCasesSection cards={plan.edgeCases} />
-      <ChoosingSection />
-      <RippleSection />
-      {showPricing ? (
-        <>
-          <PricingSection />
-          <ConciergeCard />
-        </>
-      ) : null}
-    </div>
+    <>
+      <SectionChipBar sections={navSections} activeId={activeId} mode={answers.mode} />
+      <div className="lg:mx-auto lg:flex lg:w-[min(1040px,calc(100%-2.5rem))] lg:items-start lg:gap-14">
+        <SectionRail sections={navSections} activeId={activeId} mode={answers.mode} />
+        <div className="page-wrap py-14 sm:py-20 lg:mx-0 lg:min-w-0 lg:shrink-0">
+          <PlanHeader headline={plan.headline} sub={plan.sub} stateName={plan.stateName} firstName={plan.firstName} />
+          <ProtectionSection cards={plan.protection} id="protect" />
+          <TimelineSection phases={plan.phases} id="timeline" />
+          <FuneralGuidanceSection id="funeral" />
+          <CareCircleSection id="care-circle" />
+          <CanWaitSection items={plan.canWait} id="can-wait" />
+          <PaperworkSection paperwork={plan.paperwork} firstName={plan.firstName} id="paperwork" />
+          <LiabilitiesSection cards={plan.liabilities} id="liabilities" />
+          <EdgeCasesSection cards={plan.edgeCases} id="edge-cases" />
+          <ChoosingSection id="choosing" />
+          <RippleSection />
+          {showPricing ? (
+            <>
+              <PricingSection />
+              <ConciergeCard />
+            </>
+          ) : null}
+        </div>
+      </div>
+    </>
   )
 }
