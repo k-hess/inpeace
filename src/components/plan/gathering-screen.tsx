@@ -30,7 +30,7 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
     </>
   )
   const questions = (
-    <QuestionsSection questionGroups={plan.questionGroups} conversationNote={plan.conversationNote} />
+    <QuestionsSection questionGroups={plan.questionGroups} conversationNote={plan.conversationNote} mode={plan.mode} />
   )
 
   return (

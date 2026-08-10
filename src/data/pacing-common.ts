@@ -68,7 +68,9 @@ export const commonPacingRules: Rule[] = [
   },
 
   // Veteran-specific cards — state-agnostic, surfaced only when the quiet
-  // "they served in the military" checkbox on the assets step is on.
+  // "they served in the military" checkbox on the assets step is on. (These
+  // cards only render in the "after" plan, where the checkbox always reads
+  // that way — the "for-self" door's "I served" label doesn't reach here.)
   {
     id: "pacing-va-honors",
     phase: "this-week",

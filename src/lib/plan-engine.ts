@@ -16,7 +16,7 @@ import {
   type NotificationItem,
 } from "#/data/paperwork"
 import { accessNote, inventoryGroups } from "#/data/inventory"
-import { conversationNote, questionGroups, type QuestionGroup } from "#/data/questions-to-ask"
+import { getConversationNote, questionGroups, type QuestionGroup } from "#/data/questions-to-ask"
 import { religionTimingNote } from "#/data/religion"
 import type { IntakeAnswers, JourneyMode } from "#/types/intake"
 
@@ -166,8 +166,15 @@ export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | 
     .map((group) => ({
       id: group.id,
       label: group.label,
-      blurb: group.blurb,
-      items: group.items.filter((item) => !item.trigger || item.trigger(answers)),
+      blurb: mode === "for-self" ? (group.blurbSelf ?? group.blurb) : group.blurb,
+      items: group.items
+        .filter((item) => !item.trigger || item.trigger(answers))
+        .map((item) => ({
+          id: item.id,
+          label: item.label,
+          whereToLook: mode === "for-self" ? (item.whereToLookSelf ?? item.whereToLook) : item.whereToLook,
+          easilyMissed: item.easilyMissed,
+        })),
     }))
     .filter((group) => group.items.length > 0)
 
@@ -181,7 +188,7 @@ export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | 
     groups,
     accessNote,
     questionGroups,
-    conversationNote,
+    conversationNote: getConversationNote(mode),
     religionNote: religionTimingNote(answers.religion),
   }
 }

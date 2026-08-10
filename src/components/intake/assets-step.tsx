@@ -60,7 +60,9 @@ export function AssetsStep({ value, onToggle, onNext, onBack, position, mode }: 
             checked={answers.veteran}
             onCheckedChange={() => patch({ veteran: !answers.veteran })}
           />
-          <span className="text-sm text-muted-foreground">They served in the military</span>
+          <span className="text-sm text-muted-foreground">
+            {mode === "for-self" ? "I served in the military" : "They served in the military"}
+          </span>
         </label>
         <Button size="lg" className="w-fit rounded-full px-6" onClick={onNext}>
           Continue

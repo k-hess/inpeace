@@ -2,6 +2,8 @@
 // nobody knows how to start. Pure prompts, no logic: this is a script to
 // hand someone, not a rule engine.
 
+import type { JourneyMode } from "#/types/intake"
+
 export interface QuestionGroup {
   id: string
   label: string
@@ -9,10 +11,29 @@ export interface QuestionGroup {
   questions: string[]
 }
 
-/** How to open a conversation nobody wants to start. */
+/**
+ * How to open a conversation nobody wants to start. Written for the
+ * "for-family" door (you're approaching someone else about this). The
+ * "for-self" door doesn't need a way in — that conversation is already
+ * happening — so it gets its own note about writing the answers down
+ * instead of asking them.
+ */
 export const conversationNote: { title: string; body: string } = {
   title: "This conversation is hard to start — here's one way in",
   body: "Most people find it lands better as \"I want to get my own affairs in order, will you help me think it through?\" than as a conversation about the other person dying. Starting with your own planning makes it a shared task instead of a hard ask, and it usually opens the door to talking about theirs too.",
+}
+
+export const conversationNoteSelf: { title: string; body: string } = {
+  title: "This isn't about asking anyone — it's about writing it down",
+  body: "You already know most of these answers. What makes them useful later is getting them out of your head — written down somewhere your family would think to look, or said out loud to whoever you'd trust with this. Working through it together turns it into a shared task instead of something you're carrying alone.",
+}
+
+/** Picks the right conversation note for the door someone came in through. */
+export function getConversationNote(mode: Extract<JourneyMode, "for-family" | "for-self">): {
+  title: string
+  body: string
+} {
+  return mode === "for-self" ? conversationNoteSelf : conversationNote
 }
 
 export const questionGroups: QuestionGroup[] = [

@@ -1,17 +1,22 @@
 import type { QuestionGroup } from "#/data/questions-to-ask"
+import type { JourneyMode } from "#/types/intake"
 
 export function QuestionsSection({
   questionGroups,
   conversationNote,
+  mode,
 }: {
   questionGroups: QuestionGroup[]
   conversationNote: { title: string; body: string }
+  mode: Extract<JourneyMode, "for-family" | "for-self">
 }) {
   return (
     <section className="mb-16">
       <p className="kicker kicker-rule mb-4">The conversation</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
-        Questions worth asking, whenever it feels right.
+        {mode === "for-self"
+          ? "Answers worth having ready, whenever it feels right."
+          : "Questions worth asking, whenever it feels right."}
       </h2>
 
       <div className="protect-card mt-6 mb-8 px-6 py-5">
