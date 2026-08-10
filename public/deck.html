@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>In Peace — The plan</title>
 <style>
   /* ============ In Peace design tokens (pulled from product styles.css) ============ */
@@ -74,27 +74,7 @@
     background: radial-gradient(120% 100% at 50% -10%, oklch(0.28 0.035 143 / 0.35), transparent 55%), linear-gradient(165deg, var(--stone-900) 0%, oklch(0.15 0.014 42) 100%);
     color: var(--stone-100);
   }
-  .slide.tight { padding: 4vh 6vw; justify-content: flex-start; }
-
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: clamp(11px, 1vw, 14px);
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--stone-500);
-    margin-bottom: 1.6rem;
-  }
-  .kicker::before {
-    content: "";
-    width: 1.6rem;
-    height: 1px;
-    background: color-mix(in oklab, var(--sage-500) 65%, transparent);
-    flex-shrink: 0;
-  }
-  .dark .kicker { color: var(--stone-300); }
+  .slide.tight { padding: 4.5vh 6vw; justify-content: flex-start; }
 
   h1 {
     font-family: var(--serif);
@@ -104,7 +84,6 @@
     line-height: 1.05;
     text-wrap: balance;
   }
-  h1 .accent { color: var(--sage-400); font-style: italic; }
 
   h2 {
     font-family: var(--serif);
@@ -114,7 +93,7 @@
     line-height: 1.1;
     color: var(--stone-800);
     margin-bottom: 1.8rem;
-    max-width: 30ch;
+    max-width: 32ch;
     text-wrap: balance;
   }
   .dark h2 { color: var(--stone-50); }
@@ -132,14 +111,6 @@
   em { font-style: italic; color: var(--sage-600); font-weight: 600; }
   .dark em { color: var(--sage-300); }
 
-  .horizon {
-    height: 1px;
-    border: none;
-    margin: 1.6rem 0;
-    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--stone-300) 75%, transparent) 22%, color-mix(in oklab, var(--sage-400) 60%, transparent) 50%, color-mix(in oklab, var(--stone-300) 75%, transparent) 78%, transparent);
-  }
-  .dark .horizon { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--stone-700) 75%, transparent) 22%, color-mix(in oklab, var(--sage-400) 55%, transparent) 50%, color-mix(in oklab, var(--stone-700) 75%, transparent) 78%, transparent); }
-
   /* ============ Title ============ */
   .title-sub {
     font-size: clamp(18px, 1.9vw, 28px);
@@ -148,15 +119,6 @@
     color: var(--stone-300);
     max-width: 40ch;
     margin-top: 1.6rem;
-  }
-  .title-meta {
-    position: absolute;
-    bottom: 6vh;
-    left: 8vw;
-    font-size: clamp(11px, 0.95vw, 14px);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--stone-500);
   }
   .title-glow {
     position: absolute;
@@ -201,15 +163,8 @@
     line-height: 1.55;
     color: var(--stone-600);
   }
-  .col-card.hero {
-    background: linear-gradient(160deg, var(--stone-800), var(--stone-900));
-    border: none;
-  }
-  .col-card.hero .stage { color: var(--sage-300); }
-  .col-card.hero h3 { color: var(--stone-50); }
-  .col-card.hero p { color: var(--stone-300); }
 
-  /* ============ Four instinct cards ============ */
+  /* ============ Four idea cards ============ */
   .instinct-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -223,12 +178,12 @@
     border-radius: 4px 14px 14px 4px;
     padding: clamp(18px, 1.9vw, 28px) clamp(20px, 2vw, 28px);
   }
-  .instinct .you-said {
+  .instinct .idea-label {
     font-size: clamp(11px, 0.9vw, 12.5px);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--stone-500);
+    color: var(--sage-600);
     margin-bottom: 0.4rem;
   }
   .instinct h3 {
@@ -250,154 +205,405 @@
     margin-top: 0.5rem;
   }
 
-  /* ============ Slide 4: demand chart ============ */
-  .demand-wrap {
+  /* ============ Slide 4a: the companies before us ============ */
+  .company-row {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: clamp(24px, 3vw, 48px);
-    align-items: center;
-    margin-top: 0.8rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 1.7vw, 24px);
+    margin-top: clamp(20px, 2.2vw, 34px);
   }
-  .demand-chart {
+  .company-card {
     background: var(--card);
     border: 1px solid var(--stone-200);
-    border-radius: 16px;
-    padding: clamp(24px, 2.4vw, 40px);
-  }
-  .dbar-row { margin-bottom: clamp(18px, 1.9vw, 28px); }
-  .dbar-row:last-child { margin-bottom: 0; }
-  .dbar-label {
-    font-size: clamp(12.5px, 1.1vw, 15px);
-    font-weight: 600;
-    color: var(--stone-700);
-    margin-bottom: 0.5rem;
-  }
-  .dbar-track {
-    height: clamp(30px, 3.2vw, 44px);
-    background: var(--stone-100);
-    border-radius: 8px;
-    overflow: hidden;
+    border-radius: 14px;
+    padding: clamp(18px, 1.9vw, 28px);
     position: relative;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
   }
-  .dbar-fill {
-    height: 100%;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.8em;
+  .company-card:hover {
+    border-color: var(--sage-400);
+    transform: translateY(-2px);
+  }
+  .story-trigger {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: clamp(9.5px, 0.75vw, 11px);
     font-weight: 700;
-    font-size: clamp(12px, 1.05vw, 15px);
-    color: #fff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    text-align: right;
   }
-  .dbar-fill.low { width: 22%; background: var(--stone-400, var(--stone-300)); color: var(--stone-700); justify-content: flex-start; padding-left: 0.8em; }
-  .dbar-fill.high { width: 92%; background: var(--sage-500); }
-  .dbar-note { margin-top: 0.5rem; font-size: clamp(11.5px, 0.95vw, 13.5px); color: var(--stone-500); }
-  .demand-copy h3 {
+  .company-card:hover .story-trigger { color: var(--sage-600); }
+  .company-card h4 {
     font-family: var(--serif);
     font-weight: 480;
-    font-size: clamp(20px, 2vw, 30px);
+    font-size: clamp(17px, 1.5vw, 22px);
     color: var(--stone-800);
-    margin-bottom: 1rem;
-    line-height: 1.3;
+    margin-bottom: 0.5rem;
   }
-  .demand-copy p { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.6; color: var(--stone-600); margin-bottom: 0.9rem; }
-  .tombstones { display: flex; gap: 0.7rem; margin-top: 1rem; flex-wrap: wrap; }
-  .tombstone {
+  .company-card p {
+    font-size: clamp(13px, 1.1vw, 15.5px);
+    line-height: 1.55;
+    color: var(--stone-600);
+  }
+  .company-tag {
+    display: inline-block;
+    font-family: var(--font);
+    font-size: clamp(9.5px, 0.75vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone-500);
     background: var(--stone-100);
     border: 1px solid var(--stone-200);
-    border-radius: 10px 10px 3px 3px;
-    padding: 0.5em 0.9em;
-    font-size: clamp(11.5px, 0.95vw, 13.5px);
-    color: var(--stone-600);
-    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.2em 0.7em;
+    margin-left: 0.5em;
+    vertical-align: middle;
   }
-  .punchline {
-    margin-top: 1.4rem;
-    font-size: clamp(15px, 1.35vw, 20px);
+  .data-takeaway {
+    margin-top: clamp(18px, 2vw, 28px);
+    font-size: clamp(14px, 1.2vw, 18px);
     font-weight: 600;
     color: var(--stone-800);
     border-left: 3px solid var(--sage-400);
     padding-left: 1em;
     line-height: 1.5;
+    max-width: 90ch;
   }
 
-  /* ============ Slide 5: three doors ============ */
-  .doors-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(12px, 1.6vw, 22px);
-    margin-top: 1rem;
-  }
-  .door-btn {
-    font-family: var(--font);
-    background: var(--card);
-    border: 1.5px solid var(--stone-200);
-    border-radius: 14px;
-    padding: clamp(18px, 1.8vw, 26px) clamp(16px, 1.6vw, 22px);
-    text-align: left;
-    cursor: pointer;
-    transition: border-color 0.18s, background 0.18s, transform 0.18s;
-  }
-  .door-btn:hover { border-color: var(--sage-400); transform: translateY(-2px); }
-  .door-btn.sel { border-color: var(--sage-500); background: color-mix(in oklab, var(--sage-200) 30%, var(--card)); }
-  .door-btn .dnum {
-    display: inline-flex;
+  /* ============ Company story overlay ============ */
+  .overlay-scrim {
+    position: fixed;
+    inset: 0;
+    background: oklch(0.185 0.015 42 / 0.55);
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: var(--stone-100);
-    color: var(--stone-600);
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 0.7rem;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s ease;
+    padding: 4vh 4vw;
   }
-  .door-btn.sel .dnum { background: var(--sage-500); color: #fff; }
-  .door-btn .dtitle {
+  .overlay-scrim.open { opacity: 1; pointer-events: auto; }
+  .overlay-panel {
+    background: var(--stone-75);
+    border-radius: 20px;
+    width: min(980px, 100%);
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+    padding: clamp(28px, 3.2vw, 46px) clamp(30px, 3.4vw, 50px);
+    box-shadow: 0 30px 80px oklch(0.185 0.015 42 / 0.35);
+  }
+  .overlay-close {
+    position: absolute;
+    top: clamp(14px, 1.6vw, 22px);
+    right: clamp(14px, 1.6vw, 22px);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--stone-200);
+    background: var(--card);
+    color: var(--stone-600);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay-close:hover { background: var(--stone-100); color: var(--stone-800); }
+  .overlay-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+    padding-right: 2.6rem;
+  }
+  .overlay-header h3 {
     font-family: var(--serif);
     font-weight: 480;
-    font-size: clamp(16px, 1.4vw, 20px);
+    font-size: clamp(24px, 2.5vw, 34px);
     color: var(--stone-800);
-    line-height: 1.3;
   }
-  .door-panel {
-    margin-top: clamp(16px, 1.8vw, 24px);
-    background: linear-gradient(160deg, var(--stone-800), var(--stone-900));
-    border-radius: 16px;
-    padding: clamp(22px, 2.2vw, 36px);
-    min-height: clamp(150px, 20vh, 220px);
+  .overlay-what {
+    font-size: clamp(13.5px, 1.15vw, 16.5px);
+    line-height: 1.5;
+    color: var(--stone-600);
+    margin-bottom: clamp(14px, 1.5vw, 20px);
+    max-width: 82ch;
   }
-  .door-panel .dp-kicker {
-    font-size: clamp(11px, 0.9vw, 13px);
+  .overlay-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(8px, 0.9vw, 12px);
+    margin-bottom: clamp(16px, 1.7vw, 22px);
+  }
+  .ov-stat {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    color: var(--stone-700);
+    font-weight: 600;
+  }
+  .overlay-section-label {
+    font-size: clamp(10.5px, 0.9vw, 12.5px);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--sage-300);
-    margin-bottom: 0.7rem;
+    color: var(--stone-500);
+    margin-bottom: 0.5rem;
   }
-  .door-panel h4 {
+  .overlay-timeline { margin-bottom: clamp(14px, 1.5vw, 20px); }
+  .ov-tl-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.32em 0;
+    border-bottom: 1px solid var(--stone-200);
+    font-size: clamp(11.5px, 1vw, 14px);
+    line-height: 1.4;
+  }
+  .ov-tl-row:last-child { border-bottom: none; }
+  .ov-tl-year {
+    flex: 0 0 auto;
+    width: 5.6em;
+    font-weight: 700;
+    color: var(--stone-800);
+    font-variant-numeric: tabular-nums;
+  }
+  .ov-tl-event { color: var(--stone-600); }
+  .overlay-today {
+    font-size: clamp(12.5px, 1.08vw, 15px);
+    line-height: 1.5;
+    color: var(--stone-700);
+    margin-bottom: clamp(12px, 1.3vw, 18px);
+    max-width: 88ch;
+  }
+  .overlay-read {
+    font-size: clamp(13px, 1.12vw, 15.5px);
+    font-weight: 600;
+    color: var(--stone-800);
+    border-left: 3px solid var(--sage-400);
+    padding-left: 1em;
+    line-height: 1.5;
+    max-width: 92ch;
+  }
+
+  /* ============ Slide 4b: what the search data says ============ */
+  .data-stats-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.5vw, 20px);
+    margin-top: clamp(14px, 1.5vw, 20px);
+  }
+  .stat-chip {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 14px;
+    padding: clamp(14px, 1.4vw, 20px) clamp(16px, 1.6vw, 22px);
+  }
+  .stat-chip .stat-num-sm {
     font-family: var(--serif);
     font-weight: 480;
     font-size: clamp(19px, 1.8vw, 27px);
-    color: var(--stone-50);
-    margin-bottom: 0.7rem;
-    line-height: 1.3;
+    color: var(--stone-800);
+    line-height: 1.15;
   }
-  .door-panel p {
-    font-size: clamp(13.5px, 1.15vw, 17px);
-    line-height: 1.6;
-    color: var(--stone-300);
+  .stat-chip .stat-desc-sm {
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    color: var(--stone-600);
+    line-height: 1.4;
+    margin-top: 0.3rem;
+  }
+  .stat-source {
+    margin-top: clamp(10px, 1vw, 14px);
+    font-size: clamp(10.5px, 0.85vw, 12.5px);
+    color: var(--stone-500);
+    line-height: 1.4;
+  }
+  .chart-scroll {
+    max-height: 42vh;
+    overflow-y: auto;
+    margin-top: clamp(12px, 1.4vw, 18px);
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(16px, 1.7vw, 24px);
+  }
+  .kw-legend {
+    display: flex;
+    gap: 1.4rem;
+    margin-bottom: clamp(10px, 1vw, 14px);
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: var(--stone-600);
+  }
+  .kw-legend span { display: inline-flex; align-items: center; gap: 0.4em; }
+  .kw-legend i { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+  .kw-legend i.preneed { background: var(--sage-500); }
+  .kw-legend i.crisis { background: var(--stone-300); }
+  .kw-legend i.executor { background: var(--amber-400); }
+  .stage-group { margin-bottom: clamp(12px, 1.3vw, 18px); }
+  .stage-group:last-child { margin-bottom: 0; }
+  .stage-group-label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-size: clamp(11px, 0.95vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    margin-bottom: 0.5rem;
+  }
+  .stage-group-label .stage-total {
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--stone-500);
+    font-size: 0.85em;
+  }
+  .kw-row { margin-bottom: clamp(6px, 0.7vw, 10px); }
+  .kw-row:last-child { margin-bottom: 0; }
+  .kw-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: clamp(11.5px, 0.98vw, 13.5px);
+    margin-bottom: 0.2rem;
+  }
+  .kw-name { color: var(--stone-700); font-weight: 600; }
+  .kw-nums { color: var(--stone-500); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .kw-track { height: clamp(9px, 0.9vw, 12px); background: var(--stone-100); border-radius: 5px; overflow: hidden; }
+  .kw-fill { height: 100%; border-radius: 5px; }
+  .kw-fill.preneed { background: var(--sage-500); }
+  .kw-fill.crisis { background: var(--stone-300); }
+  .kw-fill.executor { background: var(--amber-400); }
+  .kw-zero {
+    font-style: italic;
+    font-size: clamp(11.5px, 0.98vw, 13.5px);
+    color: var(--stone-500);
+    padding: 0.2em 0;
+  }
+
+  /* ============ Slide 6: the funnel (one-slide business plan) ============ */
+  .funnel-intro {
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.55;
+    color: var(--stone-600);
     max-width: 70ch;
   }
+  .funnel { margin-top: clamp(18px, 2vw, 30px); }
+  .funnel-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3vw, 48px);
+    margin-bottom: clamp(10px, 1.2vw, 16px);
+  }
+  .funnel-row:last-child { margin-bottom: 0; }
+  .funnel-shape-wrap {
+    flex: 0 0 auto;
+    width: clamp(280px, 34vw, 470px);
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(0 3px 10px oklch(0.265 0.018 46 / 0.18));
+  }
+  .funnel-shape {
+    width: 100%;
+    height: clamp(78px, 11.5vh, 120px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.4rem;
+    color: #fff;
+    text-shadow: 0 1px 2px oklch(0.185 0.015 42 / 0.25);
+  }
+  .funnel-shape .fb-name {
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+  .funnel-shape .fb-metric {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(17px, 1.65vw, 25px);
+    margin-top: 0.25rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .funnel-shape.preneed {
+    background: linear-gradient(180deg, var(--sage-400), var(--sage-500));
+    clip-path: polygon(3% 0, 97% 0, 87% 100%, 13% 100%);
+  }
+  .funnel-shape.crisis {
+    width: 76%;
+    background: linear-gradient(180deg, var(--stone-500), var(--stone-600));
+    clip-path: polygon(3% 0, 97% 0, 85% 100%, 15% 100%);
+  }
+  .funnel-shape.executor {
+    width: 58%;
+    background: linear-gradient(180deg, var(--amber-400), var(--amber-600));
+    clip-path: polygon(2% 0, 98% 0, 86% 100%, 14% 100%);
+  }
+  .funnel-shape.executor .fb-metric { font-size: clamp(15.5px, 1.45vw, 22px); }
+  .funnel-annotation {
+    flex: 1;
+    font-size: clamp(13px, 1.15vw, 16.5px);
+    line-height: 1.55;
+    color: var(--stone-600);
+    max-width: 56ch;
+    border-left: 3px solid var(--stone-200);
+    padding-left: clamp(14px, 1.4vw, 22px);
+  }
+  .funnel-annotation b {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(16px, 1.45vw, 21px);
+    color: var(--stone-800);
+    margin-bottom: 0.15rem;
+  }
+  .funnel-row.preneed-row .funnel-annotation { border-left-color: var(--sage-400); }
+  .funnel-row.crisis-row .funnel-annotation { border-left-color: var(--stone-400, var(--stone-300)); }
+  .funnel-row.executor-row .funnel-annotation { border-left-color: var(--amber-400); }
+  .funnel-row.executor-row .funnel-annotation b { color: var(--amber-600); }
   .reconcile-line {
-    margin-top: 1.4rem;
+    margin-top: clamp(16px, 1.8vw, 26px);
     font-size: clamp(14px, 1.25vw, 18px);
     font-weight: 600;
     color: var(--stone-700);
   }
+  .arbitrage-line {
+    margin-top: clamp(8px, 0.9vw, 12px);
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.55;
+    color: var(--stone-700);
+    max-width: 96ch;
+  }
+  .funnel-ripple-note {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: clamp(10px, 1.1vw, 16px);
+    font-size: clamp(12px, 1.02vw, 14.5px);
+    color: var(--sage-600);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: color-mix(in oklab, var(--sage-300) 18%, transparent);
+    border: 1px solid color-mix(in oklab, var(--sage-400) 40%, transparent);
+    border-radius: 999px;
+    padding: 0.45em 1.1em;
+  }
 
-  /* ============ Slide 6: ripple loop ============ */
+  /* ============ Slide 7: ripple loop ============ */
   .ripple-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -425,15 +631,13 @@
     color: var(--stone-700);
     font-weight: 600;
   }
-  .ripple-arrows { position: relative; height: clamp(30px, 4vh, 50px); margin-top: 0.4rem; }
-  .ripple-arrows svg { width: 100%; height: 100%; }
   .ripple-loop-back {
     text-align: center;
     font-size: clamp(11.5px, 1vw, 14px);
     color: var(--sage-600);
     font-weight: 700;
     letter-spacing: 0.04em;
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
   }
   .ripple-quote {
     margin-top: 1.6rem;
@@ -454,8 +658,26 @@
     color: var(--stone-600);
     font-weight: 600;
   }
+  .ripple-close {
+    margin-top: clamp(10px, 1.1vw, 16px);
+    font-size: clamp(13.5px, 1.15vw, 17px);
+    line-height: 1.55;
+    color: var(--stone-700);
+    max-width: 84ch;
+    border-left: 3px solid var(--sage-400);
+    padding-left: 1em;
+  }
 
-  /* ============ Slide 7: BabyList ============ */
+  /* ============ Slide 5: BabyList ============ */
+  .bl-intro {
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.6;
+    color: var(--stone-700);
+    max-width: 90ch;
+    margin-bottom: clamp(14px, 1.5vw, 22px);
+    padding-bottom: clamp(14px, 1.5vw, 22px);
+    border-bottom: 1px solid var(--stone-200);
+  }
   .bl-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -498,41 +720,39 @@
     max-width: 76ch;
   }
 
-  /* ============ Slide 8: parked cards ============ */
+  /* ============ Slide 9: parking lot ============ */
   .parked-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(10px, 1.3vw, 16px);
-    margin-top: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(8px, 1.05vw, 14px);
+    margin-top: 0.8rem;
   }
   .parked-card {
     background: var(--stone-100);
     border: 1px dashed var(--stone-300);
     border-radius: 12px;
-    padding: clamp(14px, 1.4vw, 20px);
+    padding: clamp(11px, 1.1vw, 15px) clamp(14px, 1.4vw, 20px);
   }
   .parked-card h4 {
     font-size: clamp(12.5px, 1.05vw, 15px);
     font-weight: 700;
     color: var(--stone-700);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     line-height: 1.3;
   }
   .parked-card .reason {
     font-size: clamp(11.5px, 0.95vw, 13.5px);
-    color: var(--stone-500);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    color: var(--stone-600);
+    line-height: 1.4;
   }
   .parked-footer {
-    margin-top: 1.6rem;
+    margin-top: 1.1rem;
     font-size: clamp(14px, 1.2vw, 18px);
     font-weight: 600;
     color: var(--sage-600);
   }
 
-  /* ============ Slide 9: phases ============ */
+  /* ============ Slide 8: now / next / later ============ */
   .phase-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -548,18 +768,10 @@
     flex-direction: column;
   }
   .phase-col.now { border: 2px solid var(--sage-500); background: color-mix(in oklab, var(--sage-200) 22%, var(--card)); }
-  .phase-col .pnum {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(26px, 2.4vw, 36px);
-    color: var(--stone-400, var(--stone-300));
-    margin-bottom: 0.3rem;
-  }
-  .phase-col.now .pnum { color: var(--sage-500); }
   .phase-col .ptitle {
-    font-size: clamp(11px, 0.95vw, 13px);
+    font-size: clamp(12px, 1.05vw, 14.5px);
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--stone-500);
     margin-bottom: 0.9rem;
@@ -574,17 +786,15 @@
     border-bottom: 1px solid var(--stone-100);
   }
   .phase-col li:last-child { border-bottom: none; }
-  .phase-live {
+  .phase-note {
     margin-top: auto;
     padding-top: 1rem;
-    font-size: clamp(11px, 0.95vw, 13px);
-    font-weight: 700;
-    color: var(--sage-600);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    color: var(--stone-500);
+    line-height: 1.4;
   }
 
-  /* ============ Slide 10: open questions ============ */
+  /* ============ Slide 10: what we need to validate ============ */
   .q-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -621,35 +831,32 @@
     line-height: 1.5;
   }
 
-  /* ============ Slide 11: asks ============ */
-  .ask-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(14px, 1.7vw, 24px);
-    margin-top: 0.8rem;
+  /* ============ Slide 11: next steps (sequence) ============ */
+  .steps-list { margin-top: 1rem; }
+  .step-row {
+    display: flex;
+    gap: clamp(14px, 1.6vw, 24px);
+    align-items: flex-start;
+    padding: clamp(12px, 1.3vw, 18px) 0;
+    border-bottom: 1px solid var(--stone-200);
   }
-  .ask-card {
-    background: var(--card);
-    border: 1px solid var(--stone-200);
-    border-top: 4px solid var(--sage-400);
-    border-radius: 4px 4px 14px 14px;
-    padding: clamp(18px, 1.8vw, 26px) clamp(16px, 1.7vw, 24px);
+  .step-row:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(20px, 1.9vw, 30px);
+    color: var(--sage-500);
+    width: 1.4em;
+    flex-shrink: 0;
   }
-  .ask-card .who {
-    font-size: clamp(11px, 0.95vw, 13px);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--sage-600);
-    margin-bottom: 0.6rem;
-  }
-  .ask-card p {
-    font-size: clamp(13px, 1.1vw, 15.5px);
-    line-height: 1.5;
+  .step-row p {
+    font-size: clamp(14.5px, 1.25vw, 19px);
+    line-height: 1.55;
     color: var(--stone-700);
+    padding-top: 0.2em;
   }
-  .ask-window {
-    margin-top: 1.6rem;
+  .steps-close {
+    margin-top: clamp(16px, 1.8vw, 26px);
     font-size: clamp(14px, 1.25vw, 18px);
     font-weight: 600;
     color: var(--stone-800);
@@ -657,36 +864,29 @@
 
   /* ============ Close ============ */
   .close-line {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(22px, 2.4vw, 36px);
-    color: var(--stone-100);
-    max-width: 34ch;
-    line-height: 1.4;
-    margin-top: 1.8rem;
+    font-size: clamp(16px, 1.4vw, 21px);
+    color: var(--stone-300);
+    max-width: 40ch;
+    line-height: 1.5;
+    margin-top: 1.4rem;
   }
-  .demo-pill {
+  .proto-link {
     display: inline-flex;
+    align-self: flex-start;
     align-items: center;
     gap: 0.5em;
-    background: color-mix(in oklab, var(--sage-500) 22%, transparent);
-    border: 1px solid color-mix(in oklab, var(--sage-400) 55%, transparent);
+    margin-top: 1.4rem;
+    background: color-mix(in oklab, var(--sage-500) 16%, transparent);
+    border: 1px solid color-mix(in oklab, var(--sage-400) 45%, transparent);
     color: var(--sage-300);
-    font-size: clamp(12px, 1.05vw, 15px);
-    font-weight: 700;
+    font-size: clamp(13px, 1.1vw, 16px);
+    font-weight: 600;
     border-radius: 999px;
-    padding: 0.5em 1.2em;
-    margin-top: 0.4rem;
+    padding: 0.55em 1.3em;
+    text-decoration: none;
+    letter-spacing: 0.01em;
   }
-  .demo-pill::before {
-    content: "";
-    width: 0.55em; height: 0.55em;
-    border-radius: 50%;
-    background: var(--sage-400);
-    animation: pulse 1.6s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .proto-link:hover { border-color: var(--sage-300); }
 
   /* ============ Chrome: nav + counter ============ */
   #nav {
@@ -740,7 +940,9 @@
 
   @media (max-width: 900px) {
     .slide { padding: 5vh 6vw; }
-    .col-grid, .instinct-grid, .demand-wrap, .doors-row, .ripple-row, .bl-grid, .parked-grid, .phase-grid, .q-grid, .ask-grid { grid-template-columns: 1fr; }
+    .col-grid, .instinct-grid, .data-stats-strip, .company-row, .ripple-row, .bl-grid, .parked-grid, .phase-grid, .q-grid { grid-template-columns: 1fr; }
+    .funnel-row { flex-direction: column; align-items: flex-start; }
+    .funnel-shape-wrap { width: 100%; }
   }
 </style>
 </head>
@@ -753,134 +955,105 @@
   <!-- 1 · Title -->
   <section class="slide dark">
     <div class="title-glow"></div>
-    <div class="kicker">Confidential · for the group</div>
-    <h1>In Peace<span class="accent">: the plan.</span></h1>
-    <p class="title-sub">Where we are, what the research found, and what we're asking of each of you next.</p>
-    <div class="title-meta">2026-08-10 · following the 2026-08-04 call</div>
+    <h1>In Peace</h1>
+    <p class="title-sub">The plan: research, prototype, and next steps.</p>
   </section>
 
-  <!-- 2 · Where we are -->
+  <!-- 2 · Agenda -->
   <section class="slide">
-    <div class="kicker">Where we are</div>
-    <h2>Three rounds of research done. A prototype nobody's seen. One phase left before we build more.</h2>
+    <h2>What we'll walk through today.</h2>
     <div class="col-grid">
       <div class="col-card">
-        <div class="stage">Done</div>
-        <h3>Research done</h3>
-        <p>Market scan, validation pass, and the five topics from our call, roughly 14 reports in. The instincts from that call held up, and the research turned them into positions.</p>
+        <div class="stage">1</div>
+        <h3>The research</h3>
+        <p>What we looked into after the call: the market data, a few companies that came before us, and how the ideas from the call held up.</p>
       </div>
       <div class="col-card">
-        <div class="stage">Built</div>
-        <h3>Prototype live</h3>
-        <p>Three doors, a real Texas and California rules engine with computed dates, the inventory, guidance cards, a care circle, a ripple invitation. Nobody in this group has seen it yet.</p>
+        <div class="stage">2</div>
+        <h3>The prototype</h3>
+        <p>A working first pass, built from the call, ready for you to react to. Nobody in this group has seen it yet.</p>
       </div>
-      <div class="col-card hero">
-        <div class="stage">Next</div>
-        <h3>Validation next</h3>
-        <p>This is the phase we're entering, and it's the one this group can run better than we can. Interviews, an audience inventory, a design pass, real signal.</p>
+      <div class="col-card">
+        <div class="stage">3</div>
+        <h3>Validation</h3>
+        <p>What we need to learn next, and how we'd learn it together: interviews, an audience inventory, a design pass.</p>
       </div>
     </div>
   </section>
 
-  <!-- 3 · What you told us, what we found -->
+  <!-- 3 · Ideas from the call -->
   <section class="slide">
-    <div class="kicker">What you told us, what we found</div>
-    <h2>Four things this group said on the call. Each one held up, and got sharper.</h2>
+    <h2>Ideas from the call, and what the research found.</h2>
     <div class="instinct-grid">
       <div class="instinct">
-        <div class="you-said">You said: lead with the wall</div>
-        <h3>Organize and access, first</h3>
-        <p>Classic pre-need software keeps failing: Cake is dead, Everplans fled to B2B, Farewill went from a large valuation to a distressed sale. What this group described is different, an access-and-inventory layer, and nobody sells that. One inventory serves all three doors.</p>
+        <div class="idea-label">Organize and access first</div>
+        <h3>The wall, as the spine</h3>
+        <p>Consumer pre-need products have a long record of failure: Cake shut down, Everplans moved to selling through financial advisors and insurers, Farewill went from a large valuation to a distressed sale. What this group described is different: an access-and-inventory layer, and nobody sells that today. One inventory can serve all three doors.</p>
       </div>
       <div class="instinct">
-        <div class="you-said">You said: guidance, not vendor picks</div>
+        <div class="idea-label">Guidance, not vendor picks</div>
         <h3>Confirmed, with legal weight</h3>
         <p>A Place for Mom drew a Senate Aging Committee investigation for commission-linked rankings. Angi took an FTC order up to $7.2M. We teach incentive structure, fee-only versus commission, and never name providers.</p>
       </div>
       <div class="instinct">
-        <div class="you-said">You said: warm, not clinical</div>
-        <h3>It's already built</h3>
+        <div class="idea-label">Warm, not clinical</div>
+        <h3>Already built</h3>
         <p class="quote">"It's not 'I know what to do, I don't know how,' it's 'I don't even know what I need to do.'" — Kelly</p>
-        <p>The care-note guardrails and the "it can wait" section, given the same visual weight as the to-dos, are already live.</p>
+        <p>The care-note guardrails and the "it can wait" section, given the same visual weight as the to-dos, are already in the prototype.</p>
       </div>
       <div class="instinct">
-        <div class="you-said">You said: feature-complete, or abandoned</div>
+        <div class="idea-label">Feature-complete at launch</div>
         <h3>One structure, three doors</h3>
-        <p>Jordan's worry was correct, a thin checklist gets abandoned. One inventory object serves as a gathering list in planning mode and a notify-and-transfer list after a death. Same object, different verb. That reads feature-complete without the weight of three products.</p>
+        <p>Jordan's worry was correct: a thin checklist gets abandoned. One inventory object serves as a gathering list in planning mode and a notify-and-transfer list after a death. Same object, different verb.</p>
       </div>
     </div>
   </section>
 
-  <!-- 4 · The one big move -->
+  <!-- 4a · The companies that came before us -->
   <section class="slide">
-    <div class="kicker">The one big move</div>
-    <h2>We enter through the after-death door.</h2>
-    <div class="demand-wrap">
-      <div class="demand-chart">
-        <div class="dbar-row">
-          <div class="dbar-label">Crisis-moment search phrasings</div>
-          <div class="dbar-track"><div class="dbar-fill low">37% have zero search volume</div></div>
-        </div>
-        <div class="dbar-row">
-          <div class="dbar-label">Executor-stage click values</div>
-          <div class="dbar-track"><div class="dbar-fill high">$17–$80 per click</div></div>
-        </div>
-        <div class="dbar-note">Source: DataForSEO keyword study, In Peace research.</div>
+    <h2 style="max-width:none;">The companies that came before us.</h2>
+    <p class="lede wide">A few companies have tried this space. Their stories split cleanly into who failed and who survived, and the survivors have something in common.</p>
+    <div class="company-row" style="margin-top:clamp(14px,1.5vw,20px);">
+      <div class="company-card" data-company="cake">
+        <h4>Cake <span class="company-tag">absorbed</span></h4>
+        <p>A consumer end-of-life planning platform: checklists, wishes, guidance. Never charged consumers for the after-death side. Acquired by a funeral-services conglomerate in 2024.</p>
+        <span class="story-trigger">view story &rarr;</span>
       </div>
-      <div class="demand-copy">
-        <h3>The demand arrives weeks after the death, not before it.</h3>
-        <p>People don't search for pre-need software in a crisis. They search when they're already the executor, weeks in, with real questions and real deadlines.</p>
-        <p>Pre-need software is a decade-long graveyard:</p>
-        <div class="tombstones">
-          <div class="tombstone">Cake, dead</div>
-          <div class="tombstone">Everplans, fled to B2B</div>
-          <div class="tombstone">Farewill, distressed sale</div>
-        </div>
-        <p class="punchline">What this group described is a different animal: an access-and-inventory spine that none of those companies sold, serving all three doors.</p>
+      <div class="company-card" data-company="everplans">
+        <h4>Everplans <span class="company-tag">left consumer</span></h4>
+        <p>A consumer digital vault for documents and wishes. Consumer economics never carried it; the business became a $2,500/yr advisor channel, and it was acquired by a pre-need funeral marketer in 2024.</p>
+        <span class="story-trigger">view story &rarr;</span>
+      </div>
+      <div class="company-card" data-company="farewill">
+        <h4>Farewill <span class="company-tag">distressed sale</span></h4>
+        <p>UK wills, cremation, and fixed-fee probate. Revenue grew 36% in its final year and probate demand was real. Staffed human services cost more to deliver than they earned, and it sold for £12.9M off a £70M peak.</p>
+        <span class="story-trigger">view story &rarr;</span>
       </div>
     </div>
+    <div class="company-row" style="margin-top:clamp(12px,1.3vw,18px);">
+      <div class="company-card" data-company="trustwill">
+        <h4>Trust &amp; Will <span class="company-tag">surviving</span></h4>
+        <p>Sells a document, not guidance: wills and trusts as a one-time purchase. 60,500 searches a month for the brand by name, the largest single term in our whole study.</p>
+        <span class="story-trigger">view story &rarr;</span>
+      </div>
+      <div class="company-card" data-company="nokbox">
+        <h4>NOKBOX <span class="company-tag">surviving</span></h4>
+        <p>A physical "next of kin box": a binder system for organizing everything your family would need. 14,800 brand searches a month, 73% of all inventory-category search demand.</p>
+        <span class="story-trigger">view story &rarr;</span>
+      </div>
+      <div class="company-card" data-company="empathy">
+        <h4>Empathy <span class="company-tag">partner-led</span></h4>
+        <p>After-loss software that works, sold 99% through life insurers and employers rather than to families. $162M raised, most of the top-10 life insurers as customers. The moment is valuable; reaching it directly is the hard part.</p>
+        <span class="story-trigger">view story &rarr;</span>
+      </div>
+    </div>
+    <p class="data-takeaway">No consumer-direct attempt has survived standalone: absorbed, pivoted to B2B, or sold distressed. And notably, none of them ever charged consumers for the executor stage as software. The ones doing that today, at $99 to $499 billed to the estate, are small and alive. The path we're describing hasn't failed. It's barely been tried, and the survivors all point the same way: win on a name people trust and on distribution, not category search.</p>
   </section>
 
-  <!-- 5 · Three doors, one product -->
-  <section class="slide tight">
-    <div class="kicker">Three doors, one product</div>
-    <h2 style="max-width:none;">One inventory, read three different ways.</h2>
-    <p class="lede wide" style="margin-bottom:0.4rem;">This is the reconciliation. Click a door to see what that reader sees.</p>
-    <div class="doors-row" id="doors-row">
-      <button class="door-btn sel" data-door="0"><span class="dnum">1</span><div class="dtitle">Someone has died</div></button>
-      <button class="door-btn" data-door="1"><span class="dnum">2</span><div class="dtitle">I'm helping a family member get ready</div></button>
-      <button class="door-btn" data-door="2"><span class="dnum">3</span><div class="dtitle">I'm getting my own affairs in order</div></button>
-    </div>
-    <div class="door-panel">
-      <div class="dp-kicker" id="dp-kicker">What they see</div>
-      <h4 id="dp-title">A phased plan, with real dates.</h4>
-      <p id="dp-body">A timeline with computed dates from the Texas and California rules engine, a death-certificate tracker with a recommended copy count, the care circle and notification fan-out, and "it can wait," an explicit permission to not do things yet.</p>
-    </div>
-    <p class="reconcile-line">One data structure serves all three doors: the same inventory, gathered ahead of time or acted on after. Same object, different verb.</p>
-  </section>
-
-  <!-- 6 · The ripple loop -->
+  <!-- 5 · What we learned from BabyList -->
   <section class="slide">
-    <div class="kicker">The ripple loop</div>
-    <h2>Our answer to "this business has no repeat customers."</h2>
-    <div class="ripple-row">
-      <div class="ripple-node"><div class="rn-num">1</div><p>Settle a death using In Peace.</p></div>
-      <div class="ripple-node"><div class="rn-num">2</div><p>Get your own affairs in order.</p></div>
-      <div class="ripple-node"><div class="rn-num">3</div><p>Your plan is built to be handed over.</p></div>
-      <div class="ripple-node"><div class="rn-num">4</div><p>Your family arrives already inside.</p></div>
-    </div>
-    <div class="ripple-loop-back">↻ and it loops back to step 1, for the next family</div>
-    <div class="ripple-quote">
-      "Okay, I'm going to get my shit in order... it's this ripple effect, you see it and then you take action."
-      <span>Kelly, on her dad, from the call</span>
-    </div>
-    <p class="ripple-note">Three people described this on the call without prompting. As far as we can tell, nobody in the category has tried it.</p>
-  </section>
-
-  <!-- 7 · The BabyList question -->
-  <section class="slide">
-    <div class="kicker">The BabyList question</div>
-    <h2>Jordan's benchmark, taken seriously.</h2>
+    <h2>What we learned from BabyList.</h2>
+    <p class="bl-intro">The registry is the acquisition funnel, not the business. The revenue is first-party retail, advertising, their fastest-growing line, and insurance-billed product like Babylist Health and breast pumps, $750M in revenue in 2025. Given that model, here's what transfers to us and what doesn't.</p>
     <div class="bl-grid">
       <div class="bl-col yes">
         <h3>What transfers</h3>
@@ -897,44 +1070,226 @@
         </ul>
       </div>
     </div>
-    <p class="bl-verdict">Yes, with a ceiling. Affiliate revenue on non-deadline goods in Phase 2. Caskets on a deadline, never.</p>
+    <p class="bl-verdict">Affiliate revenue on non-time-critical goods is viable later. Time-critical fulfillment, a casket for a scheduled funeral, is out permanently.</p>
   </section>
 
-  <!-- 8 · What we're deliberately parking -->
+  <!-- 4b · What the search data says -->
   <section class="slide">
-    <div class="kicker">What we're deliberately parking</div>
-    <h2>The no-list, kept visible on purpose.</h2>
-    <div class="parked-grid">
-      <div class="parked-card"><h4>Marketplace / funeral-home directory</h4><div class="reason">Money arrives later</div></div>
-      <div class="parked-card"><h4>Sponsored placement</h4><div class="reason">One screenshot kills</div></div>
-      <div class="parked-card"><h4>Credential storage</h4><div class="reason">Location, not password</div></div>
-      <div class="parked-card"><h4>Bank linking</h4><div class="reason">No compliant path</div></div>
-      <div class="parked-card"><h4>Our own community</h4><div class="reason">Comfort Club exists</div></div>
-      <div class="parked-card"><h4>AI chat concierge</h4><div class="reason">Wrong moment, unreliable</div></div>
-      <div class="parked-card"><h4>Subscriptions</h4><div class="reason">One-time use, no retention</div></div>
+    <h2 style="max-width:none;">What the search data says.</h2>
+    <p class="lede wide" style="margin-bottom:0;">Search interest is highest before a death. Paying intent concentrates weeks after one, at the executor stage.</p>
+    <div class="data-stats-strip" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat-chip"><div class="stat-num-sm">1.30M/mo</div><div class="stat-desc-sm">Total pre-need search volume, the largest of any stage.</div></div>
+      <div class="stat-chip"><div class="stat-num-sm">37%</div><div class="stat-desc-sm">Of crisis-moment phrasings return zero measurable search volume.</div></div>
+      <div class="stat-chip"><div class="stat-num-sm">$2–7 vs. $35–80</div><div class="stat-desc-sm">Funeral-stage click value vs. probate/executor-stage click value.</div></div>
+      <div class="stat-chip"><div class="stat-num-sm">$204 CPC</div><div class="stat-desc-sm">What "inheritance loan" advertisers pay per click. Real money moves through the moment we sit in front of.</div></div>
     </div>
-    <p class="parked-footer">Parked, not lost. Each one has a written reason, and each can be reopened when the reason stops applying.</p>
+    <div class="chart-scroll">
+      <div class="kw-legend">
+        <span><i class="preneed"></i>Pre-need</span>
+        <span><i class="crisis"></i>Crisis</span>
+        <span><i class="executor"></i>Executor</span>
+      </div>
+      <div class="stage-group">
+        <div class="stage-group-label">Pre-need <span class="stage-total">1.30M/mo total across 105 keywords · 14 phrasings show zero volume · bars on their own scale</span></div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Estate planning attorney</span><span class="kw-nums">368,000/mo · $6.49 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill preneed" style="width:100%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Power of attorney</span><span class="kw-nums">90,500/mo · $4.48 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill preneed" style="width:24.6%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Long term care insurance</span><span class="kw-nums">74,000/mo · $9.03 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill preneed" style="width:20.1%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Advance directive</span><span class="kw-nums">60,500/mo · $2.57 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill preneed" style="width:16.4%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">What documents do elderly parents need</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Estate planning checklist for parents</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+      </div>
+      <div class="stage-group">
+        <div class="stage-group-label">Crisis <span class="stage-total">366K/mo total across 86 keywords · 32 phrasings show zero volume · bars on their own scale</span></div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Funeral home near me</span><span class="kw-nums">201,000/mo · $4.29 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill crisis" style="width:100%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Obituary examples</span><span class="kw-nums">22,200/mo · $0.53 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill crisis" style="width:11.0%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Cremation cost</span><span class="kw-nums">18,100/mo · $6.85 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill crisis" style="width:9.0%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">How to get a death certificate</span><span class="kw-nums">12,100/mo · $2.92 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill crisis" style="width:6.0%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Dad died now what</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Hospice death what to do</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Who to call when someone dies in the hospital</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+      </div>
+      <div class="stage-group">
+        <div class="stage-group-label">Executor <span class="stage-total">241K/mo total across 167 keywords · 21 phrasings show zero volume · bars on their own scale</span></div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Probate attorney near me</span><span class="kw-nums">27,100/mo · $17.04 CPC, highest in the study</span></div>
+          <div class="kw-track"><div class="kw-fill executor" style="width:100%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">What is probate</span><span class="kw-nums">27,100/mo · $1.29 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill executor" style="width:100%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Estate lawyer near me</span><span class="kw-nums">22,200/mo · $9.03 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill executor" style="width:81.9%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Letters testamentary</span><span class="kw-nums">14,800/mo · $1.87 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill executor" style="width:54.6%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Probate lawyer cost</span><span class="kw-nums">6,600/mo · $10.06 CPC</span></div>
+          <div class="kw-track"><div class="kw-fill executor" style="width:24.4%"></div></div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Deceased person's bank account access</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+        <div class="kw-row">
+          <div class="kw-label-row"><span class="kw-name">Transfer car title deceased owner</span><span class="kw-nums"></span></div>
+          <div class="kw-zero">No measurable search volume.</div>
+        </div>
+      </div>
+    </div>
+    <p class="data-takeaway">In every stage, the volume sits on professionals, prices, and narrow single tasks: who to hire, what things cost, how to notify one agency. The bigger questions, what do I do overall and in what order, sit near zero. Every company from two slides ago saw this same traffic and built its business where the volume is. What we do with it is different.</p>
+    <p class="stat-source">Source: DataForSEO keyword pulls, July and August 2026, 1,117 keywords across the crisis, executor, and pre-need stages plus ten follow-up categories. Bars are scaled within each stage; stages are not on one shared scale.</p>
   </section>
 
-  <!-- 9 · Phase 1 / 2 / 3 -->
+  <!-- 6 · The starting path -->
   <section class="slide">
-    <div class="kicker">The roadmap</div>
-    <h2>Phase 1, 2, 3.</h2>
+    <h2 style="max-width:none;">The starting path.</h2>
+    <p class="funnel-intro">Three stages of demand, and we treat them differently on purpose. Free where attention is cheap and plentiful. Paid where the moment is dense and nobody else is competing for the searcher.</p>
+    <div class="funnel">
+      <div class="funnel-row preneed-row">
+        <div class="funnel-shape-wrap">
+          <div class="funnel-shape preneed">
+            <div class="fb-name">Pre-need</div>
+            <div class="fb-metric">1.30M searches/mo</div>
+          </div>
+        </div>
+        <div class="funnel-annotation"><b>Free</b> The inventory and gathering plan, the "helping a family member get ready" and "getting my own affairs in order" doors, plus content where our reach works. This is where the audience is built.</div>
+      </div>
+      <div class="funnel-row crisis-row">
+        <div class="funnel-shape-wrap">
+          <div class="funnel-shape crisis">
+            <div class="fb-name">Crisis</div>
+            <div class="fb-metric">366K searches/mo</div>
+          </div>
+        </div>
+        <div class="funnel-annotation"><b>Free, deliberately</b> The after-death plan's first weeks, the "someone has died" door. Trust is won here and never monetized.</div>
+      </div>
+      <div class="funnel-row executor-row">
+        <div class="funnel-shape-wrap">
+          <div class="funnel-shape executor">
+            <div class="fb-name">Executor</div>
+            <div class="fb-metric">$35&#8211;$204 per click</div>
+          </div>
+        </div>
+        <div class="funnel-annotation"><b>The business</b> Almost nobody searches this stage, and the clicks are the most expensive in the study. Guided help through the estate, the executor toolkit, and fee-only advisor referral at the inheritance moment.</div>
+      </div>
+    </div>
+    <p class="reconcile-line">One data structure serves all three doors: the same inventory, gathered ahead of time or acted on after. Same object, different verb.</p>
+    <p class="arbitrage-line">This is the arbitrage: acquire attention where it's cheap and plentiful, with free experiences and our own reach, and earn revenue where the money is dense and nobody is competing for the searcher.</p>
+    <p class="funnel-ripple-note">&#8593; the ripple: each executor becomes the next planner, and feeds the top of this funnel again</p>
+  </section>
+
+  <!-- 7b · Where the money comes from -->
+  <section class="slide">
+    <h2 style="max-width:none;">Where the money comes from.</h2>
+    <p class="lede wide" style="margin-bottom:1rem;">The free layer builds trust and usage. The paid layer is the part free tools can't do. We benchmarked free AI on real executor scenarios: it handles generic advice, and fails on state deadlines, jurisdiction, warnings before irreversible mistakes, and remembering your case. That line is the business.</p>
+    <div class="company-row" style="grid-template-columns:1fr 1fr; margin-top:0;">
+      <div class="company-card">
+        <h4>Always free</h4>
+        <p>The crisis-week guidance, the "it can wait" pacing, funeral costs and rights, grief support routing, and a basic plan. Charging for advocacy would poison it. This is the trust layer, and it feeds everything below.</p>
+      </div>
+      <div class="company-card">
+        <h4>What people pay for</h4>
+        <p><b>Guided help through an estate:</b> a human tier at a service price. Executor expenses are reimbursable from the estate, so the estate pays, not the family. <b>The executor toolkit:</b> computed state deadlines, the case tracker, the shared family view, and later filled court documents and attorney handoff. Whether this is sold self-serve or bundled into guided is what the interviews decide. <b>Advisor referral:</b> a fee-only introduction at the inheritance moment, recurring per funded referral.</p>
+      </div>
+    </div>
+    <p class="data-takeaway" style="margin-top:clamp(12px,1.3vw,18px);">Why the executor, when pre-need has the 1.3M in search volume? Because that volume is demand for attorneys, insurers, and documents, and the companies that chased it with software are the earlier slide. The executor is different in kind: a job that can't be deferred, legal deadlines that create urgency, and estate money to pay with. This is the arbitrage: acquire attention where it's cheap and plentiful, with free experiences and our own reach, and earn revenue where the money is dense and nobody is competing for the searcher. The pre-need audience is the pipeline; the executor is the customer.</p>
+    <div class="company-row" style="margin-top:clamp(14px,1.5vw,22px); grid-template-columns:repeat(4,1fr);">
+      <div class="company-card">
+        <h4>Now</h4>
+        <p>Free, deliberately. The next few weeks answer whether executors use this at all, and revenue before that would muddy the one number that matters.</p>
+      </div>
+      <div class="company-card">
+        <h4>This fall</h4>
+        <p>First revenue: a small guided pilot. Hands-on help through an estate for a handful of families. Needs no scale to test, and the software stays free underneath it.</p>
+      </div>
+      <div class="company-card">
+        <h4>2027</h4>
+        <p>First meaningful revenue: fee-only advisor referral at the inheritance moment. Recurring per funded referral, and it starts once real users reach that stage.</p>
+      </div>
+      <div class="company-card">
+        <h4>Later</h4>
+        <p>Affiliate on non-time-critical goods, the BabyList lesson. Real but small until there's traffic.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · How the doors connect over time -->
+  <section class="slide">
+    <h2>How the doors connect over time.</h2>
+    <div class="ripple-row">
+      <div class="ripple-node"><div class="rn-num">1</div><p>Settle a death using In Peace.</p></div>
+      <div class="ripple-node"><div class="rn-num">2</div><p>Get your own affairs in order.</p></div>
+      <div class="ripple-node"><div class="rn-num">3</div><p>Your plan is built to be handed over.</p></div>
+      <div class="ripple-node"><div class="rn-num">4</div><p>Your family arrives already inside.</p></div>
+    </div>
+    <div class="ripple-loop-back">↻ and it loops back to step 1, for the next family</div>
+    <div class="ripple-quote">
+      "Okay, I'm going to get my shit in order... it's this ripple effect, you see it and then you take action."
+      <span>Kelly, on her dad, from the call</span>
+    </div>
+    <p class="ripple-note">Three people described this on the call without prompting. This pattern is what answers the question of repeat use.</p>
+    <p class="ripple-close">This loop is how usage compounds: each settled death seeds the next planner, and that plan arrives as the next family's starting point. It's also why the free entry is rational. The paying moments, guided help and the inheritance referral, recur inside the loop.</p>
+  </section>
+
+  <!-- 8 · Now / Next / Later -->
+  <section class="slide">
+    <h2>Now, next, and later.</h2>
     <div class="phase-grid">
       <div class="phase-col now">
-        <div class="pnum">1</div>
-        <div class="ptitle">The wall, and the plan</div>
+        <div class="ptitle">Now</div>
         <ul>
           <li>The inventory, the spine</li>
           <li>The after-death plan, computed dates</li>
           <li>The guidance layer, funeral rule rights</li>
           <li>Handoff, designation and preview</li>
         </ul>
-        <div class="phase-live">Live now</div>
+        <div class="phase-note">The prototype covers most of this.</div>
       </div>
       <div class="phase-col">
-        <div class="pnum">2</div>
-        <div class="ptitle">The loop, and the money</div>
+        <div class="ptitle">Next</div>
         <ul>
           <li>The ripple loop, for real, transfer machinery</li>
           <li>Coordination registry, claim and hold</li>
@@ -943,8 +1298,7 @@
         </ul>
       </div>
       <div class="phase-col">
-        <div class="pnum">3</div>
-        <div class="ptitle">What needs scale or law to change</div>
+        <div class="ptitle">Later</div>
         <ul>
           <li>Planning-mode account linking</li>
           <li>Employer and benefits channel</li>
@@ -953,50 +1307,76 @@
     </div>
   </section>
 
-  <!-- 10 · What's unproven -->
+  <!-- 9 · The parking lot -->
   <section class="slide">
-    <div class="kicker">The honest slide</div>
-    <h2>What's unproven.</h2>
-    <div class="q-grid">
-      <div class="q-card"><div class="qmark">?</div><p>Does our reach convert to this audience? Never inventoried, and it's the last untested thesis-killer.</p></div>
-      <div class="q-card"><div class="qmark">?</div><p>Does anyone use the executor product? Zero real users so far.</p></div>
-      <div class="q-card"><div class="qmark">?</div><p>Will they pay, and at what shape? $99–$249 self-serve looked like a ceiling. High-ticket guided looked better. Untested with humans.</p></div>
-      <div class="q-card"><div class="qmark">?</div><p>Does the ripple invitation convert? Nobody in the category has tried it, which cuts both ways.</p></div>
+    <h2 style="max-width:none;">What we're deliberately parking.</h2>
+    <div class="parked-grid">
+      <div class="parked-card"><h4>Marketplace / funeral-home directory</h4><div class="reason">Referral fees at the funeral stage are small, state anti-steering laws apply, and the trust cost is high.</div></div>
+      <div class="parked-card"><h4>Sponsored placement</h4><div class="reason">Paid placement next to a funeral decision would end trust in the brand.</div></div>
+      <div class="parked-card"><h4>Credential storage</h4><div class="reason">Recording where access lives captures most of the value with none of the breach risk.</div></div>
+      <div class="parked-card"><h4>Bank linking</h4><div class="reason">Consent law has no path for a deceased person's accounts. Revisit in planning mode.</div></div>
+      <div class="parked-card"><h4>Our own community</h4><div class="reason">Established free grief communities already exist. Partner with Comfort Club instead of competing.</div></div>
+      <div class="parked-card"><h4>AI chat concierge</h4><div class="reason">Free chatbots score poorly on executor scenarios, and the errors are the costly kind.</div></div>
+      <div class="parked-card"><h4>Subscriptions</h4><div class="reason">A one-time-use product has near-zero retention. The ripple loop is the better answer.</div></div>
     </div>
-    <p class="q-frame">Everything above is research. This is what only real people can answer.</p>
+    <p class="parked-footer">Parked, not lost. Each one has a written reason, and each can be reopened when the reason stops applying.</p>
   </section>
 
-  <!-- 11 · The asks -->
+  <!-- 10 · What we need to validate -->
   <section class="slide">
-    <div class="kicker">The asks</div>
-    <h2>One ask, per person.</h2>
-    <div class="ask-grid">
-      <div class="ask-card"><div class="who">Everyone</div><p>Walk the prototype with us, guided. Then a one-slide audience inventory: platforms, size, engagement.</p></div>
-      <div class="ask-card"><div class="who">Aubrey + VJ</div><p>The lived-experience task list. What you each did, in order, and what you wish you'd known.</p></div>
-      <div class="ask-card"><div class="who">Laura + Kelly</div><p>Recruit 5 to 8 executor interviews from your networks and Comfort Club. We supply the guide.</p></div>
-      <div class="ask-card"><div class="who">Jordan</div><p>A design pass on the prototype and the roadmap one-pager.</p></div>
-      <div class="ask-card"><div class="who">Kyle</div><p>Instrument the prototype, door choice, ripple clicks, drop-off, and finalize the interview guide.</p></div>
-      <div class="ask-card"><div class="who">Kyle + Vijay</div><p>Finalize the roadmap doc and pick the pricing question for the interviews.</p></div>
+    <h2>What we need to validate.</h2>
+    <div class="q-grid">
+      <div class="q-card"><div class="qmark">?</div><p>Does our combined reach connect with this audience?</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>Do newly appointed executors use the product?</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>What would they pay, and for what shape, self-serve or guided?</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>Does settling a death lead people to start their own plan?</p></div>
     </div>
-    <p class="ask-window">Two to three weeks, then we regroup with real signal.</p>
+    <p class="q-frame">The research took us this far. These need real people.</p>
+  </section>
+
+  <!-- 11 · Next steps -->
+  <section class="slide">
+    <h2>Next steps.</h2>
+    <div class="steps-list">
+      <div class="step-row"><div class="step-num">1</div><p>Walk the prototype together.</p></div>
+      <div class="step-row"><div class="step-num">2</div><p>Map our combined audience reach.</p></div>
+      <div class="step-row"><div class="step-num">3</div><p>Talk to 5 to 8 recent executors. We'll supply an interview guide.</p></div>
+      <div class="step-row"><div class="step-num">4</div><p>Instrument the prototype, so door choice and follow-through get measured.</p></div>
+      <div class="step-row"><div class="step-num">5</div><p>Settle the pricing question to test in interviews.</p></div>
+    </div>
+    <p class="steps-close">A few weeks of this, then we regroup with real signal.</p>
   </section>
 
   <!-- 12 · Close -->
   <section class="slide dark">
-    <div class="kicker">Next</div>
-    <div class="demo-pill">Live demo, walkthrough now</div>
-    <h2 style="color:var(--stone-50); max-width: 26ch;">We're building this plan together.</h2>
-    <p class="close-line">Your stories from the call are already in the product. Come see them.</p>
-    <div class="title-meta">In Peace · confidential · for the group</div>
+    <h2 style="color:var(--stone-50); max-width: 26ch;">Let's look at the prototype together.</h2>
+    <a class="proto-link" href="https://inpeace.kylehess.workers.dev" target="_blank" rel="noopener">inpeace.kylehess.workers.dev</a>
   </section>
 
+</div>
+
+<div id="story-overlay" class="overlay-scrim" aria-hidden="true">
+  <div class="overlay-panel" id="overlay-panel">
+    <button class="overlay-close" id="overlay-close" aria-label="Close">&#10005;</button>
+    <div class="overlay-header">
+      <h3 id="ov-name"></h3>
+      <span class="company-tag" id="ov-tag"></span>
+    </div>
+    <p class="overlay-what" id="ov-what"></p>
+    <div class="overlay-stats" id="ov-stats"></div>
+    <div class="overlay-section-label">The story</div>
+    <div class="overlay-timeline" id="ov-timeline"></div>
+    <div class="overlay-section-label">Where they are today</div>
+    <p class="overlay-today" id="ov-today"></p>
+    <p class="overlay-read" id="ov-read"></p>
+  </div>
 </div>
 
 <div id="nav">
   <button class="navbtn" id="prev" aria-label="Previous slide">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
   </button>
-  <div id="counter">1/12</div>
+  <div id="counter">1/13</div>
   <button class="navbtn" id="next" aria-label="Next slide">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </button>
@@ -1027,6 +1407,9 @@
     prevBtn.disabled = i === 0;
     nextBtn.disabled = i === total - 1;
     progress.style.width = ((i + 1) / total * 100) + '%';
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + (i + 1));
+    }
   }
 
   prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
@@ -1074,43 +1457,188 @@
 </script>
 
 <script>
-/* ============ Three-doors interactive (slide 5) ============ */
+/* ============ Company story overlay ============ */
 (function () {
-  var btns = Array.prototype.slice.call(document.querySelectorAll('.door-btn'));
-  var kicker = document.getElementById('dp-kicker');
-  var title = document.getElementById('dp-title');
-  var body = document.getElementById('dp-body');
+  var overlay = document.getElementById('story-overlay');
+  var closeBtn = document.getElementById('overlay-close');
+  var panel = document.getElementById('overlay-panel');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.company-card[data-company]'));
 
-  var content = [
-    {
-      kicker: 'Door 1 · someone has died',
-      title: 'A phased plan, with real dates.',
-      body: 'A timeline with computed dates from the Texas and California rules engine, a death-certificate tracker with a recommended copy count, the care circle and notification fan-out, and "it can wait," an explicit permission to not do things yet.'
+  var nameEl = document.getElementById('ov-name');
+  var tagEl = document.getElementById('ov-tag');
+  var whatEl = document.getElementById('ov-what');
+  var statsEl = document.getElementById('ov-stats');
+  var timelineEl = document.getElementById('ov-timeline');
+  var todayEl = document.getElementById('ov-today');
+  var readEl = document.getElementById('ov-read');
+
+  var data = {
+    cake: {
+      name: 'Cake',
+      tag: 'absorbed',
+      what: 'Free consumer end-of-life planning platform (checklists, wishes, guidance) plus a B2B white-label line for health systems, insurers, and banks.',
+      stats: ['$3.7M raised', 'Founded 2015, Boston (MIT hackathon)', '100M+ cumulative users, self-reported'],
+      story: [
+        ['2015', 'Founded by Suelin Chen.'],
+        ['2018–19', 'B2B deals: BCBS-MA, Harvard Pilgrim, Liberty Mutual.'],
+        ['2021', '$3.7M raise, AARP among investors.'],
+        ['Sept 2024', 'Acquired by Foundation Partners Group, the #2 US funeral provider.'],
+        ['Today', 'joincake.com redirects to FPG’s funeral-directory brand; the standalone product no longer exists.']
+      ],
+      today: 'The brand was folded into a funeral-home lead-generation funnel and has effectively disappeared as a product.',
+      read: 'A path to avoid. Free consumer content with no paid layer left acquisition as the only asset, and the buyer was the funeral industry.'
     },
-    {
-      kicker: 'Door 2 · helping a family member get ready',
-      title: 'The gathering plan.',
-      body: 'The same inventory, presented as what to gather: accounts, subscriptions, policies, professionals, access paths, plus the concrete list of questions that makes the aging-parent conversation possible at all.'
+    everplans: {
+      name: 'Everplans',
+      tag: 'left consumer',
+      what: 'A digital vault for organizing and securely sharing end-of-life documents and account access.',
+      stats: ['~$16M raised', 'Founded 2011–12, NYC', 'Consumer $99.99/yr · advisor $2,400–3,500/yr per advisor', '30M+ content users, self-reported'],
+      story: [
+        ['2011–12', 'Founded by Abby Schneiderman and Adam Seifer.'],
+        ['2015', 'Launches the Professional advisor channel.'],
+        ['—', 'The advisor channel becomes the real business.'],
+        ['Jan 2021', 'Acquired by National Guardian Life Insurance.'],
+        ['Oct 2024', 'Acquired again by Precoa, a pre-need funeral funding company.']
+      ],
+      today: 'Still live under its own brand, now a digital front end feeding a pre-need funeral partner network.',
+      read: 'The vault survived by selling through professionals, never by consumers paying for it. Distribution decided its fate twice.'
     },
-    {
-      kicker: 'Door 3 · getting my own affairs in order',
-      title: 'Your inventory, and who can open it.',
-      body: 'The inventory again, built for you this time, plus handoff: you designate who should be able to open your plan, and you can see exactly what they would see. No automatic unlock.'
+    farewill: {
+      name: 'Farewill',
+      tag: 'distressed sale',
+      what: 'UK online wills, fixed-fee probate, and direct cremation. At its peak, claimed the UK’s largest will-writer by volume.',
+      stats: ['~£39M raised', '£70M+ peak valuation (2020)', 'FY2023 revenue +36%, EBITDA −£4.2M', 'Sold for £12.9M all-share (Oct 2024)'],
+      story: [
+        ['2015', 'Founded by Dan Garrett.'],
+        ['2019–20', 'Claimed 1 in 10 UK wills.'],
+        ['Nov 2022', 'Crowdfund at £25.8M, the down-round signal.'],
+        ['FY2023', 'Revenue growing, still unprofitable.'],
+        ['Oct 2024', 'Sold to Dignity plc for £12.9M in shares.']
+      ],
+      today: 'Brand still operates under Dignity. Roughly 3x of raised capital was destroyed between funding and exit.',
+      read: 'A path to avoid. Probate demand was real and revenue grew; staffed human services cost more to deliver than they earned. The demand validated, the delivery model did not.'
+    },
+    trustwill: {
+      name: 'Trust & Will',
+      tag: 'surviving',
+      what: 'Digital estate planning documents (wills, trusts, POA, directives), direct to consumer and white-labeled to banks, credit unions, and advisors. Expanded into probate by acquiring EZ-Probate in 2022.',
+      stats: ['~$75–83M raised', 'Founded 2017, San Diego', '$199–599 per plan + $49/yr membership', '1M+ families served, self-reported · 228K new plans in 2025 (+40% YoY)'],
+      story: [
+        ['2017', 'Founded by Cody Barbo.'],
+        ['2019–20', 'Bank and credit-union distribution begins.'],
+        ['2022', 'Acquires EZ-Probate.'],
+        ['2023–25', 'Channel deals: Navy Federal, LPL’s 22,000 advisors, Fifth Third free-will program.'],
+        ['2025', 'Series C; CNBC Disruptor 50.']
+      ],
+      today: 'Scaling through 200+ credit unions and major banks. The single biggest brand-search term in our keyword study at 60,500/mo.',
+      read: 'The model to learn from. A concrete product with a name people search for, and distribution through institutions doing most of the acquisition.'
+    },
+    nokbox: {
+      name: 'NOKBOX',
+      tag: 'surviving',
+      what: 'A physical "next of kin box": color-coded binder system with 15 life-category checklists telling a family where everything is. Paper, not software.',
+      stats: ['Bootstrapped, founded 2021, Colorado', '$59–159 kits', '$60M+ cumulative sales, unaudited', '14,800 brand searches/mo'],
+      story: [
+        ['2021', 'Founded by Maria Fraietta, a former teacher, after her father’s sudden death left no roadmap.'],
+        ['2021', 'Presale funded with about $50 of office supplies.'],
+        ['—', 'Grew direct-to-consumer with a small team.'],
+        ['—', 'Partnered with LifeLegacy for a will add-on.']
+      ],
+      today: 'Still direct-to-consumer with roughly a ten-person team. Owns 73% of all inventory-category search demand in our study.',
+      read: 'Proof of demand for the inventory, in paper form. A software inventory with a real handoff is the upgrade path this product points at.'
+    },
+    empathy: {
+      name: 'Empathy',
+      tag: 'partner-led',
+      what: 'After-loss and estate-administration software for families, distributed almost entirely through life insurers and employers as a benefit.',
+      stats: ['$162M raised', 'Founded 2020–21, NYC/Israel', '8 of top 10 US life insurers', 'Touches ~1 in 5 US life-insurance claims, self-reported'],
+      story: [
+        ['2020–21', 'Founded by Ron Gura and Yonatan Bergman.'],
+        ['2021', 'Launch with $13M seed.'],
+        ['2024', 'Series B; LifeVault launch.'],
+        ['2025', '$72M Series C and the Empathy Alliance, with Aflac, MassMutual, MetLife, and New York Life among carrier investors.'],
+        ['2026', 'Transamerica adds Empathy to new policies.']
+      ],
+      today: 'The best-funded company in the category, still expanding carrier distribution. Effectively 99% B2B2C; no meaningful consumer-direct offering.',
+      read: 'Both the validation and the competitor. They prove the after-loss moment is worth $162M of conviction, and they reach it through insurers. We reach it through people. If we ever meet, it’s here.'
     }
-  ];
+  };
 
-  function select(i) {
-    btns.forEach(function (b, idx) { b.classList.toggle('sel', idx === i); });
-    kicker.textContent = content[i].kicker;
-    title.textContent = content[i].title;
-    body.textContent = content[i].body;
+  function render(id) {
+    var c = data[id];
+    if (!c) return;
+    nameEl.textContent = c.name;
+    tagEl.textContent = c.tag;
+    whatEl.textContent = c.what;
+
+    statsEl.innerHTML = '';
+    c.stats.forEach(function (s) {
+      var d = document.createElement('div');
+      d.className = 'ov-stat';
+      d.textContent = s;
+      statsEl.appendChild(d);
+    });
+
+    timelineEl.innerHTML = '';
+    c.story.forEach(function (row) {
+      var r = document.createElement('div');
+      r.className = 'ov-tl-row';
+      var y = document.createElement('span');
+      y.className = 'ov-tl-year';
+      y.textContent = row[0];
+      var e = document.createElement('span');
+      e.className = 'ov-tl-event';
+      e.textContent = row[1];
+      r.appendChild(y);
+      r.appendChild(e);
+      timelineEl.appendChild(r);
+    });
+
+    todayEl.textContent = c.today;
+    readEl.textContent = c.read;
   }
 
-  btns.forEach(function (b, idx) {
-    b.addEventListener('click', function () { select(idx); });
+  function openStory(id) {
+    render(id);
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    panel.scrollTop = 0;
+  }
+
+  function closeStory() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      openStory(card.getAttribute('data-company'));
+    });
   });
 
-  select(0);
+  closeBtn.addEventListener('click', closeStory);
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeStory();
+  });
+
+  /* Capture-phase guard: while the overlay is open, swallow every keydown
+     before the deck's bubble-phase nav handler ever sees it. Escape closes
+     the overlay; every other key is inert. Nav behavior is untouched when
+     the overlay is closed. */
+  document.addEventListener('keydown', function (e) {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      closeStory();
+      return;
+    }
+    /* preventDefault too: with the nav handler suppressed, arrow keys would
+       otherwise fall through to native horizontal scroll on the snap deck. */
+    if (e.key !== 'Tab') e.preventDefault();
+    e.stopImmediatePropagation();
+  }, true);
 })();
 </script>
 
