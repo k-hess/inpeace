@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>In Peace — The plan</title>
+<style>
+  /* ============ In Peace design tokens (pulled from product styles.css) ============ */
+  :root {
+    --stone-25: oklch(0.985 0.008 82);
+    --stone-50: oklch(0.973 0.012 78);
+    --stone-75: oklch(0.96 0.016 76);
+    --stone-100: oklch(0.95 0.018 74);
+    --stone-200: oklch(0.905 0.026 70);
+    --stone-300: oklch(0.835 0.032 66);
+    --stone-500: oklch(0.5 0.028 55);
+    --stone-600: oklch(0.455 0.026 53);
+    --stone-700: oklch(0.345 0.022 50);
+    --stone-800: oklch(0.265 0.018 46);
+    --stone-900: oklch(0.185 0.015 42);
+
+    --sage-200: oklch(0.88 0.045 140);
+    --sage-300: oklch(0.8 0.062 141);
+    --sage-400: oklch(0.7 0.075 142);
+    --sage-500: oklch(0.58 0.085 143);
+    --sage-600: oklch(0.47 0.078 145);
+
+    --amber-100: oklch(0.94 0.045 85);
+    --amber-400: oklch(0.75 0.11 75);
+    --amber-600: oklch(0.55 0.11 65);
+
+    --card: oklch(0.99 0.01 80);
+
+    --font: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font);
+    color: var(--stone-800);
+    background: var(--stone-900);
+  }
+
+  /* ============ Deck scaffolding ============ */
+  #deck {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  #deck::-webkit-scrollbar { display: none; }
+
+  .slide {
+    flex: 0 0 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    background: var(--stone-75);
+    position: relative;
+    overflow: hidden;
+  }
+  .slide.dark {
+    background: radial-gradient(120% 100% at 50% -10%, oklch(0.28 0.035 143 / 0.35), transparent 55%), linear-gradient(165deg, var(--stone-900) 0%, oklch(0.15 0.014 42) 100%);
+    color: var(--stone-100);
+  }
+  .slide.tight { padding: 4vh 6vw; justify-content: flex-start; }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    margin-bottom: 1.6rem;
+  }
+  .kicker::before {
+    content: "";
+    width: 1.6rem;
+    height: 1px;
+    background: color-mix(in oklab, var(--sage-500) 65%, transparent);
+    flex-shrink: 0;
+  }
+  .dark .kicker { color: var(--stone-300); }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(46px, 7vw, 104px);
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  h1 .accent { color: var(--sage-400); font-style: italic; }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(28px, 3.8vw, 56px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--stone-800);
+    margin-bottom: 1.8rem;
+    max-width: 30ch;
+    text-wrap: balance;
+  }
+  .dark h2 { color: var(--stone-50); }
+
+  .lede {
+    font-size: clamp(16px, 1.5vw, 23px);
+    line-height: 1.55;
+    color: var(--stone-600);
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+  .lede.wide { max-width: 80ch; }
+  .dark .lede { color: var(--stone-300); }
+
+  em { font-style: italic; color: var(--sage-600); font-weight: 600; }
+  .dark em { color: var(--sage-300); }
+
+  .horizon {
+    height: 1px;
+    border: none;
+    margin: 1.6rem 0;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--stone-300) 75%, transparent) 22%, color-mix(in oklab, var(--sage-400) 60%, transparent) 50%, color-mix(in oklab, var(--stone-300) 75%, transparent) 78%, transparent);
+  }
+  .dark .horizon { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--stone-700) 75%, transparent) 22%, color-mix(in oklab, var(--sage-400) 55%, transparent) 50%, color-mix(in oklab, var(--stone-700) 75%, transparent) 78%, transparent); }
+
+  /* ============ Title ============ */
+  .title-sub {
+    font-size: clamp(18px, 1.9vw, 28px);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--stone-300);
+    max-width: 40ch;
+    margin-top: 1.6rem;
+  }
+  .title-meta {
+    position: absolute;
+    bottom: 6vh;
+    left: 8vw;
+    font-size: clamp(11px, 0.95vw, 14px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+  }
+  .title-glow {
+    position: absolute;
+    left: -14vw; bottom: -28vh;
+    width: 56vw; height: 56vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, oklch(0.5 0.09 143 / 0.16) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* ============ Three-column cards (generic) ============ */
+  .col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 30px);
+    margin-top: 1rem;
+  }
+  .col-card {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(22px, 2.3vw, 36px) clamp(20px, 2vw, 30px);
+    box-shadow: 0 1px 2px oklch(0.265 0.018 46 / 0.04), 0 2px 10px -2px oklch(0.265 0.018 46 / 0.05);
+  }
+  .col-card .stage {
+    font-size: clamp(11px, 0.95vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-600);
+    margin-bottom: 0.7rem;
+  }
+  .col-card h3 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(19px, 1.8vw, 27px);
+    color: var(--stone-800);
+    margin-bottom: 0.7rem;
+  }
+  .col-card p {
+    font-size: clamp(13.5px, 1.2vw, 17px);
+    line-height: 1.55;
+    color: var(--stone-600);
+  }
+  .col-card.hero {
+    background: linear-gradient(160deg, var(--stone-800), var(--stone-900));
+    border: none;
+  }
+  .col-card.hero .stage { color: var(--sage-300); }
+  .col-card.hero h3 { color: var(--stone-50); }
+  .col-card.hero p { color: var(--stone-300); }
+
+  /* ============ Four instinct cards ============ */
+  .instinct-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(14px, 1.8vw, 26px);
+    margin-top: 0.8rem;
+  }
+  .instinct {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-left: 4px solid var(--sage-400);
+    border-radius: 4px 14px 14px 4px;
+    padding: clamp(18px, 1.9vw, 28px) clamp(20px, 2vw, 28px);
+  }
+  .instinct .you-said {
+    font-size: clamp(11px, 0.9vw, 12.5px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    margin-bottom: 0.4rem;
+  }
+  .instinct h3 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(17px, 1.5vw, 22px);
+    color: var(--stone-800);
+    margin-bottom: 0.55rem;
+    line-height: 1.25;
+  }
+  .instinct p {
+    font-size: clamp(12.5px, 1.05vw, 15px);
+    line-height: 1.5;
+    color: var(--stone-600);
+  }
+  .instinct p.quote {
+    font-style: italic;
+    color: var(--stone-700);
+    margin-top: 0.5rem;
+  }
+
+  /* ============ Slide 4: demand chart ============ */
+  .demand-wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(24px, 3vw, 48px);
+    align-items: center;
+    margin-top: 0.8rem;
+  }
+  .demand-chart {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(24px, 2.4vw, 40px);
+  }
+  .dbar-row { margin-bottom: clamp(18px, 1.9vw, 28px); }
+  .dbar-row:last-child { margin-bottom: 0; }
+  .dbar-label {
+    font-size: clamp(12.5px, 1.1vw, 15px);
+    font-weight: 600;
+    color: var(--stone-700);
+    margin-bottom: 0.5rem;
+  }
+  .dbar-track {
+    height: clamp(30px, 3.2vw, 44px);
+    background: var(--stone-100);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .dbar-fill {
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.8em;
+    font-weight: 700;
+    font-size: clamp(12px, 1.05vw, 15px);
+    color: #fff;
+  }
+  .dbar-fill.low { width: 22%; background: var(--stone-400, var(--stone-300)); color: var(--stone-700); justify-content: flex-start; padding-left: 0.8em; }
+  .dbar-fill.high { width: 92%; background: var(--sage-500); }
+  .dbar-note { margin-top: 0.5rem; font-size: clamp(11.5px, 0.95vw, 13.5px); color: var(--stone-500); }
+  .demand-copy h3 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(20px, 2vw, 30px);
+    color: var(--stone-800);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .demand-copy p { font-size: clamp(14px, 1.2vw, 18px); line-height: 1.6; color: var(--stone-600); margin-bottom: 0.9rem; }
+  .tombstones { display: flex; gap: 0.7rem; margin-top: 1rem; flex-wrap: wrap; }
+  .tombstone {
+    background: var(--stone-100);
+    border: 1px solid var(--stone-200);
+    border-radius: 10px 10px 3px 3px;
+    padding: 0.5em 0.9em;
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    color: var(--stone-600);
+    font-weight: 600;
+  }
+  .punchline {
+    margin-top: 1.4rem;
+    font-size: clamp(15px, 1.35vw, 20px);
+    font-weight: 600;
+    color: var(--stone-800);
+    border-left: 3px solid var(--sage-400);
+    padding-left: 1em;
+    line-height: 1.5;
+  }
+
+  /* ============ Slide 5: three doors ============ */
+  .doors-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.6vw, 22px);
+    margin-top: 1rem;
+  }
+  .door-btn {
+    font-family: var(--font);
+    background: var(--card);
+    border: 1.5px solid var(--stone-200);
+    border-radius: 14px;
+    padding: clamp(18px, 1.8vw, 26px) clamp(16px, 1.6vw, 22px);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s, transform 0.18s;
+  }
+  .door-btn:hover { border-color: var(--sage-400); transform: translateY(-2px); }
+  .door-btn.sel { border-color: var(--sage-500); background: color-mix(in oklab, var(--sage-200) 30%, var(--card)); }
+  .door-btn .dnum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--stone-100);
+    color: var(--stone-600);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+  .door-btn.sel .dnum { background: var(--sage-500); color: #fff; }
+  .door-btn .dtitle {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(16px, 1.4vw, 20px);
+    color: var(--stone-800);
+    line-height: 1.3;
+  }
+  .door-panel {
+    margin-top: clamp(16px, 1.8vw, 24px);
+    background: linear-gradient(160deg, var(--stone-800), var(--stone-900));
+    border-radius: 16px;
+    padding: clamp(22px, 2.2vw, 36px);
+    min-height: clamp(150px, 20vh, 220px);
+  }
+  .door-panel .dp-kicker {
+    font-size: clamp(11px, 0.9vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-300);
+    margin-bottom: 0.7rem;
+  }
+  .door-panel h4 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(19px, 1.8vw, 27px);
+    color: var(--stone-50);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+  .door-panel p {
+    font-size: clamp(13.5px, 1.15vw, 17px);
+    line-height: 1.6;
+    color: var(--stone-300);
+    max-width: 70ch;
+  }
+  .reconcile-line {
+    margin-top: 1.4rem;
+    font-size: clamp(14px, 1.25vw, 18px);
+    font-weight: 600;
+    color: var(--stone-700);
+  }
+
+  /* ============ Slide 6: ripple loop ============ */
+  .ripple-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.4vw, 18px);
+    margin-top: 1.6rem;
+    align-items: stretch;
+  }
+  .ripple-node {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 14px;
+    padding: clamp(16px, 1.6vw, 24px);
+    position: relative;
+  }
+  .ripple-node .rn-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2vw, 30px);
+    color: var(--sage-500);
+    margin-bottom: 0.5rem;
+  }
+  .ripple-node p {
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.45;
+    color: var(--stone-700);
+    font-weight: 600;
+  }
+  .ripple-arrows { position: relative; height: clamp(30px, 4vh, 50px); margin-top: 0.4rem; }
+  .ripple-arrows svg { width: 100%; height: 100%; }
+  .ripple-loop-back {
+    text-align: center;
+    font-size: clamp(11.5px, 1vw, 14px);
+    color: var(--sage-600);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-top: 0.5rem;
+  }
+  .ripple-quote {
+    margin-top: 1.6rem;
+    background: var(--stone-100);
+    border-radius: 12px;
+    padding: clamp(16px, 1.6vw, 24px) clamp(20px, 2vw, 28px);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(16px, 1.5vw, 22px);
+    line-height: 1.5;
+    color: var(--stone-800);
+    max-width: 68ch;
+  }
+  .ripple-quote span { display: block; margin-top: 0.5rem; font-family: var(--font); font-style: normal; font-size: clamp(11.5px, 0.95vw, 13.5px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone-500); }
+  .ripple-note {
+    margin-top: 1rem;
+    font-size: clamp(13px, 1.1vw, 16px);
+    color: var(--stone-600);
+    font-weight: 600;
+  }
+
+  /* ============ Slide 7: BabyList ============ */
+  .bl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2.4vw, 40px);
+    margin-top: 0.6rem;
+  }
+  .bl-col {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(20px, 2vw, 32px);
+  }
+  .bl-col.no { border-top: 4px solid var(--amber-400); }
+  .bl-col.yes { border-top: 4px solid var(--sage-500); }
+  .bl-col h3 {
+    font-family: var(--serif);
+    font-weight: 480;
+    font-size: clamp(18px, 1.6vw, 25px);
+    color: var(--stone-800);
+    margin-bottom: 0.9rem;
+  }
+  .bl-list { list-style: none; }
+  .bl-list li {
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.55;
+    color: var(--stone-600);
+    padding: 0.55em 0;
+    border-bottom: 1px solid var(--stone-100);
+  }
+  .bl-list li:last-child { border-bottom: none; }
+  .bl-list li b { color: var(--stone-800); }
+  .bl-verdict {
+    margin-top: 1.6rem;
+    font-size: clamp(15px, 1.35vw, 21px);
+    font-weight: 600;
+    color: var(--stone-800);
+    border-left: 3px solid var(--sage-400);
+    padding-left: 1em;
+    line-height: 1.5;
+    max-width: 76ch;
+  }
+
+  /* ============ Slide 8: parked cards ============ */
+  .parked-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(10px, 1.3vw, 16px);
+    margin-top: 1rem;
+  }
+  .parked-card {
+    background: var(--stone-100);
+    border: 1px dashed var(--stone-300);
+    border-radius: 12px;
+    padding: clamp(14px, 1.4vw, 20px);
+  }
+  .parked-card h4 {
+    font-size: clamp(12.5px, 1.05vw, 15px);
+    font-weight: 700;
+    color: var(--stone-700);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .parked-card .reason {
+    font-size: clamp(11.5px, 0.95vw, 13.5px);
+    color: var(--stone-500);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .parked-footer {
+    margin-top: 1.6rem;
+    font-size: clamp(14px, 1.2vw, 18px);
+    font-weight: 600;
+    color: var(--sage-600);
+  }
+
+  /* ============ Slide 9: phases ============ */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 1.9vw, 28px);
+    margin-top: 0.8rem;
+  }
+  .phase-col {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(20px, 2vw, 30px);
+    display: flex;
+    flex-direction: column;
+  }
+  .phase-col.now { border: 2px solid var(--sage-500); background: color-mix(in oklab, var(--sage-200) 22%, var(--card)); }
+  .phase-col .pnum {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(26px, 2.4vw, 36px);
+    color: var(--stone-400, var(--stone-300));
+    margin-bottom: 0.3rem;
+  }
+  .phase-col.now .pnum { color: var(--sage-500); }
+  .phase-col .ptitle {
+    font-size: clamp(11px, 0.95vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    margin-bottom: 0.9rem;
+  }
+  .phase-col.now .ptitle { color: var(--sage-600); }
+  .phase-col ul { list-style: none; }
+  .phase-col li {
+    font-size: clamp(12.5px, 1.08vw, 15.5px);
+    line-height: 1.5;
+    color: var(--stone-700);
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--stone-100);
+  }
+  .phase-col li:last-child { border-bottom: none; }
+  .phase-live {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: clamp(11px, 0.95vw, 13px);
+    font-weight: 700;
+    color: var(--sage-600);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ============ Slide 10: open questions ============ */
+  .q-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 1.9vw, 28px);
+    margin-top: 1rem;
+  }
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-radius: 16px;
+    padding: clamp(20px, 2vw, 30px);
+  }
+  .q-card .qmark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(30px, 2.8vw, 44px);
+    color: var(--amber-400);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .q-card p {
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.5;
+    color: var(--stone-700);
+    font-weight: 600;
+  }
+  .q-frame {
+    margin-top: 1.6rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(17px, 1.5vw, 23px);
+    color: var(--stone-800);
+    max-width: 70ch;
+    line-height: 1.5;
+  }
+
+  /* ============ Slide 11: asks ============ */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 1.7vw, 24px);
+    margin-top: 0.8rem;
+  }
+  .ask-card {
+    background: var(--card);
+    border: 1px solid var(--stone-200);
+    border-top: 4px solid var(--sage-400);
+    border-radius: 4px 4px 14px 14px;
+    padding: clamp(18px, 1.8vw, 26px) clamp(16px, 1.7vw, 24px);
+  }
+  .ask-card .who {
+    font-size: clamp(11px, 0.95vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-600);
+    margin-bottom: 0.6rem;
+  }
+  .ask-card p {
+    font-size: clamp(13px, 1.1vw, 15.5px);
+    line-height: 1.5;
+    color: var(--stone-700);
+  }
+  .ask-window {
+    margin-top: 1.6rem;
+    font-size: clamp(14px, 1.25vw, 18px);
+    font-weight: 600;
+    color: var(--stone-800);
+  }
+
+  /* ============ Close ============ */
+  .close-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 36px);
+    color: var(--stone-100);
+    max-width: 34ch;
+    line-height: 1.4;
+    margin-top: 1.8rem;
+  }
+  .demo-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: color-mix(in oklab, var(--sage-500) 22%, transparent);
+    border: 1px solid color-mix(in oklab, var(--sage-400) 55%, transparent);
+    color: var(--sage-300);
+    font-size: clamp(12px, 1.05vw, 15px);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.5em 1.2em;
+    margin-top: 0.4rem;
+  }
+  .demo-pill::before {
+    content: "";
+    width: 0.55em; height: 0.55em;
+    border-radius: 50%;
+    background: var(--sage-400);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ============ Chrome: nav + counter ============ */
+  #nav {
+    position: fixed;
+    bottom: 24px;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+    font-family: var(--font);
+  }
+  #counter {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--stone-600);
+    background: color-mix(in oklab, var(--card) 88%, transparent);
+    border: 1px solid var(--stone-200);
+    border-radius: 999px;
+    padding: 6px 14px;
+    min-width: 52px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+  .navbtn {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: var(--stone-800);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, opacity 0.15s;
+  }
+  .navbtn:hover { background: var(--sage-600); }
+  .navbtn:disabled { opacity: 0.3; cursor: default; }
+  .navbtn:disabled:hover { background: var(--stone-800); }
+  .navbtn svg { width: 18px; height: 18px; }
+
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--sage-500);
+    z-index: 10;
+    transition: width 0.25s ease;
+  }
+
+  @media (max-width: 900px) {
+    .slide { padding: 5vh 6vw; }
+    .col-grid, .instinct-grid, .demand-wrap, .doors-row, .ripple-row, .bl-grid, .parked-grid, .phase-grid, .q-grid, .ask-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div id="deck" tabindex="0">
+
+  <!-- 1 · Title -->
+  <section class="slide dark">
+    <div class="title-glow"></div>
+    <div class="kicker">Confidential · for the group</div>
+    <h1>In Peace<span class="accent">: the plan.</span></h1>
+    <p class="title-sub">Where we are, what the research found, and what we're asking of each of you next.</p>
+    <div class="title-meta">2026-08-10 · following the 2026-08-04 call</div>
+  </section>
+
+  <!-- 2 · Where we are -->
+  <section class="slide">
+    <div class="kicker">Where we are</div>
+    <h2>Three rounds of research done. A prototype nobody's seen. One phase left before we build more.</h2>
+    <div class="col-grid">
+      <div class="col-card">
+        <div class="stage">Done</div>
+        <h3>Research done</h3>
+        <p>Market scan, validation pass, and the five topics from our call, roughly 14 reports in. The instincts from that call held up, and the research turned them into positions.</p>
+      </div>
+      <div class="col-card">
+        <div class="stage">Built</div>
+        <h3>Prototype live</h3>
+        <p>Three doors, a real Texas and California rules engine with computed dates, the inventory, guidance cards, a care circle, a ripple invitation. Nobody in this group has seen it yet.</p>
+      </div>
+      <div class="col-card hero">
+        <div class="stage">Next</div>
+        <h3>Validation next</h3>
+        <p>This is the phase we're entering, and it's the one this group can run better than we can. Interviews, an audience inventory, a design pass, real signal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · What you told us, what we found -->
+  <section class="slide">
+    <div class="kicker">What you told us, what we found</div>
+    <h2>Four things this group said on the call. Each one held up, and got sharper.</h2>
+    <div class="instinct-grid">
+      <div class="instinct">
+        <div class="you-said">You said: lead with the wall</div>
+        <h3>Organize and access, first</h3>
+        <p>Classic pre-need software keeps failing: Cake is dead, Everplans fled to B2B, Farewill went from a large valuation to a distressed sale. What this group described is different, an access-and-inventory layer, and nobody sells that. One inventory serves all three doors.</p>
+      </div>
+      <div class="instinct">
+        <div class="you-said">You said: guidance, not vendor picks</div>
+        <h3>Confirmed, with legal weight</h3>
+        <p>A Place for Mom drew a Senate Aging Committee investigation for commission-linked rankings. Angi took an FTC order up to $7.2M. We teach incentive structure, fee-only versus commission, and never name providers.</p>
+      </div>
+      <div class="instinct">
+        <div class="you-said">You said: warm, not clinical</div>
+        <h3>It's already built</h3>
+        <p class="quote">"It's not 'I know what to do, I don't know how,' it's 'I don't even know what I need to do.'" — Kelly</p>
+        <p>The care-note guardrails and the "it can wait" section, given the same visual weight as the to-dos, are already live.</p>
+      </div>
+      <div class="instinct">
+        <div class="you-said">You said: feature-complete, or abandoned</div>
+        <h3>One structure, three doors</h3>
+        <p>Jordan's worry was correct, a thin checklist gets abandoned. One inventory object serves as a gathering list in planning mode and a notify-and-transfer list after a death. Same object, different verb. That reads feature-complete without the weight of three products.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · The one big move -->
+  <section class="slide">
+    <div class="kicker">The one big move</div>
+    <h2>We enter through the after-death door.</h2>
+    <div class="demand-wrap">
+      <div class="demand-chart">
+        <div class="dbar-row">
+          <div class="dbar-label">Crisis-moment search phrasings</div>
+          <div class="dbar-track"><div class="dbar-fill low">37% have zero search volume</div></div>
+        </div>
+        <div class="dbar-row">
+          <div class="dbar-label">Executor-stage click values</div>
+          <div class="dbar-track"><div class="dbar-fill high">$17–$80 per click</div></div>
+        </div>
+        <div class="dbar-note">Source: DataForSEO keyword study, In Peace research.</div>
+      </div>
+      <div class="demand-copy">
+        <h3>The demand arrives weeks after the death, not before it.</h3>
+        <p>People don't search for pre-need software in a crisis. They search when they're already the executor, weeks in, with real questions and real deadlines.</p>
+        <p>Pre-need software is a decade-long graveyard:</p>
+        <div class="tombstones">
+          <div class="tombstone">Cake, dead</div>
+          <div class="tombstone">Everplans, fled to B2B</div>
+          <div class="tombstone">Farewill, distressed sale</div>
+        </div>
+        <p class="punchline">What this group described is a different animal: an access-and-inventory spine that none of those companies sold, serving all three doors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Three doors, one product -->
+  <section class="slide tight">
+    <div class="kicker">Three doors, one product</div>
+    <h2 style="max-width:none;">One inventory, read three different ways.</h2>
+    <p class="lede wide" style="margin-bottom:0.4rem;">This is the reconciliation. Click a door to see what that reader sees.</p>
+    <div class="doors-row" id="doors-row">
+      <button class="door-btn sel" data-door="0"><span class="dnum">1</span><div class="dtitle">Someone has died</div></button>
+      <button class="door-btn" data-door="1"><span class="dnum">2</span><div class="dtitle">I'm helping a family member get ready</div></button>
+      <button class="door-btn" data-door="2"><span class="dnum">3</span><div class="dtitle">I'm getting my own affairs in order</div></button>
+    </div>
+    <div class="door-panel">
+      <div class="dp-kicker" id="dp-kicker">What they see</div>
+      <h4 id="dp-title">A phased plan, with real dates.</h4>
+      <p id="dp-body">A timeline with computed dates from the Texas and California rules engine, a death-certificate tracker with a recommended copy count, the care circle and notification fan-out, and "it can wait," an explicit permission to not do things yet.</p>
+    </div>
+    <p class="reconcile-line">One data structure serves all three doors: the same inventory, gathered ahead of time or acted on after. Same object, different verb.</p>
+  </section>
+
+  <!-- 6 · The ripple loop -->
+  <section class="slide">
+    <div class="kicker">The ripple loop</div>
+    <h2>Our answer to "this business has no repeat customers."</h2>
+    <div class="ripple-row">
+      <div class="ripple-node"><div class="rn-num">1</div><p>Settle a death using In Peace.</p></div>
+      <div class="ripple-node"><div class="rn-num">2</div><p>Get your own affairs in order.</p></div>
+      <div class="ripple-node"><div class="rn-num">3</div><p>Your plan is built to be handed over.</p></div>
+      <div class="ripple-node"><div class="rn-num">4</div><p>Your family arrives already inside.</p></div>
+    </div>
+    <div class="ripple-loop-back">↻ and it loops back to step 1, for the next family</div>
+    <div class="ripple-quote">
+      "Okay, I'm going to get my shit in order... it's this ripple effect, you see it and then you take action."
+      <span>Kelly, on her dad, from the call</span>
+    </div>
+    <p class="ripple-note">Three people described this on the call without prompting. As far as we can tell, nobody in the category has tried it.</p>
+  </section>
+
+  <!-- 7 · The BabyList question -->
+  <section class="slide">
+    <div class="kicker">The BabyList question</div>
+    <h2>Jordan's benchmark, taken seriously.</h2>
+    <div class="bl-grid">
+      <div class="bl-col yes">
+        <h3>What transfers</h3>
+        <ul class="bl-list">
+          <li><b>The claim mechanic.</b> Claim, 48-hour soft hold, auto-release if unconfirmed.</li>
+          <li><b>Cash funds routed peer-to-peer.</b> Zero platform cut, no fee line. We link out; we never touch the money.</li>
+        </ul>
+      </div>
+      <div class="bl-col no">
+        <h3>What doesn't</h3>
+        <ul class="bl-list">
+          <li><b>The timeline.</b> BabyList gets 9 months of joyful browsing. Death purchases happen in 24 to 72 hours, once, under duress.</li>
+          <li><b>The $750M.</b> Retail, advertising, and insurance-billed product, none of which exist in grief. The honest comparison is Ever Loved, at $3M.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="bl-verdict">Yes, with a ceiling. Affiliate revenue on non-deadline goods in Phase 2. Caskets on a deadline, never.</p>
+  </section>
+
+  <!-- 8 · What we're deliberately parking -->
+  <section class="slide">
+    <div class="kicker">What we're deliberately parking</div>
+    <h2>The no-list, kept visible on purpose.</h2>
+    <div class="parked-grid">
+      <div class="parked-card"><h4>Marketplace / funeral-home directory</h4><div class="reason">Money arrives later</div></div>
+      <div class="parked-card"><h4>Sponsored placement</h4><div class="reason">One screenshot kills</div></div>
+      <div class="parked-card"><h4>Credential storage</h4><div class="reason">Location, not password</div></div>
+      <div class="parked-card"><h4>Bank linking</h4><div class="reason">No compliant path</div></div>
+      <div class="parked-card"><h4>Our own community</h4><div class="reason">Comfort Club exists</div></div>
+      <div class="parked-card"><h4>AI chat concierge</h4><div class="reason">Wrong moment, unreliable</div></div>
+      <div class="parked-card"><h4>Subscriptions</h4><div class="reason">One-time use, no retention</div></div>
+    </div>
+    <p class="parked-footer">Parked, not lost. Each one has a written reason, and each can be reopened when the reason stops applying.</p>
+  </section>
+
+  <!-- 9 · Phase 1 / 2 / 3 -->
+  <section class="slide">
+    <div class="kicker">The roadmap</div>
+    <h2>Phase 1, 2, 3.</h2>
+    <div class="phase-grid">
+      <div class="phase-col now">
+        <div class="pnum">1</div>
+        <div class="ptitle">The wall, and the plan</div>
+        <ul>
+          <li>The inventory, the spine</li>
+          <li>The after-death plan, computed dates</li>
+          <li>The guidance layer, funeral rule rights</li>
+          <li>Handoff, designation and preview</li>
+        </ul>
+        <div class="phase-live">Live now</div>
+      </div>
+      <div class="phase-col">
+        <div class="pnum">2</div>
+        <div class="ptitle">The loop, and the money</div>
+        <ul>
+          <li>The ripple loop, for real, transfer machinery</li>
+          <li>Coordination registry, claim and hold</li>
+          <li>More states</li>
+          <li>Guided tier and advisor referral</li>
+        </ul>
+      </div>
+      <div class="phase-col">
+        <div class="pnum">3</div>
+        <div class="ptitle">What needs scale or law to change</div>
+        <ul>
+          <li>Planning-mode account linking</li>
+          <li>Employer and benefits channel</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · What's unproven -->
+  <section class="slide">
+    <div class="kicker">The honest slide</div>
+    <h2>What's unproven.</h2>
+    <div class="q-grid">
+      <div class="q-card"><div class="qmark">?</div><p>Does our reach convert to this audience? Never inventoried, and it's the last untested thesis-killer.</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>Does anyone use the executor product? Zero real users so far.</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>Will they pay, and at what shape? $99–$249 self-serve looked like a ceiling. High-ticket guided looked better. Untested with humans.</p></div>
+      <div class="q-card"><div class="qmark">?</div><p>Does the ripple invitation convert? Nobody in the category has tried it, which cuts both ways.</p></div>
+    </div>
+    <p class="q-frame">Everything above is research. This is what only real people can answer.</p>
+  </section>
+
+  <!-- 11 · The asks -->
+  <section class="slide">
+    <div class="kicker">The asks</div>
+    <h2>One ask, per person.</h2>
+    <div class="ask-grid">
+      <div class="ask-card"><div class="who">Everyone</div><p>Walk the prototype with us, guided. Then a one-slide audience inventory: platforms, size, engagement.</p></div>
+      <div class="ask-card"><div class="who">Aubrey + VJ</div><p>The lived-experience task list. What you each did, in order, and what you wish you'd known.</p></div>
+      <div class="ask-card"><div class="who">Laura + Kelly</div><p>Recruit 5 to 8 executor interviews from your networks and Comfort Club. We supply the guide.</p></div>
+      <div class="ask-card"><div class="who">Jordan</div><p>A design pass on the prototype and the roadmap one-pager.</p></div>
+      <div class="ask-card"><div class="who">Kyle</div><p>Instrument the prototype, door choice, ripple clicks, drop-off, and finalize the interview guide.</p></div>
+      <div class="ask-card"><div class="who">Kyle + Vijay</div><p>Finalize the roadmap doc and pick the pricing question for the interviews.</p></div>
+    </div>
+    <p class="ask-window">Two to three weeks, then we regroup with real signal.</p>
+  </section>
+
+  <!-- 12 · Close -->
+  <section class="slide dark">
+    <div class="kicker">Next</div>
+    <div class="demo-pill">Live demo, walkthrough now</div>
+    <h2 style="color:var(--stone-50); max-width: 26ch;">We're building this plan together.</h2>
+    <p class="close-line">Your stories from the call are already in the product. Come see them.</p>
+    <div class="title-meta">In Peace · confidential · for the group</div>
+  </section>
+
+</div>
+
+<div id="nav">
+  <button class="navbtn" id="prev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div id="counter">1/12</div>
+  <button class="navbtn" id="next" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var counter = document.getElementById('counter');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var progress = document.getElementById('progress');
+  var total = slides.length;
+
+  function currentIndex() {
+    return Math.round(deck.scrollLeft / deck.clientWidth);
+  }
+
+  function goTo(i) {
+    var idx = Math.max(0, Math.min(total - 1, i));
+    deck.scrollTo({ left: idx * deck.clientWidth, behavior: 'instant' });
+  }
+
+  function update() {
+    var i = currentIndex();
+    counter.textContent = (i + 1) + '/' + total;
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === total - 1;
+    progress.style.width = ((i + 1) / total * 100) + '%';
+  }
+
+  prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
+  nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'BUTTON' || t.tagName === 'INPUT' || t.tagName === 'LABEL') && !t.classList.contains('navbtn')) {
+      if (e.key === ' ') return;
+    }
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      goTo(currentIndex() + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      goTo(currentIndex() - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goTo(0);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goTo(total - 1);
+    }
+  });
+
+  var scrollTimer = null;
+  deck.addEventListener('scroll', function () {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(update, 60);
+  });
+
+  window.addEventListener('resize', function () {
+    goTo(currentIndex());
+    update();
+  });
+
+  var hash = parseInt(location.hash.replace('#', ''), 10);
+  if (hash >= 1 && hash <= total) {
+    deck.scrollTo({ left: (hash - 1) * deck.clientWidth, behavior: 'instant' });
+  }
+
+  update();
+  deck.focus();
+})();
+</script>
+
+<script>
+/* ============ Three-doors interactive (slide 5) ============ */
+(function () {
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.door-btn'));
+  var kicker = document.getElementById('dp-kicker');
+  var title = document.getElementById('dp-title');
+  var body = document.getElementById('dp-body');
+
+  var content = [
+    {
+      kicker: 'Door 1 · someone has died',
+      title: 'A phased plan, with real dates.',
+      body: 'A timeline with computed dates from the Texas and California rules engine, a death-certificate tracker with a recommended copy count, the care circle and notification fan-out, and "it can wait," an explicit permission to not do things yet.'
+    },
+    {
+      kicker: 'Door 2 · helping a family member get ready',
+      title: 'The gathering plan.',
+      body: 'The same inventory, presented as what to gather: accounts, subscriptions, policies, professionals, access paths, plus the concrete list of questions that makes the aging-parent conversation possible at all.'
+    },
+    {
+      kicker: 'Door 3 · getting my own affairs in order',
+      title: 'Your inventory, and who can open it.',
+      body: 'The inventory again, built for you this time, plus handoff: you designate who should be able to open your plan, and you can see exactly what they would see. No automatic unlock.'
+    }
+  ];
+
+  function select(i) {
+    btns.forEach(function (b, idx) { b.classList.toggle('sel', idx === i); });
+    kicker.textContent = content[i].kicker;
+    title.textContent = content[i].title;
+    body.textContent = content[i].body;
+  }
+
+  btns.forEach(function (b, idx) {
+    b.addEventListener('click', function () { select(idx); });
+  });
+
+  select(0);
+})();
+</script>
+
+</body>
+</html>
