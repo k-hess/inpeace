@@ -18,7 +18,7 @@ export function ChoosingSection({
       id={id}
       kicker="Choosing who to trust"
       heading="Ask about how they're paid before anything else."
-      essence="In every one of these relationships, the advice tends to follow the incentive behind it — one question up front tells you most of what you need to know."
+      essence="In every one of these relationships, the advice tends to follow the incentive behind it. One question up front tells you most of what you need to know."
       expanded={expanded}
       onExpand={onExpand}
     >

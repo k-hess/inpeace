@@ -4,7 +4,7 @@ import { useIntake, type CertStatus, type CertTrackerState } from "#/store/intak
 
 const STATUS_COPY: Record<CertStatus, string> = {
   "not-started": "Haven't ordered yet",
-  ordered: "Ordered — waiting on them",
+  ordered: "Ordered, waiting on them",
   received: "In hand",
 }
 
@@ -31,8 +31,8 @@ export function DeathCertTracker({ recommendedCopies }: { recommendedCopies: num
     <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">Death certificates</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        We'd suggest ordering around {recommendedCopies} copies — enough for banks, insurance, the DMV,
-        and whatever else comes up, without needing a second round.
+        We'd suggest ordering around {recommendedCopies} copies. That's enough for banks, insurance, the
+        DMV, and whatever else comes up, without needing a second round.
       </p>
 
       <div className="mt-5 flex items-center gap-4">

@@ -12,7 +12,7 @@ export function RippleSection() {
     <section className="quiet-card mb-16 rounded-2xl px-6 py-6">
       <p className="text-sm leading-relaxed">
         You're in the middle of something hard right now, and none of this is for today. But people who've
-        been through this often say the same thing happens afterward — it gets them thinking about their
+        been through this often say the same thing happens afterward. It gets them thinking about their
         own family's affairs, or their parents'. Whenever that day comes, this is here.
       </p>
       <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm">

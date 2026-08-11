@@ -67,7 +67,7 @@ export function ReturnStrip({
           <p className="text-sm leading-relaxed">
             {held > 0
               ? `${held} thing${held === 1 ? "" : "s"} ${held === 1 ? "is" : "are"} handled.`
-              : "Nothing's checked off yet — no rush."}
+              : "Nothing's checked off yet. No rush."}
           </p>
           {movedLine ? <p className="text-sm leading-relaxed">{movedLine}</p> : null}
           {nextThingLine ? <p className="text-sm leading-relaxed">{nextThingLine}</p> : null}

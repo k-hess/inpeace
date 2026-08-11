@@ -15,7 +15,7 @@ export const Route = createFileRoute("/plan")({
   component: PlanRoute,
   ssr: false,
   head: () => ({
-    meta: [{ title: "In Peace — Your plan" }],
+    meta: [{ title: "In Peace · Your plan" }],
   }),
   validateSearch: (search: Record<string, unknown>): PlanSearch => ({
     demo: DEMO_KEYS.includes(search.demo as DemoKey) ? (search.demo as DemoKey) : undefined,

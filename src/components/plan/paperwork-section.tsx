@@ -73,7 +73,7 @@ function ExplainerBlock() {
     return (
       <CollapsibleSummary
         heading="The two death certificate versions"
-        essence="Some places want the version with cause of death listed, some don't — who needs which one, explained."
+        essence="Some places want the version with cause of death listed, some don't. Who needs which one, explained."
         onExpand={() => {
           updateProgress((prev) => ({
             ...prev,

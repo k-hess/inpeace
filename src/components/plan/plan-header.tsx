@@ -14,8 +14,8 @@ export function PlanHeader({ headline, sub, stateName, firstName }: PlanHeaderPr
       <h1 className="display text-[2.1rem] leading-[1.15] text-foreground sm:text-[2.6rem]">{headline}</h1>
       <p className="mt-4 max-w-lg leading-relaxed text-pretty text-muted-foreground">{sub}</p>
       <p className="mt-7 max-w-lg font-serif text-base italic leading-relaxed text-muted-foreground">
-        You've done enough for today just by getting this far. Come back to this whenever you want —
-        nothing here expires.
+        You've done enough for today by getting this far. Come back whenever you want. Nothing here
+        expires.
       </p>
     </header>
   )

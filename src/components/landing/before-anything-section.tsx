@@ -14,8 +14,8 @@ export function BeforeAnythingSection() {
         This works before a loss, too.
       </h2>
       <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-pretty text-muted-foreground">
-        Getting your own affairs in order, or helping a parent get theirs together — where things
-        are, who to call, how family would get in — takes the same few minutes either way.
+        Getting your own affairs in order, or helping a parent get theirs together, takes the same
+        few minutes either way: where things are, who to call, how family would get in.
       </p>
       <div className="mt-8">
         <Button asChild variant="outline" className="rounded-full px-6">

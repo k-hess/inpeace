@@ -18,7 +18,7 @@ export function ModeStep({ value, onSelect, position }: ModeStepProps) {
   return (
     <IntakeScreen
       title="Where would you like to start?"
-      description="It's the same plan either way — this just decides how we talk to you. If it turns out to be the wrong door, you can change it any time."
+      description="It's the same plan either way. This decides how we talk to you. If it turns out to be the wrong door, you can change it any time."
       position={position}
     >
       <div className="flex flex-col gap-3">

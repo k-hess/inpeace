@@ -10,7 +10,7 @@ const STEPS: Step[] = [
   },
   {
     title: "See your plan",
-    body: "A calm, personal rundown — what's this week, what's this month, and what can wait.",
+    body: "A calm, personal rundown of what's this week, what's this month, and what can wait.",
   },
   {
     title: "Come back whenever",

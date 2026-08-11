@@ -43,7 +43,7 @@ export function CareCircleSection({ id }: { id: string }) {
         </button>
       </div>
       <p className="mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        People keep asking what they can do. Here's somewhere to put the answer — tap anything that's
+        People keep asking what they can do. Here's somewhere to put the answer. Tap anything that's
         been offered.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
@@ -77,7 +77,7 @@ export function CareCircleSection({ id }: { id: string }) {
                     {claim
                       ? claim.claimedBy === "You"
                         ? "You've got this one."
-                        : `${claim.claimedBy} — ${claim.claimedNote}`
+                        : `${claim.claimedBy}: ${claim.claimedNote}`
                       : slot.detail}
                   </p>
                 </div>

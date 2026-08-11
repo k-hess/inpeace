@@ -19,7 +19,7 @@ export function LiabilitiesSection({
       id={id}
       kicker="Debts"
       heading="The debts don't become yours."
-      essence="The estate pays what it owes before anything else happens — the general shape of it, and where to check if something looks specific to you."
+      essence="The estate pays what it owes before anything else happens. The general shape of it, and where to check if something looks specific to you."
       expanded={expanded}
       onExpand={onExpand}
     >
@@ -27,7 +27,7 @@ export function LiabilitiesSection({
         The debts don't become yours.
       </h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        The estate pays what it owes before anything else happens — here's the general shape of it, and
+        The estate pays what it owes before anything else happens. Here's the general shape of it, and
         where to check if something looks specific to you.
       </p>
       <div className="flex flex-col gap-3">

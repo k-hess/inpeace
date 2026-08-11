@@ -88,7 +88,7 @@ function nextThingLine(plan: PlanData, progress: ReturnType<typeof useIntake>["p
 function movedLine(plan: PlanData, progress: ReturnType<typeof useIntake>["progress"]): string | null {
   const deadline = plan.deadlineTasks.find((task) => isTaskOpen(progress, task.id))
   if (!deadline) return null
-  return `${deadline.title} is coming up — ${formatDateLong(deadline.date)}.`
+  return `${deadline.title} is coming up: ${formatDateLong(deadline.date)}.`
 }
 
 export function PlanScreen({ plan, answers }: { plan: PlanData; answers: IntakeAnswers }) {

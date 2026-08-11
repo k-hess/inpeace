@@ -16,7 +16,7 @@ export function ReligionStep({ value, onSelect, onSkip, onBack, position }: Reli
   return (
     <IntakeScreen
       title="Are there faith traditions we should plan around?"
-      description="Timing expectations differ a lot between traditions — what 'this week' looks like can mean something very different depending on the answer. This is only ever used to shape the plan's pacing, and it's never shared anywhere."
+      description="Timing expectations differ between traditions. What 'this week' looks like can mean something different depending on the answer. This is only ever used to shape the plan's pacing, and it's never shared anywhere."
       onBack={onBack}
       position={position}
     >

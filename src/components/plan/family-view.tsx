@@ -30,7 +30,7 @@ export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstNam
     <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">Shared with your family</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        Everyone here sees the same list{firstName ? ` for ${firstName}` : ""} — no more wondering who
+        Everyone here sees the same list{firstName ? ` for ${firstName}` : ""}. No more wondering who
         called the bank or ordered the certificates.
       </p>
 
@@ -82,7 +82,7 @@ export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstNam
       {yourWork.total > 0 && tasks.length > 1 ? (
         <p className="mt-4 text-sm text-muted-foreground">
           You're carrying {yourWork.total} of these {tasks.length}
-          {yourWork.done > 0 ? `, and you've done ${yourWork.done} already` : ""} — everyone here can see that.
+          {yourWork.done > 0 ? `, and you've done ${yourWork.done} already` : ""}. Everyone here can see that.
         </p>
       ) : null}
     </div>

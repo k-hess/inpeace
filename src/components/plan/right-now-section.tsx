@@ -111,10 +111,10 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
       <RightNowCard
         content={{
           title: target.title,
-          // Condensed, not the full guardrail — that full text already
-          // renders right below in Protect Yourself; repeating it
-          // verbatim here would be the same paragraph twice on screen.
-          body: "Track down the seed phrase or keys and get them somewhere safe. The one thing on this page that can't wait.",
+          // Condensed, not the full guardrail: that full text already
+          // renders right below in Protect Yourself, so repeating it
+          // verbatim here would put the same paragraph twice on screen.
+          body: "A lost seed phrase can't be recovered. Know where the keys are before anything gets cleared out.",
           actionLabel: "Mark it done",
           onAct: () => {
             track("right_now_acted", { target: "protect-crypto" })
@@ -136,7 +136,7 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
       <RightNowCard
         content={{
           title: "Order the death certificates",
-          body: "Everything downstream — the banks, the DMV, Social Security — waits on having these in hand. There's a tracker for it further down the page.",
+          body: "Everything downstream, the banks, the DMV, Social Security, waits on having these in hand. There's a tracker for it further down the page.",
           actionLabel: "Go to Paperwork",
           onAct: () => {
             track("right_now_acted", { target: "death-certificates" })
@@ -152,7 +152,7 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
       <RightNowCard
         content={{
           title: target.title,
-          body: `The nearest real deadline on the timeline — ${formatDateLong(target.date)}.`,
+          body: `The nearest deadline on the timeline: ${formatDateLong(target.date)}.`,
           actionLabel: "Go to The timeline",
           onAct: () => {
             track("right_now_acted", { target: target.id })

@@ -18,7 +18,7 @@ export function InventorySection({ groups, id }: { groups: GatheringPlanData["gr
       <p className="kicker kicker-rule mb-4">The inventory</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">Where to look for each thing.</h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        Work through these at whatever pace makes sense. Checking a box saves it on this device only —
+        Work through these at whatever pace makes sense. Checking a box saves it on this device only,
         never sent anywhere.
       </p>
       <div className="flex flex-col gap-4">

@@ -12,7 +12,7 @@ function CostRanges() {
     <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">What things tend to cost</p>
       <p className="mt-3 mb-5 inline-block rounded-full border border-dashed border-border px-3 py-1 text-xs font-medium text-muted-foreground">
-        Regional variation is large — these are sanity checks, not quotes.
+        Regional variation is large. These are sanity checks, not quotes.
       </p>
       <div className="flex flex-col divide-y divide-border/70">
         {costRanges.map((range) => (
@@ -104,7 +104,7 @@ export function FuneralGuidanceSection({
       id={id}
       kicker="The funeral home"
       heading="You have more say here than it feels like."
-      essence="The largest unshopped purchase in the whole process — rough costs, what you're entitled to ask for, and the red flags worth knowing."
+      essence="The largest unshopped purchase in the whole process: rough costs, what you're entitled to ask for, and the red flags worth knowing."
       expanded={expanded}
       onExpand={onExpand}
     >
