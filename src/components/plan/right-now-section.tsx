@@ -5,13 +5,34 @@ import { formatDateLong } from "#/lib/date-utils"
 import type { GatheringPlanData, PlanData } from "#/lib/plan-engine"
 
 /**
+ * Whether a timeline task is still Right-Now-eligible: open, not resting
+ * ("Not yet"), and not handed off. A deferral or a handoff is the user
+ * (or someone they asked) already answering "not now" or "not me" — Right
+ * Now must respect that instead of re-insisting on the same task through
+ * a different door. Exported so plan-screen.tsx's "what moved" line uses
+ * the identical rule.
+ */
+export function isTaskOpen(progress: ProgressState, id: string): boolean {
+  const task = progress.tasks[id]
+  if (!task) return true
+  if (task.status === "done" || task.status === "deferred") return false
+  if (task.handoff) return false
+  return true
+}
+
+/** The id of the timeline task that mirrors the death-cert tracker's "order them" step. */
+const ORDER_CERTIFICATES_TASK_ID = "pacing-order-certificates"
+
+/**
  * The pure "what's next" decision for the after-death plan — separated
  * from RightNowSection below so the return strip (return-strip.tsx) can
  * name the same answer in its "current next thing" line without
  * duplicating the priority logic. Order, most urgent first: the
  * crypto-keys guardrail (genuinely irreversible if missed), then the
- * death certificates if no one's ordered them, then the nearest triggered
- * deadline that isn't done or resting. "rest" is a real, common answer.
+ * death certificates if no one's ordered them AND that task hasn't been
+ * deferred or handed off, then the nearest triggered deadline that's
+ * still open. "rest" is a real, common answer — including once
+ * everything left is resting or handed off, not just once it's all done.
  */
 export type RightNowTarget =
   | { kind: "crypto-guardrail"; title: string; body: string }
@@ -26,12 +47,11 @@ export function computeRightNowTarget(plan: PlanData, progress: ProgressState): 
   }
 
   const certStatus = progress.certTracker?.status ?? "not-started"
-  if (certStatus === "not-started") return { kind: "certificates" }
+  if (certStatus === "not-started" && isTaskOpen(progress, ORDER_CERTIFICATES_TASK_ID)) {
+    return { kind: "certificates" }
+  }
 
-  const nextDeadline = plan.deadlineTasks.find((deadline) => {
-    const status = progress.tasks[deadline.id]?.status ?? "open"
-    return status !== "done" && status !== "deferred"
-  })
+  const nextDeadline = plan.deadlineTasks.find((deadline) => isTaskOpen(progress, deadline.id))
   if (nextDeadline) {
     return { kind: "deadline", id: nextDeadline.id, title: nextDeadline.title, date: nextDeadline.date }
   }
@@ -82,7 +102,10 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
       <RightNowCard
         content={{
           title: target.title,
-          body: target.body,
+          // Condensed, not the full guardrail — that full text already
+          // renders right below in Protect Yourself; repeating it
+          // verbatim here would be the same paragraph twice on screen.
+          body: "Track down the seed phrase or keys and get them somewhere safe. The one thing on this page that can't wait.",
           actionLabel: "Mark it done",
           onAct: () => {
             track("right_now_acted", { target: "protect-crypto" })

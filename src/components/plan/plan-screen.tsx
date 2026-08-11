@@ -2,7 +2,7 @@ import { HeartHandshake } from "lucide-react"
 import { useIntake } from "#/store/intake-context"
 import { PlanHeader } from "#/components/plan/plan-header"
 import { ReturnStrip } from "#/components/plan/return-strip"
-import { RightNowSection, computeRightNowTarget } from "#/components/plan/right-now-section"
+import { RightNowSection, computeRightNowTarget, isTaskOpen } from "#/components/plan/right-now-section"
 import { ProtectionSection } from "#/components/plan/protection-section"
 import { TimelineSection } from "#/components/plan/timeline-section"
 import { FuneralGuidanceSection } from "#/components/plan/funeral-guidance-section"
@@ -84,12 +84,9 @@ function nextThingLine(plan: PlanData, progress: ReturnType<typeof useIntake>["p
   return `Next up: ${target.title.toLowerCase()}.`
 }
 
-/** Names the nearest not-yet-done deadline, if the timeline has one worth flagging. */
+/** Names the nearest still-open deadline, if the timeline has one worth flagging — same eligibility rule as Right Now. */
 function movedLine(plan: PlanData, progress: ReturnType<typeof useIntake>["progress"]): string | null {
-  const deadline = plan.deadlineTasks.find((task) => {
-    const status = progress.tasks[task.id]?.status ?? "open"
-    return status !== "done" && status !== "deferred"
-  })
+  const deadline = plan.deadlineTasks.find((task) => isTaskOpen(progress, task.id))
   if (!deadline) return null
   return `${deadline.title} is coming up — ${formatDateLong(deadline.date)}.`
 }

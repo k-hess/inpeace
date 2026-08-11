@@ -49,8 +49,12 @@ export const careCircleSlots: CareCircleSlot[] = [
 
 /**
  * Who a timeline task can be handed to (see the "Ask someone" exit in
- * timeline-section.tsx) — the same names already in play elsewhere in the
- * demo: Dana from the seeded Care Circle claim above, and the Sister/Brother
- * assignees used in family-view.tsx and notification-tracker.tsx.
+ * timeline-section.tsx) — named people, not role labels, so "with Renee"
+ * reads like a real person rather than a family-tree position. Sam and
+ * Renee are already the for-self handoff people (handoff-section.tsx),
+ * so the demo stays name-consistent; Dana is the seeded Care Circle claim
+ * above. Distinct from the "You" / "Sister" / "Brother" role labels used
+ * by family-view.tsx and notification-tracker.tsx, which are a separate,
+ * intentionally role-based system.
  */
-export const careCirclePeople = ["Dana", "Sister", "Brother"] as const
+export const careCirclePeople = ["Dana", "Sam", "Renee"] as const
