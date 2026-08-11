@@ -13,7 +13,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "Order copies of the death certificate",
-      body: "You'll need more than you'd think — banks, insurance, the DMV, and others will each want an original. Ordering a small stack now saves you from re-ordering later; there's a tracker for this further down the page.",
+      body: "You'll need more than you'd think. Banks, insurance, the DMV, and others will each want an original. Ordering a small stack now saves you from re-ordering later. There's a tracker for this further down the page.",
     }),
   },
   {
@@ -24,8 +24,8 @@ export const commonPacingRules: Rule[] = [
       title: "Look for a will",
       body:
         ctx.answers.will === "not-sure"
-          ? "Not knowing yet is genuinely common — check with any attorney they may have used, a safe deposit box, or a file cabinet at home. If nothing turns up in the next week or two, that's useful information too, not a crisis."
-          : "Since it sounds like there wasn't one, it's still worth a quick look through paperwork and safe deposit boxes just in case — but if you've already checked, there's nothing more to do here.",
+          ? "Not knowing yet is common. Check with any attorney they may have used, a safe deposit box, or a file cabinet at home. If nothing turns up in the next week or two, that's useful information too, not a crisis."
+          : "Since it sounds like there wasn't one, it's still worth a quick look through paperwork and safe deposit boxes, but if you've already checked, there's nothing more to do here.",
     }),
   },
   {
@@ -34,7 +34,7 @@ export const commonPacingRules: Rule[] = [
     trigger: (answers) => answers.will === "yes",
     copy: (ctx) => ({
       title: `You already have ${ctx.answers.firstName ? `${ctx.answers.firstName}'s` : "the"} will`,
-      body: "That's one real thing off the list. Keep it somewhere you can get to easily — you'll want it on hand for the attorney conversation and for opening accounts later.",
+      body: "That's one real thing off the list. Keep it somewhere you can get to easily. You'll want it on hand for the attorney conversation and for opening accounts later.",
     }),
   },
   {
@@ -43,7 +43,7 @@ export const commonPacingRules: Rule[] = [
     trigger: (answers) => answers.assets.length > 0,
     copy: () => ({
       title: "Let the banks and financial institutions know",
-      body: "Once you have death certificates in hand, letting banks, brokerages, and other institutions know is mostly a matter of phone calls and paperwork. It's tedious, not urgent — a few a week is plenty.",
+      body: "Once you have death certificates in hand, letting banks, brokerages, and other institutions know is mostly a matter of phone calls and paperwork. It's tedious, not urgent. A few a week is plenty.",
     }),
   },
   {
@@ -60,8 +60,8 @@ export const commonPacingRules: Rule[] = [
     phase: "months-ahead",
     trigger: () => true,
     copy: (ctx) => ({
-      title: "Their final tax return — next spring, not now",
-      body: `A final return still gets filed for the year they died — due ${formatDateLong(
+      title: "Their final tax return, next spring, not now",
+      body: `A final return still gets filed for the year they died. It is due ${formatDateLong(
         nextAprilFifteenth(ctx.dateOfDeath),
       )}. Nothing about it needs attention now; it's on the list so it never surprises you.`,
     }),
@@ -77,7 +77,7 @@ export const commonPacingRules: Rule[] = [
     trigger: (answers) => answers.veteran,
     copy: () => ({
       title: "Military honors and a national cemetery",
-      body: "Since they served, they're eligible for burial in a national cemetery and for military honors at the service — a folded flag, a bugler, a small ceremony of respect. The funeral home can arrange this directly with the VA; it's not something you have to coordinate yourself.",
+      body: "Since they served, they're eligible for burial in a national cemetery and for military honors at the service: a folded flag, a bugler, a small ceremony of respect. The funeral home can arrange this directly with the VA. It's not something you have to coordinate yourself.",
     }),
   },
   {
@@ -87,7 +87,7 @@ export const commonPacingRules: Rule[] = [
     computeDate: (ctx) => addMonths(ctx.dateOfDeath, 24),
     copy: (ctx) => ({
       title: "A VA burial allowance",
-      body: `A benefit toward funeral and burial costs may be available since they served. There's no rush on this one — the claim window runs two years from the date of death, so you'd have until ${formatDateLong(
+      body: `A benefit toward funeral and burial costs may be available since they served. There's no rush on this one. The claim window runs two years from the date of death, so you'd have until ${formatDateLong(
         addMonths(ctx.dateOfDeath, 24),
       )} if it's ever useful.`,
     }),
@@ -98,7 +98,7 @@ export const commonPacingRules: Rule[] = [
     trigger: (answers) => answers.veteran,
     copy: () => ({
       title: "A survivor benefits check, when you're ready",
-      body: "It's worth a call to the VA at some point to ask whether a survivor's pension or dependency compensation applies. Nothing to decide now — just something to keep in your back pocket for a quieter month.",
+      body: "It's worth a call to the VA at some point to ask whether a survivor's pension or dependency compensation applies. Nothing to decide now. Keep it in your back pocket for a quieter month.",
     }),
   },
 
@@ -111,7 +111,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "Thank-you notes, whenever you're ready",
-      body: "If people brought food, sent flowers, or showed up — a note back is a nice thing, not an obligation. There's no deadline on this one. Weeks or months from now is fine.",
+      body: "If people brought food, sent flowers, or showed up, a note back is a nice thing, not an obligation. There's no deadline on this one. Weeks or months from now is fine.",
     }),
   },
   {
@@ -121,7 +121,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "Checking back in on support, around the three-month mark",
-      body: "The early flood of help tends to quiet down right around when grief settles in for real. If a counselor or support group didn't feel right at first, it's worth another look a few months out — a lot of people find the timing works better the second time.",
+      body: "The early flood of help tends to quiet down right around when grief settles in for real. If a counselor or support group didn't feel right at first, it's worth another look a few months out. A lot of people find the timing works better the second time.",
     }),
   },
   {
@@ -131,7 +131,7 @@ export const commonPacingRules: Rule[] = [
     trigger: () => true,
     copy: () => ({
       title: "The one-year mark",
-      body: "Anniversaries have a way of landing harder than expected, even when the practical work is long finished. Nothing to prepare for — just worth knowing it's there, in case you want to mark it, or just want to be gentle with yourself that week.",
+      body: "Anniversaries have a way of landing harder than expected, even when the practical work is long finished. Nothing to prepare for. It's worth knowing it's there, in case you want to mark it, or want to be gentle with yourself that week.",
     }),
   },
 ]

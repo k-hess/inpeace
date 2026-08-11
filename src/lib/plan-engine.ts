@@ -69,7 +69,7 @@ const PHASE_ORDER: Phase[] = ["this-week", "this-month", "months-ahead"]
 
 const INTRO = {
   headline: "There's less to do right now than it feels like.",
-  sub: "Here's what actually matters this week — and what can wait.",
+  sub: "Here's what matters this week, and what can wait.",
 }
 
 function resolveRules(rules: Rule[], phase: Phase, answers: IntakeAnswers, ctx: RuleContext): PlanCard[] {
@@ -164,7 +164,7 @@ export interface GatheringPlanData {
 const GATHERING_INTRO: Record<Extract<JourneyMode, "for-family" | "for-self">, { headline: string; sub: string }> = {
   "for-self": {
     headline: "Getting this together now is a gift to whoever would otherwise have to guess.",
-    sub: "None of this is morbid, and none of it is urgent — it's just easier to gather at your own pace than to have someone else piece it together later.",
+    sub: "None of this is morbid or urgent. It's easier to gather at your own pace than to have someone else piece it together later.",
   },
   "for-family": {
     headline: "The conversation is the hard part. This is the list that makes it concrete.",

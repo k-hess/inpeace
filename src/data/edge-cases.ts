@@ -19,7 +19,7 @@ export const edgeCaseCards: SimpleCard[] = [
     trigger: () => true,
     copy: () => ({
       title: "Scattering ashes abroad",
-      body: "Many countries require advance permission or an import permit for cremated remains, and airport security will inspect them — a trip planned around scattering can fall apart at the last minute if nobody checked ahead. TSA generally requires cremated remains in a container that can be X-rayed (wood or plastic rather than metal or stone), usually carried on rather than checked.",
+      body: "Many countries require advance permission or an import permit for cremated remains, and airport security will inspect them. A trip planned around scattering can fall apart at the last minute if nobody checked ahead. TSA generally requires cremated remains in a container that can be X-rayed, wood or plastic rather than metal or stone, usually carried on rather than checked.",
     }),
   },
   {
@@ -35,7 +35,7 @@ export const edgeCaseCards: SimpleCard[] = [
     trigger: () => true,
     copy: () => ({
       title: "Apple and Google access",
-      body: "Apple's process for a deceased person's account typically requires a death certificate and returns a code that lets you reset access. Google's bereavement process exists but is slow and hard to reach a human through — set your expectations accordingly, and start it early rather than when you need it.",
+      body: "Apple's process for a deceased person's account typically requires a death certificate and returns a code that lets you reset access. Google's bereavement process exists but is slow and hard to reach a human through. Start it early rather than when you need it.",
     }),
   },
   {
@@ -43,7 +43,7 @@ export const edgeCaseCards: SimpleCard[] = [
     trigger: () => true,
     copy: () => ({
       title: "Money can keep arriving",
-      body: "Ad revenue, royalties, dividends, rebates, and refunds keep landing in accounts after a death, sometimes for years, and can be genuinely hard to redirect once the account is closed. Treat it as something to watch for rather than something to solve immediately.",
+      body: "Ad revenue, royalties, dividends, rebates, and refunds keep landing in accounts after a death, sometimes for years, and can be hard to redirect once the account is closed. Treat it as something to watch for rather than something to solve immediately.",
     }),
   },
   {

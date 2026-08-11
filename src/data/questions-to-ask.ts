@@ -19,13 +19,13 @@ export interface QuestionGroup {
  * instead of asking them.
  */
 export const conversationNote: { title: string; body: string } = {
-  title: "This conversation is hard to start — here's one way in",
+  title: "This conversation is hard to start. Here's one way in",
   body: "Most people find it lands better as \"I want to get my own affairs in order, will you help me think it through?\" than as a conversation about the other person dying. Starting with your own planning makes it a shared task instead of a hard ask, and it usually opens the door to talking about theirs too.",
 }
 
 export const conversationNoteSelf: { title: string; body: string } = {
-  title: "This isn't about asking anyone — it's about writing it down",
-  body: "You already know most of these answers. What makes them useful later is getting them out of your head — written down somewhere your family would think to look, or said out loud to whoever you'd trust with this. Working through it together turns it into a shared task instead of something you're carrying alone.",
+  title: "This isn't about asking anyone. It's about writing it down",
+  body: "You already know most of these answers. What makes them useful later is getting them out of your head: written down somewhere your family would think to look, or said out loud to whoever you'd trust with this. Working through it together turns it into a shared task instead of something you're carrying alone.",
 }
 
 /** Picks the right conversation note for the door someone came in through. */
@@ -43,7 +43,7 @@ export const questionGroups: QuestionGroup[] = [
     blurb: "The decisions that are much easier to make once, in advance, than under pressure.",
     questions: [
       "Burial or cremation?",
-      "Where — which cemetery, or where should ashes go?",
+      "Where, which cemetery, or where should ashes go?",
       "Do you want a service, or would you rather skip it?",
       "Who should be told?",
       "Is there anything you'd want said or played?",
@@ -52,7 +52,7 @@ export const questionGroups: QuestionGroup[] = [
   {
     id: "questions-where-things-are",
     label: "Where things are",
-    blurb: "Not the secrets — just the location, so nobody's searching a house room by room.",
+    blurb: "Not the secrets, only the location, so nobody's searching a house room by room.",
     questions: [
       "Where's the will or trust?",
       "Where's the deed?",

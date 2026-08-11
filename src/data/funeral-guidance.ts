@@ -73,7 +73,7 @@ export const yourRights: GuidanceItem[] = [
   {
     id: "rights-phone-quotes",
     title: "You can get prices over the phone",
-    body: "They must quote prices over the phone if you ask — you never have to visit in person to find out what something costs.",
+    body: "They must quote prices over the phone if you ask. You never have to visit in person to find out what something costs.",
   },
   {
     id: "rights-buy-individual-items",

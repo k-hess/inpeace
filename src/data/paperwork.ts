@@ -54,13 +54,13 @@ export function buildNotifications(assets: AssetKey[], will: WillStatus | null):
     { id: "notify-ssa", label: "Social Security", needsCert: true },
     {
       id: "notify-banks",
-      label: will === "yes" ? "Banks — bring the will when you call" : "Banks and financial institutions",
+      label: will === "yes" ? "Banks, bring the will when you call" : "Banks and financial institutions",
       needsCert: true,
     },
   ]
 
   if (assets.includes("car")) {
-    items.push({ id: "notify-dmv", label: "DMV — title transfer for the car", needsCert: true })
+    items.push({ id: "notify-dmv", label: "DMV, title transfer for the car", needsCert: true })
   }
   if (assets.includes("investments")) {
     items.push({ id: "notify-brokerage", label: "Brokerage", needsCert: true })

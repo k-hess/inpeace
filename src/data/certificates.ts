@@ -20,7 +20,7 @@ export const certUses: CertUse[] = [
     id: "use-pension-benefits",
     label: "Some pension and benefit claims",
     needs: "with-cause",
-    note: "Some pension or benefit claims also ask for the version with cause of death — worth checking before ordering.",
+    note: "Some pension or benefit claims also ask for the version with cause of death. Worth checking before ordering.",
   },
   {
     id: "use-banks",
@@ -48,7 +48,7 @@ export const certUses: CertUse[] = [
 export const certExplainer: { title: string; body: string }[] = [
   {
     title: "There can be two different forms",
-    body: "Most states issue a certified copy with a raised seal — the one institutions require — and sometimes an informational copy that is explicitly not valid for legal purposes. Separately, some states distinguish a version that includes cause of death from one that doesn't. The exact names and distinctions vary by state, so ask your funeral home or county vital records office what your state actually offers.",
+    body: "Most states issue a certified copy with a raised seal, the one institutions require, and sometimes an informational copy that is explicitly not valid for legal purposes. Separately, some states distinguish a version that includes cause of death from one that doesn't. The exact names and distinctions vary by state, so ask your funeral home or county vital records office what your state offers.",
   },
   {
     title: "With cause of death, or without",

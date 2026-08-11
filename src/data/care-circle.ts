@@ -21,7 +21,7 @@ export const careCircleSlots: CareCircleSlot[] = [
   {
     id: "care-meals",
     label: "Meals",
-    detail: "A dinner dropped off, a grocery run — whatever's easiest for whoever's offering.",
+    detail: "A dinner dropped off, a grocery run, whatever's easiest for whoever's offering.",
     claimedBy: "Dana",
     claimedNote: "Tuesday dinner",
   },
@@ -43,7 +43,7 @@ export const careCircleSlots: CareCircleSlot[] = [
   {
     id: "care-house",
     label: "House tasks",
-    detail: "Mail, trash day, watering plants, a load of laundry — the small stuff that piles up.",
+    detail: "Mail, trash day, watering plants, a load of laundry: the small stuff that piles up.",
   },
 ]
 

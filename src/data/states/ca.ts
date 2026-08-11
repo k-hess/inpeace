@@ -23,8 +23,8 @@ const smallEstateAffidavit: Rule = {
     return {
       title: "There may be a shorter path than full probate",
       body: notSure
-        ? `If it turns out there wasn't a will, and the estate comes in under ${threshold}, California allows a small estate affidavit instead of full probate. There's a required waiting period — forty days, so ${availableDate} at the earliest. Nothing to act on yet, just good to know it's an option.`
-        : `Since there wasn't a will, if the estate comes in under ${threshold}, California allows a small estate affidavit instead of full probate — a much shorter process. There's a required waiting period of forty days, so ${availableDate} at the earliest.`,
+        ? `If it turns out there wasn't a will, and the estate comes in under ${threshold}, California allows a small estate affidavit instead of full probate. There's a required waiting period of forty days, so ${availableDate} at the earliest. Nothing to act on yet, good to know it's an option.`
+        : `Since there wasn't a will, if the estate comes in under ${threshold}, California allows a small estate affidavit instead of full probate. It's a shorter process. There's a required waiting period of forty days, so ${availableDate} at the earliest.`,
     }
   },
 }
@@ -45,7 +45,7 @@ const fullProbateExpectations: Rule = {
   trigger: () => true,
   copy: () => ({
     title: "If full probate does end up being necessary",
-    body: "California probate, when it's needed, commonly takes somewhere between nine and eighteen months from start to finish. That's not a sign anything has gone wrong — it's just the normal pace of the court process, and most of it doesn't require much from you day to day.",
+    body: "California probate, when it's needed, commonly takes 9 to 18 months from start to finish. That's not a sign anything has gone wrong. It's the normal pace of the court process, and most of it doesn't require much from you day to day.",
   }),
 }
 
@@ -57,7 +57,7 @@ const creditorWindow: Rule = {
     const approxDate = formatDateLong(addMonths(ctx.dateOfDeath, 4))
     return {
       title: "There's a window for creditors to come forward",
-      body: `Once the estate is formally opened, creditors generally have about four months to file a claim. Counting roughly from the date of death, that lands somewhere around ${approxDate} — an estimate, not an exact deadline, since the real clock starts when the court issues letters.`,
+      body: `Once the estate is formally opened, creditors generally have about four months to file a claim. Counting roughly from the date of death, that lands somewhere around ${approxDate}. This is an estimate, not an exact deadline, since the real clock starts when the court issues letters.`,
     }
   },
 }

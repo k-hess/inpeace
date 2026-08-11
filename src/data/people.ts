@@ -13,7 +13,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     trigger: () => true,
     copy: () => ({
       title: "Hospice bereavement support",
-      body: "If hospice was involved at all, most programs include free grief support for family — often for a year or more — and most families never call. It costs nothing to ask what's available.",
+      body: "If hospice was involved at all, most programs include free grief support for family, often for a year or more, and most families never call. It costs nothing to ask what's available.",
     }),
   },
   {
@@ -22,7 +22,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     trigger: () => true,
     copy: () => ({
       title: "A death doula",
-      body: "Death doulas aren't just for the dying — many work with families afterward too, helping you move through the logistics and the grief side by side. Worth knowing this kind of support exists, even if you don't end up using it.",
+      body: "Death doulas aren't only for the dying. Many work with families afterward too, helping you move through the logistics and the grief side by side. Worth knowing this kind of support exists, even if you don't end up using it.",
     }),
   },
   {
@@ -31,7 +31,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     trigger: () => true,
     copy: () => ({
       title: "Grief counselors and support groups",
-      body: "Individual counseling and peer support groups both help, and often in different ways — one on one, or with people who understand exactly what this week has been like. No rush to start; it helps whenever you're ready.",
+      body: "Individual counseling and peer support groups both help, and often in different ways: one on one, or with people who understand what this week has been like. No rush to start. It helps whenever you're ready.",
     }),
   },
   {
@@ -40,7 +40,7 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
     trigger: (answers) => answers.will !== "yes" || answers.assets.includes("home") || answers.assets.includes("investments"),
     copy: () => ({
       title: "An estate attorney",
-      body: "This is the point where a short conversation with an estate attorney tends to pay for itself — confirming the right path, catching anything unusual, and giving you a plan instead of a guess. Most offer a first call at low or no cost.",
+      body: "This is the point where a short conversation with an estate attorney tends to pay for itself. It can confirm the right path, catch anything unusual, and give you a plan instead of a guess. Most offer a first call at low or no cost.",
     }),
   },
   {
@@ -68,5 +68,5 @@ export const peopleCards: (Rule & { quiet?: boolean })[] = [
 export const conciergeCard = {
   quiet: true as const,
   title: "Someone who has done this hundreds of times, on call for the months ahead.",
-  body: "That's the guided tier above — one person who knows the paperwork, the calls, and the pacing, checking in with you through the months rather than just today.",
+  body: "That's the guided tier above: one person who knows the paperwork, the calls, and the pacing, checking in with you through the months rather than only today.",
 }

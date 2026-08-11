@@ -26,7 +26,7 @@ export function religionTimingNote(religion: Religion): { title: string; body: s
     case "catholic":
       return {
         title: "A vigil, Mass, and burial usually span several days",
-        body: "A vigil, funeral Mass, and burial or interment usually span several days. Cremation is permitted, but the church has guidance on how remains are kept — worth asking about before deciding. Your parish priest will know the specifics for you.",
+        body: "A vigil, funeral Mass, and burial or interment usually span several days. Cremation is permitted, but the church has guidance on how remains are kept. Worth asking about before deciding. Your parish priest will know the specifics for you.",
       }
     case "christian":
       return {
