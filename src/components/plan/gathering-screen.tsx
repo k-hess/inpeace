@@ -2,8 +2,12 @@ import { InventorySection } from "#/components/plan/inventory-section"
 import { QuestionsSection } from "#/components/plan/questions-section"
 import { ChoosingSection } from "#/components/plan/choosing-section"
 import { HandoffSection } from "#/components/plan/handoff-section"
+import { ReturnStrip } from "#/components/plan/return-strip"
+import { RightNowInventoryPrompt } from "#/components/plan/right-now-section"
 import { SectionChipBar, SectionRail, useActiveSection, type PlanNavSection } from "#/components/plan/section-nav"
 import { choosingGuides } from "#/data/choosing"
+import { useIntake } from "#/store/intake-context"
+import { track } from "#/lib/analytics"
 import type { GatheringPlanData } from "#/lib/plan-engine"
 
 /**
@@ -33,6 +37,9 @@ function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
   return sections.filter((section): section is PlanNavSection => Boolean(section))
 }
 
+/** Reference sections (change 4) that collapse to a summary by default — just Choosing on this plan. */
+const COLLAPSIBLE_SECTION_IDS = new Set(["choosing"])
+
 function AccessNote({ accessNote }: { accessNote: GatheringPlanData["accessNote"] }) {
   return (
     <div className="protect-card mb-8 px-6 py-5">
@@ -54,6 +61,16 @@ function ReligionNote({ religionNote }: { religionNote: NonNullable<GatheringPla
 export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
   const navSections = buildNavSections(plan)
   const activeId = useActiveSection(navSections.map((section) => section.id))
+  const { progress, updateProgress, returnGapMs } = useIntake()
+
+  function expandSection(id: string) {
+    if (!COLLAPSIBLE_SECTION_IDS.has(id) || progress.sectionExpanded[id]) return
+    updateProgress((prev) => ({ ...prev, sectionExpanded: { ...prev.sectionExpanded, [id]: true } }))
+    track("section_expanded", { section: id })
+  }
+
+  const nextInventoryItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.inventoryChecked[item.id])
+  const nextThingLine = nextInventoryItem ? `Next up: ${nextInventoryItem.label.toLowerCase()}.` : null
 
   const inventory = (
     <>
@@ -72,9 +89,9 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
 
   return (
     <>
-      <SectionChipBar sections={navSections} activeId={activeId} mode={plan.mode} />
+      <SectionChipBar sections={navSections} activeId={activeId} mode={plan.mode} onBeforeJump={expandSection} />
       <div className="lg:mx-auto lg:flex lg:w-[min(1040px,calc(100%-2.5rem))] lg:items-start lg:gap-14">
-        <SectionRail sections={navSections} activeId={activeId} mode={plan.mode} />
+        <SectionRail sections={navSections} activeId={activeId} mode={plan.mode} onBeforeJump={expandSection} />
         <div className="page-wrap py-14 sm:py-20 lg:mx-0 lg:min-w-0 lg:shrink-0">
           <header className="rise-in mb-16">
             <p className="kicker kicker-rule mb-5">Your gathering plan · {plan.stateName}</p>
@@ -82,20 +99,31 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
             <p className="mt-4 max-w-lg leading-relaxed text-pretty text-muted-foreground">{plan.sub}</p>
           </header>
 
+          <ReturnStrip returnGapMs={returnGapMs} progress={progress} movedLine={null} nextThingLine={nextThingLine} />
+          <RightNowInventoryPrompt plan={plan} />
+
           {plan.religionNote ? <ReligionNote religionNote={plan.religionNote} /> : null}
 
           {plan.mode === "for-self" ? (
             <>
               {inventory}
               {questions}
-              <ChoosingSection id="choosing" />
+              <ChoosingSection
+                id="choosing"
+                expanded={Boolean(progress.sectionExpanded.choosing)}
+                onExpand={() => expandSection("choosing")}
+              />
               <HandoffSection id="handoff" />
             </>
           ) : (
             <>
               {questions}
               {inventory}
-              <ChoosingSection id="choosing" />
+              <ChoosingSection
+                id="choosing"
+                expanded={Boolean(progress.sectionExpanded.choosing)}
+                onExpand={() => expandSection("choosing")}
+              />
             </>
           )}
         </div>
