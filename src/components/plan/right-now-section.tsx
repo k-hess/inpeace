@@ -51,7 +51,16 @@ export function computeRightNowTarget(plan: PlanData, progress: ProgressState): 
     return { kind: "certificates" }
   }
 
-  const nextDeadline = plan.deadlineTasks.find((deadline) => isTaskOpen(progress, deadline.id))
+  // Only surface a deadline as "right now" when it's genuinely near.
+  // A claim window two years out is real, but presenting it as today's
+  // task would be its own kind of false urgency — past this horizon,
+  // rest is the honest answer.
+  const DEADLINE_HORIZON_DAYS = 60
+  const horizon = new Date()
+  horizon.setDate(horizon.getDate() + DEADLINE_HORIZON_DAYS)
+  const nextDeadline = plan.deadlineTasks.find(
+    (deadline) => isTaskOpen(progress, deadline.id) && deadline.date <= horizon,
+  )
   if (nextDeadline) {
     return { kind: "deadline", id: nextDeadline.id, title: nextDeadline.title, date: nextDeadline.date }
   }
