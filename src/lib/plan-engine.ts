@@ -32,6 +32,13 @@ export interface PlanPhase {
   people: PlanCard[]
 }
 
+/** A timeline task with a real computed date attached — see Rule.computeDate. */
+export interface DeadlineTask {
+  id: string
+  title: string
+  date: Date
+}
+
 export interface PlanData {
   headline: string
   sub: string
@@ -42,6 +49,8 @@ export interface PlanData {
   protection: PlanCard[]
   liabilities: PlanCard[]
   edgeCases: PlanCard[]
+  /** Every triggered rule with a real deadline, nearest first — feeds the "Right now" block. */
+  deadlineTasks: DeadlineTask[]
   paperwork: {
     recommendedCopies: number
     showFamilyView: boolean
@@ -106,6 +115,13 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     .filter((card) => card.trigger(answers))
     .map((card) => ({ id: card.id, ...card.copy(ctx) }))
 
+  const deadlineTasks: DeadlineTask[] = combinedTaskRules
+    .filter((rule): rule is Rule & { computeDate: NonNullable<Rule["computeDate"]> } =>
+      Boolean(rule.computeDate) && rule.trigger(answers),
+    )
+    .map((rule) => ({ id: rule.id, title: rule.copy(ctx).title, date: rule.computeDate(ctx) }))
+    .sort((a, b) => a.date.getTime() - b.date.getTime())
+
   const { headline, sub } = INTRO
 
   return {
@@ -118,6 +134,7 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
     protection,
     liabilities,
     edgeCases,
+    deadlineTasks,
     paperwork: {
       recommendedCopies: recommendedCertificateCount(answers.assets),
       showFamilyView: answers.support === "family",
