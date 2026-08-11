@@ -1,11 +1,28 @@
+import { ReferenceSection } from "#/components/plan/reference-section"
 import type { PlanCard } from "#/lib/plan-engine"
 
-export function LiabilitiesSection({ cards, id }: { cards: PlanCard[]; id: string }) {
+export function LiabilitiesSection({
+  cards,
+  id,
+  expanded,
+  onExpand,
+}: {
+  cards: PlanCard[]
+  id: string
+  expanded: boolean
+  onExpand: () => void
+}) {
   if (cards.length === 0) return null
 
   return (
-    <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">Debts</p>
+    <ReferenceSection
+      id={id}
+      kicker="Debts"
+      heading="The debts don't become yours."
+      essence="The estate pays what it owes before anything else happens — the general shape of it, and where to check if something looks specific to you."
+      expanded={expanded}
+      onExpand={onExpand}
+    >
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         The debts don't become yours.
       </h2>
@@ -21,6 +38,6 @@ export function LiabilitiesSection({ cards, id }: { cards: PlanCard[]; id: strin
           </div>
         ))}
       </div>
-    </section>
+    </ReferenceSection>
   )
 }

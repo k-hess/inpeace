@@ -1,12 +1,27 @@
 import { Check, Minus } from "lucide-react"
 import { choosingGuides } from "#/data/choosing"
+import { ReferenceSection } from "#/components/plan/reference-section"
 
-export function ChoosingSection({ id }: { id: string }) {
+export function ChoosingSection({
+  id,
+  expanded,
+  onExpand,
+}: {
+  id: string
+  expanded: boolean
+  onExpand: () => void
+}) {
   if (choosingGuides.length === 0) return null
 
   return (
-    <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">Choosing who to trust</p>
+    <ReferenceSection
+      id={id}
+      kicker="Choosing who to trust"
+      heading="Ask about how they're paid before anything else."
+      essence="In every one of these relationships, the advice tends to follow the incentive behind it — one question up front tells you most of what you need to know."
+      expanded={expanded}
+      onExpand={onExpand}
+    >
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         Ask about how they're paid before anything else.
       </h2>
@@ -51,6 +66,6 @@ export function ChoosingSection({ id }: { id: string }) {
           </div>
         ))}
       </div>
-    </section>
+    </ReferenceSection>
   )
 }

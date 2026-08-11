@@ -1,4 +1,5 @@
 import { costRanges, yourRights, whatToAsk, redFlags } from "#/data/funeral-guidance"
+import { ReferenceSection } from "#/components/plan/reference-section"
 
 function formatCurrency(amount: number): string {
   return amount.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })
@@ -85,14 +86,28 @@ function RedFlags() {
   )
 }
 
-export function FuneralGuidanceSection({ id }: { id: string }) {
+export function FuneralGuidanceSection({
+  id,
+  expanded,
+  onExpand,
+}: {
+  id: string
+  expanded: boolean
+  onExpand: () => void
+}) {
   if (costRanges.length === 0 && yourRights.length === 0 && whatToAsk.length === 0 && redFlags.length === 0) {
     return null
   }
 
   return (
-    <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">The funeral home</p>
+    <ReferenceSection
+      id={id}
+      kicker="The funeral home"
+      heading="You have more say here than it feels like."
+      essence="The largest unshopped purchase in the whole process — rough costs, what you're entitled to ask for, and the red flags worth knowing."
+      expanded={expanded}
+      onExpand={onExpand}
+    >
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         You have more say here than it feels like.
       </h2>
@@ -106,6 +121,6 @@ export function FuneralGuidanceSection({ id }: { id: string }) {
         <WhatToAsk />
         <RedFlags />
       </div>
-    </section>
+    </ReferenceSection>
   )
 }

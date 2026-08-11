@@ -1,11 +1,28 @@
+import { ReferenceSection } from "#/components/plan/reference-section"
 import type { PlanCard } from "#/lib/plan-engine"
 
-export function EdgeCasesSection({ cards, id }: { cards: PlanCard[]; id: string }) {
+export function EdgeCasesSection({
+  cards,
+  id,
+  expanded,
+  onExpand,
+}: {
+  cards: PlanCard[]
+  id: string
+  expanded: boolean
+  onExpand: () => void
+}) {
   if (cards.length === 0) return null
 
   return (
-    <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">Easy to miss</p>
+    <ReferenceSection
+      id={id}
+      kicker="Easy to miss"
+      heading="The things people find out too late."
+      essence="Nothing urgent today, but each one is cheaper to know about in advance than to discover in the moment."
+      expanded={expanded}
+      onExpand={onExpand}
+    >
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         The things people find out too late.
       </h2>
@@ -21,6 +38,6 @@ export function EdgeCasesSection({ cards, id }: { cards: PlanCard[]; id: string 
           </div>
         ))}
       </div>
-    </section>
+    </ReferenceSection>
   )
 }
