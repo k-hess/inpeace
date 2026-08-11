@@ -1,18 +1,16 @@
-import { useState } from "react"
 import { Checkbox } from "#/components/ui/checkbox"
 import { cn } from "#/lib/utils"
 import type { GatheringPlanData } from "#/lib/plan-engine"
+import { useIntake } from "#/store/intake-context"
 
 export function InventorySection({ groups, id }: { groups: GatheringPlanData["groups"]; id: string }) {
-  // Checked state lives here, the same local-state pattern as the death
-  // certificate and notification trackers on the "after" plan — nothing
-  // persists, it's just a way to work through the list in one sitting.
-  const [checked, setChecked] = useState<Record<string, boolean>>({})
+  const { progress, updateProgress } = useIntake()
+  const checked = progress.inventoryChecked
 
   if (groups.length === 0) return null
 
   function toggle(itemId: string) {
-    setChecked((prev) => ({ ...prev, [itemId]: !prev[itemId] }))
+    updateProgress((prev) => ({ ...prev, inventoryChecked: { ...prev.inventoryChecked, [itemId]: !prev.inventoryChecked[itemId] } }))
   }
 
   return (
@@ -20,8 +18,8 @@ export function InventorySection({ groups, id }: { groups: GatheringPlanData["gr
       <p className="kicker kicker-rule mb-4">The inventory</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">Where to look for each thing.</h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        Work through these at whatever pace makes sense. Checking a box just tracks progress — nothing is saved
-        anywhere.
+        Work through these at whatever pace makes sense. Checking a box saves it on this device only —
+        never sent anywhere.
       </p>
       <div className="flex flex-col gap-4">
         {groups.map((group) => {

@@ -61,6 +61,11 @@ function HeaderAction() {
     <button
       type="button"
       onClick={() => {
+        // A stray click shouldn't wipe a session — one calm line, not a
+        // scare, since this clears everything saved on this device.
+        if (!window.confirm("Start over? This clears your plan and everything checked off, on this device.")) {
+          return
+        }
         reset()
         navigate({ to: "/start" })
       }}

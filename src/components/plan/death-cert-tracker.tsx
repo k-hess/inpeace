@@ -1,8 +1,6 @@
-import { useState } from "react"
 import { Minus, Plus } from "lucide-react"
 import { cn } from "#/lib/utils"
-
-type CertStatus = "not-started" | "ordered" | "received"
+import { useIntake, type CertStatus, type CertTrackerState } from "#/store/intake-context"
 
 const STATUS_COPY: Record<CertStatus, string> = {
   "not-started": "Haven't ordered yet",
@@ -11,8 +9,23 @@ const STATUS_COPY: Record<CertStatus, string> = {
 }
 
 export function DeathCertTracker({ recommendedCopies }: { recommendedCopies: number }) {
-  const [count, setCount] = useState(recommendedCopies)
-  const [status, setStatus] = useState<CertStatus>("not-started")
+  const { progress, updateProgress } = useIntake()
+  const tracker: CertTrackerState = progress.certTracker ?? { count: recommendedCopies, status: "not-started" }
+  const { count, status } = tracker
+
+  function setCount(next: (count: number) => number) {
+    updateProgress((prev) => {
+      const current = prev.certTracker ?? { count: recommendedCopies, status: "not-started" as const }
+      return { ...prev, certTracker: { ...current, count: next(current.count) } }
+    })
+  }
+
+  function setStatus(nextStatus: CertStatus) {
+    updateProgress((prev) => {
+      const current = prev.certTracker ?? { count: recommendedCopies, status: "not-started" as const }
+      return { ...prev, certTracker: { ...current, status: nextStatus } }
+    })
+  }
 
   return (
     <div className="card-surface rounded-2xl px-6 py-6">

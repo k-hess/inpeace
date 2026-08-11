@@ -1,7 +1,7 @@
 /**
  * Interview-prop only: gated behind the hidden footer "demo" menu, never
  * shown in a real walkthrough. Toggled via IntakeContext's showPricing flag,
- * which lives in plain component state and never persists to sessionStorage.
+ * which lives in plain component state and never persists to localStorage.
  */
 export function PricingSection() {
   return (

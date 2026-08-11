@@ -1,40 +1,29 @@
-import { useState } from "react"
 import { HeartHandshake, Share2 } from "lucide-react"
 import { cn } from "#/lib/utils"
 import { careCircleSlots, type CareCircleSlot } from "#/data/care-circle"
-
-interface Claim {
-  claimedBy: string
-  claimedNote: string
-}
-
-function seedClaims(): Record<string, Claim> {
-  const claims: Record<string, Claim> = {}
-  for (const slot of careCircleSlots) {
-    if (slot.claimedBy) {
-      claims[slot.id] = { claimedBy: slot.claimedBy, claimedNote: slot.claimedNote ?? "" }
-    }
-  }
-  return claims
-}
+import { useIntake } from "#/store/intake-context"
 
 /**
  * The Care Circle: help and time, structured, for the people who ask "what
  * can I do?". Never vendors, never prices, never booking — just a place to
- * put the answer. Claiming is local state only; "Share this list" is a
- * visual placeholder and intentionally does nothing yet.
+ * put the answer. Claims persist (see intake-context.tsx); "Share this
+ * list" is a visual placeholder and intentionally does nothing yet.
  */
 export function CareCircleSection({ id }: { id: string }) {
-  const [claims, setClaims] = useState<Record<string, Claim>>(() => seedClaims())
+  const { progress, updateProgress } = useIntake()
+  const claims = progress.careCircleClaims
 
   function toggle(slot: CareCircleSlot) {
-    setClaims((prev) => {
-      if (prev[slot.id]) {
-        const next = { ...prev }
-        delete next[slot.id]
-        return next
+    updateProgress((prev) => {
+      if (prev.careCircleClaims[slot.id]) {
+        const nextClaims = { ...prev.careCircleClaims }
+        delete nextClaims[slot.id]
+        return { ...prev, careCircleClaims: nextClaims }
       }
-      return { ...prev, [slot.id]: { claimedBy: "You", claimedNote: "" } }
+      return {
+        ...prev,
+        careCircleClaims: { ...prev.careCircleClaims, [slot.id]: { claimedBy: "You", claimedNote: "" } },
+      }
     })
   }
 

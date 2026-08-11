@@ -3,9 +3,9 @@
  * help with tasks and time. Deliberately never vendors, prices, or booking:
  * this is a place to put "what can I do?", not a marketplace.
  *
- * Claimed state lives as local component state (see care-circle-section.tsx);
- * a slot's `claimedBy` / `claimedNote` here just seeds that initial state, so
- * the demo always opens with one slot already spoken for.
+ * Claimed state persists (see intake-context.tsx); a slot's `claimedBy` /
+ * `claimedNote` here just seeds the default progress state, so the demo
+ * always opens with one slot already spoken for.
  */
 export interface CareCircleSlot {
   id: string
@@ -46,3 +46,11 @@ export const careCircleSlots: CareCircleSlot[] = [
     detail: "Mail, trash day, watering plants, a load of laundry — the small stuff that piles up.",
   },
 ]
+
+/**
+ * Who a timeline task can be handed to (see the "Ask someone" exit in
+ * timeline-section.tsx) — the same names already in play elsewhere in the
+ * demo: Dana from the seeded Care Circle claim above, and the Sister/Brother
+ * assignees used in family-view.tsx and notification-tracker.tsx.
+ */
+export const careCirclePeople = ["Dana", "Sister", "Brother"] as const

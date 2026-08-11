@@ -1,7 +1,7 @@
-import { useState } from "react"
 import { Check } from "lucide-react"
 import { cn } from "#/lib/utils"
 import type { FamilyTask } from "#/data/paperwork"
+import { useIntake } from "#/store/intake-context"
 
 export type Assignee = FamilyTask["assignee"]
 
@@ -13,7 +13,8 @@ export const ASSIGNEE_CHIP_COLORS: Record<Assignee, string> = {
 }
 
 export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstName: string | null }) {
-  const [done, setDone] = useState<Record<string, boolean>>({})
+  const { progress, updateProgress } = useIntake()
+  const done = progress.familyTasksDone
 
   const yourWork = tasks.reduce(
     (acc, task) => {
@@ -41,7 +42,12 @@ export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstNam
           >
             <button
               type="button"
-              onClick={() => setDone((d) => ({ ...d, [task.id]: !d[task.id] }))}
+              onClick={() =>
+                updateProgress((prev) => ({
+                  ...prev,
+                  familyTasksDone: { ...prev.familyTasksDone, [task.id]: !prev.familyTasksDone[task.id] },
+                }))
+              }
               className="flex flex-1 items-center gap-3 text-left"
             >
               <span

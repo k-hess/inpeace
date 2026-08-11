@@ -1,9 +1,7 @@
-import { useState } from "react"
 import { cn } from "#/lib/utils"
 import type { NotificationItem } from "#/data/paperwork"
 import { ASSIGNEE_CHIP_COLORS, type Assignee } from "#/components/plan/family-view"
-
-type NotifyStatus = "not-yet" | "done" | "waiting"
+import { useIntake, type NotifyStatus } from "#/store/intake-context"
 
 const STATUS_ORDER: NotifyStatus[] = ["not-yet", "done", "waiting"]
 
@@ -46,7 +44,8 @@ export function NotificationTracker({
   notifications: NotificationItem[]
   showFamilyView: boolean
 }) {
-  const [statuses, setStatuses] = useState<Record<string, NotifyStatus>>({})
+  const { progress, updateProgress } = useIntake()
+  const statuses = progress.notifications
 
   return (
     <div className="card-surface rounded-2xl px-6 py-6">
@@ -87,7 +86,13 @@ export function NotificationTracker({
                 <button
                   type="button"
                   onClick={() =>
-                    setStatuses((prev) => ({ ...prev, [item.id]: nextStatus(prev[item.id] ?? "not-yet") }))
+                    updateProgress((prev) => ({
+                      ...prev,
+                      notifications: {
+                        ...prev.notifications,
+                        [item.id]: nextStatus(prev.notifications[item.id] ?? "not-yet"),
+                      },
+                    }))
                   }
                   className={cn(
                     "rounded-full border px-3 py-1.5 text-xs font-medium transition",

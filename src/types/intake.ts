@@ -1,6 +1,6 @@
-// Core types for the intake flow. Everything here is plain data —
-// no persistence, no network. State lives in sessionStorage via the
-// intake store (see src/store/intake-context.tsx).
+// Core types for the intake flow. Everything here is plain data — no
+// network, no account. State lives in localStorage via the intake store
+// (see src/store/intake-context.tsx), on this device only.
 
 export type StateCode = "TX" | "CA"
 
