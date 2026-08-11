@@ -136,7 +136,7 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
       <RightNowCard
         content={{
           title: "Order the death certificates",
-          body: "Everything downstream, the banks, the DMV, Social Security, waits on having these in hand. There's a tracker for it further down the page.",
+          body: "The banks, the DMV, and Social Security all wait on having these in hand. There's a tracker for it further down the page.",
           actionLabel: "Go to Paperwork",
           onAct: () => {
             track("right_now_acted", { target: "death-certificates" })
