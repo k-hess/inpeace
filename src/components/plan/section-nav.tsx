@@ -103,7 +103,10 @@ export function SectionRail({ sections, activeId, mode, onBeforeJump }: NavListP
   if (sections.length === 0) return null
 
   return (
-    <nav aria-label="On this page" className="hidden lg:sticky lg:top-16 lg:block lg:w-40 lg:shrink-0">
+    <nav
+      aria-label="On this page"
+      className="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-40 lg:shrink-0 lg:flex-col lg:justify-center"
+    >
       <p className="kicker mb-4">On this page</p>
       <ul className="flex flex-col gap-2.5">
         {sections.map((section) => {
