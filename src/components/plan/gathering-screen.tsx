@@ -14,16 +14,16 @@ import type { GatheringPlanData } from "#/lib/plan-engine"
  * The "On this page" section list for the gathering plan (both the
  * "helping a family member" and "getting my own affairs in order" doors).
  * Built next to where the sections are composed below, so it always
- * reflects what actually renders for the current mode — "The vault"
- * and "The conversation" swap order between modes but both always render;
+ * reflects what actually renders for the current mode — "Vault"
+ * and "Conversation" swap order between modes but both always render;
  * "Who can open this" only exists for-self, matching the handoff section's
  * own gating in GatheringScreen below.
  */
 function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
-  const inventory: PlanNavSection = { id: "vault", label: "The vault" }
+  const inventory: PlanNavSection = { id: "vault", label: "Vault" }
   const questions: PlanNavSection = {
     id: "questions",
-    label: plan.mode === "for-self" ? "Answers to have ready" : "The conversation",
+    label: plan.mode === "for-self" ? "Answers to have ready" : "Conversation",
   }
   const choosing = choosingGuides.length > 0 && ({ id: "choosing", label: "Choosing well" } as const)
   const handoff = plan.mode === "for-self" && ({ id: "handoff", label: "Who can open this" } as const)

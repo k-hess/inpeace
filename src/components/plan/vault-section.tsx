@@ -291,7 +291,7 @@ export function VaultSection({ groups, id }: { groups: VaultGroup[]; id: string 
 
   return (
     <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">The vault</p>
+      <p className="kicker kicker-rule mb-4">Vault</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         Everything your family finds, in one place.
       </h2>

@@ -102,7 +102,7 @@ export function FuneralGuidanceSection({
   return (
     <ReferenceSection
       id={id}
-      kicker="The funeral home"
+      kicker="Funeral home"
       heading="You have more say here than it feels like."
       essence="The largest unshopped purchase in the whole process: rough costs, what you're entitled to ask for, and the red flags worth knowing."
       expanded={expanded}

@@ -14,7 +14,7 @@ export function QuestionsSection({
 }) {
   return (
     <section id={id} className="section-anchor mb-16">
-      <p className="kicker kicker-rule mb-4">The conversation</p>
+      <p className="kicker kicker-rule mb-4">Conversation</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
         {mode === "for-self"
           ? "Answers worth having ready, whenever it feels right."

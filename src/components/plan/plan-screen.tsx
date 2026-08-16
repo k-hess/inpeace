@@ -40,12 +40,12 @@ function buildNavSections(plan: PlanData, hasRestingCards: boolean): PlanNavSect
 
   const sections: (PlanNavSection | false)[] = [
     plan.protection.length > 0 && { id: "protect", label: "Protect yourself" },
-    timelineVisible && { id: "timeline", label: "The timeline" },
-    funeralVisible && { id: "funeral", label: "The funeral home" },
+    timelineVisible && { id: "timeline", label: "Timeline" },
+    funeralVisible && { id: "funeral", label: "Funeral home" },
     { id: "care-circle", label: "Let people help" },
     (plan.canWait.length > 0 || hasRestingCards) && { id: "can-wait", label: "It can wait" },
     { id: "paperwork", label: "Paperwork" },
-    { id: "vault", label: "The vault" },
+    { id: "vault", label: "Vault" },
     plan.liabilities.length > 0 && { id: "liabilities", label: "Debts" },
     plan.edgeCases.length > 0 && { id: "edge-cases", label: "Easy to miss" },
     choosingVisible && { id: "choosing", label: "Choosing well" },

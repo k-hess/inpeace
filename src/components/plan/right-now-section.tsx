@@ -153,7 +153,7 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
         content={{
           title: target.title,
           body: `The nearest deadline on the timeline: ${formatDateLong(target.date)}.`,
-          actionLabel: "Go to The timeline",
+          actionLabel: "Go to Timeline",
           onAct: () => {
             track("right_now_acted", { target: target.id })
             scrollToSectionId("timeline")
@@ -183,7 +183,7 @@ export function RightNowInventoryPrompt({ plan }: { plan: GatheringPlanData }) {
           ? {
               title: nextItem.label,
               body: "A good next thing to store.",
-              actionLabel: "Go to The vault",
+              actionLabel: "Go to Vault",
               onAct: () => {
                 track("right_now_acted", { target: nextItem.id })
                 scrollToSectionId("vault")
