@@ -13,7 +13,7 @@ export function RippleSection() {
       <p className="text-sm leading-relaxed">
         You're in the middle of something hard right now, and none of this is for today. But people who've
         been through this often say the same thing happens afterward. It gets them thinking about their
-        own family's affairs, or their parents'. Whenever that day comes, this is here.
+        own affairs, or someone else's. Whenever that day comes, this is here.
       </p>
       <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm">
         <Link
@@ -21,7 +21,7 @@ export function RippleSection() {
           className="font-medium underline decoration-dashed underline-offset-4 hover:text-foreground"
           onClick={() => track("ripple_link_clicked", { target: "for-family" })}
         >
-          Get a parent or family member organized
+          Help someone you love get organized
         </Link>
         <Link
           to="/start"

@@ -1,4 +1,4 @@
-import { InventorySection } from "#/components/plan/inventory-section"
+import { VaultSection } from "#/components/plan/vault-section"
 import { QuestionsSection } from "#/components/plan/questions-section"
 import { ChoosingSection } from "#/components/plan/choosing-section"
 import { HandoffSection } from "#/components/plan/handoff-section"
@@ -14,13 +14,13 @@ import type { GatheringPlanData } from "#/lib/plan-engine"
  * The "On this page" section list for the gathering plan (both the
  * "helping a family member" and "getting my own affairs in order" doors).
  * Built next to where the sections are composed below, so it always
- * reflects what actually renders for the current mode — "The inventory"
+ * reflects what actually renders for the current mode — "The vault"
  * and "The conversation" swap order between modes but both always render;
  * "Who can open this" only exists for-self, matching the handoff section's
  * own gating in GatheringScreen below.
  */
 function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
-  const inventory: PlanNavSection = { id: "inventory", label: "The inventory" }
+  const inventory: PlanNavSection = { id: "inventory", label: "The vault" }
   const questions: PlanNavSection = {
     id: "questions",
     label: plan.mode === "for-self" ? "Answers to have ready" : "The conversation",
@@ -69,13 +69,13 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
     track("section_expanded", { section: id })
   }
 
-  const nextInventoryItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.inventoryChecked[item.id])
-  const nextThingLine = nextInventoryItem ? `Next up: ${nextInventoryItem.label.toLowerCase()}.` : null
+  const nextVaultItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
+  const nextThingLine = nextVaultItem ? `Next up: ${nextVaultItem.label.toLowerCase()}.` : null
 
   const inventory = (
     <>
       <AccessNote accessNote={plan.accessNote} />
-      <InventorySection groups={plan.groups} id="inventory" />
+      <VaultSection groups={plan.groups} id="inventory" />
     </>
   )
   const questions = (

@@ -25,15 +25,15 @@ function nextStatus(status: NotifyStatus): NotifyStatus {
 /**
  * Who typically ends up handling each institution — a deterministic,
  * thematic pairing (not round-robin) so it lines up with the assignments
- * already made in buildFamilyTasks (banks -> Brother, mail-adjacent
- * admin -> Sister, everything else official -> You).
+ * already made in buildFamilyTasks (banks -> Sam, mail-adjacent
+ * admin -> Renee, everything else official -> You).
  */
 const ASSIGNEE_BY_ID: Record<string, Assignee> = {
   "notify-ssa": "You",
-  "notify-banks": "Brother",
-  "notify-dmv": "Brother",
+  "notify-banks": "Sam",
+  "notify-dmv": "Sam",
   "notify-brokerage": "You",
-  "notify-subscriptions": "Sister",
+  "notify-subscriptions": "Renee",
   "notify-employer": "You",
 }
 

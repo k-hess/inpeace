@@ -14,7 +14,7 @@ export function BeforeAnythingSection() {
         This works before a loss, too.
       </h2>
       <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-pretty text-muted-foreground">
-        Getting your own affairs in order, or helping a parent get theirs together, takes the same
+        Getting your own affairs in order, or helping someone you love get theirs together, takes the same
         few minutes either way: where things are, who to call, how family would get in.
       </p>
       <div className="mt-8">

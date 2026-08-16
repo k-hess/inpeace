@@ -9,7 +9,7 @@ function countHeld(progress: ProgressState): number {
   if (progress.certTracker?.status === "received") count += 1
   count += Object.values(progress.notifications).filter((status) => status === "done").length
   count += Object.values(progress.familyTasksDone).filter(Boolean).length
-  count += Object.values(progress.inventoryChecked).filter(Boolean).length
+  count += Object.keys(progress.vaultEntries).length
   count += Object.values(progress.tasks).filter((task) => task.status === "done").length
   return count
 }
@@ -19,7 +19,7 @@ function hasAnyProgress(progress: ProgressState): boolean {
     progress.certTracker !== null ||
     Object.keys(progress.notifications).length > 0 ||
     Object.keys(progress.familyTasksDone).length > 0 ||
-    Object.keys(progress.inventoryChecked).length > 0 ||
+    Object.keys(progress.vaultEntries).length > 0 ||
     Object.keys(progress.tasks).length > 0
   )
 }

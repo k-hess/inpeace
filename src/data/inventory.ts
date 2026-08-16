@@ -1,10 +1,11 @@
 import type { IntakeAnswers } from "#/types/intake"
 
-// The core stance of this whole module, stated plainly so nobody adds a
-// field that violates it later: we record WHERE things are and HOW to get
-// access, never the secrets themselves. No password fields, no account
-// numbers, no seed phrases. See `accessNote` below for the user-facing
-// version of this same idea.
+// This module now records two things: WHERE each item is, and any DETAIL
+// the family chooses to leave alongside it, a login, an account nickname,
+// a combination, whatever makes it usable later. Nothing here is
+// encrypted or validated; it's free text the family enters themselves.
+// The product's job is to hold it safely and show who added what. See
+// `accessNote` below for the user-facing version of this same idea.
 
 export type InventoryCategoryId = "money" | "recurring" | "documents" | "people" | "digital" | "property"
 
@@ -35,10 +36,10 @@ export interface InventoryGroup {
   items: InventoryItem[]
 }
 
-/** Why we deliberately store the path to access, never the credential itself. */
+/** The user-facing trust note explaining what the vault holds and how it's kept, in this prototype and in the real product. */
 export const accessNote: { title: string; body: string } = {
-  title: "We don't ask for passwords",
-  body: "This list never asks for a password, an account number, or a seed phrase. We record where the password manager is, who the recovery contact is, and what each company's bereavement process requires to grant access. There's nothing here worth stealing, and nothing you're trusting us with that a thief could use.",
+  title: "What the vault holds",
+  body: "Where each thing is, how to get in, and anything your family finds along the way. In this prototype everything stays on this device. In the real product it would be encrypted and shared only with the people you invite.",
 }
 
 export const inventoryGroups: InventoryGroup[] = [

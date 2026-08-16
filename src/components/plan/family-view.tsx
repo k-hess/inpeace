@@ -8,8 +8,8 @@ export type Assignee = FamilyTask["assignee"]
 /** Shared assignee-chip palette — reused anywhere a task shows who's handling it. */
 export const ASSIGNEE_CHIP_COLORS: Record<Assignee, string> = {
   You: "bg-accent text-accent-foreground",
-  Sister: "bg-secondary text-secondary-foreground",
-  Brother: "bg-secondary text-secondary-foreground",
+  Renee: "bg-secondary text-secondary-foreground",
+  Sam: "bg-secondary text-secondary-foreground",
 }
 
 export function FamilyView({ tasks, firstName }: { tasks: FamilyTask[]; firstName: string | null }) {

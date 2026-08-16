@@ -18,12 +18,12 @@ interface HandoffPerson {
 const PLACEHOLDER_PEOPLE: HandoffPerson[] = [
   {
     name: "Sam",
-    relation: "Spouse, who can open this",
-    note: "Would see everything: the full inventory, the access notes, and anything you've added since.",
+    relation: "First to be notified, can open this",
+    note: "Would see everything: the full vault, and anything you've added since.",
   },
   {
     name: "Renee",
-    relation: "Sister, backup",
+    relation: "Backup",
     note: "Would only be notified if Sam can't be reached, and would see the same list.",
   },
 ]

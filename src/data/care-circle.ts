@@ -53,7 +53,7 @@ export const careCircleSlots: CareCircleSlot[] = [
  * reads like a real person rather than a family-tree position. Sam and
  * Renee are already the for-self handoff people (handoff-section.tsx),
  * so the demo stays name-consistent; Dana is the seeded Care Circle claim
- * above. Distinct from the "You" / "Sister" / "Brother" role labels used
+ * above. Distinct from the "You" / "Renee" / "Sam" role labels used
  * by family-view.tsx and notification-tracker.tsx, which are a separate,
  * intentionally role-based system.
  */

@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useRef, useState, type ReactNode } 
 import { EMPTY_ANSWERS, type IntakeAnswers } from "#/types/intake"
 import { scenarios } from "#/data/scenarios"
 import { careCircleSlots } from "#/data/care-circle"
+import type { InventoryCategoryId } from "#/data/inventory"
 
 // --- Progress state ---------------------------------------------------
 //
@@ -33,11 +34,35 @@ export interface TaskState {
   handoff: string | null
 }
 
+/** Who can add something to the vault, in this prototype's small cast. */
+export type VaultContributor = "You" | "Dana" | "Sam" | "Renee"
+
+/**
+ * One thing the family has stored in the vault: where it is, and whatever
+ * detail they chose to leave alongside it (a login, an account nickname,
+ * a combination). Keyed by itemId in ProgressState.vaultEntries — either
+ * a real InventoryItem.id, or a "custom-<uuid>" id for something the
+ * family added that wasn't already on the list.
+ */
+export interface VaultEntry {
+  itemId: string
+  groupId: InventoryCategoryId
+  /** Only set for custom entries, which have no InventoryItem to source a label from. */
+  label?: string
+  where: string
+  detail: string
+  files: string[]
+  addedBy: VaultContributor
+  addedAt: string
+}
+
 export interface ProgressState {
   certTracker: CertTrackerState | null
   notifications: Record<string, NotifyStatus>
   careCircleClaims: Record<string, CareCircleClaim>
+  /** Superseded by vaultEntries below; kept only so old localStorage still parses. */
   inventoryChecked: Record<string, boolean>
+  vaultEntries: Record<string, VaultEntry>
   familyTasksDone: Record<string, boolean>
   tasks: Record<string, TaskState>
   sectionExpanded: Record<string, boolean>
@@ -52,10 +77,53 @@ function seedCareCircleClaims(): Record<string, CareCircleClaim> {
 }
 
 /**
+ * Three seeded vault entries so the demo opens with collaboration already
+ * visible, matching seedCareCircleClaims' role for the care circle. Ages
+ * are computed relative to "now" at seed time; they only ever drive a
+ * relative-time display, so exactness doesn't matter.
+ */
+function seedVaultEntries(): Record<string, VaultEntry> {
+  const now = Date.now()
+  const day = 24 * 60 * 60 * 1000
+  const entries: VaultEntry[] = [
+    {
+      itemId: "recurring-subscriptions",
+      groupId: "recurring",
+      where: "Charged to the Chase card, shows up as NETFLIX.COM",
+      detail: "Login is the shared gmail, password is in the note under Documents",
+      files: [],
+      addedBy: "Sam",
+      addedAt: new Date(now - 1 * day).toISOString(),
+    },
+    {
+      itemId: "money-safe-deposit",
+      groupId: "money",
+      where: "Wells Fargo on Main St, box 214. Key is on the ring in the kitchen drawer",
+      detail: "",
+      files: [],
+      addedBy: "Renee",
+      addedAt: new Date(now - 2 * day).toISOString(),
+    },
+    {
+      itemId: "documents-will",
+      groupId: "documents",
+      where: "Top drawer of the desk in the study, blue folder",
+      detail: "",
+      files: ["will-2019.pdf"],
+      addedBy: "You",
+      addedAt: new Date(now - 3 * day).toISOString(),
+    },
+  ]
+  const byItemId: Record<string, VaultEntry> = {}
+  for (const entry of entries) byItemId[entry.itemId] = entry
+  return byItemId
+}
+
+/**
  * A fresh progress state — used both for a genuinely empty session and to
- * fully overwrite an old one on reset or a demo scenario load. The one
- * seeded field (care-circle claims) matches the interview demo always
- * opening with one slot already spoken for.
+ * fully overwrite an old one on reset or a demo scenario load. The seeded
+ * fields (care-circle claims, vault entries) match the interview demo
+ * always opening with some collaboration already visible.
  */
 function createDefaultProgress(): ProgressState {
   return {
@@ -63,6 +131,7 @@ function createDefaultProgress(): ProgressState {
     notifications: {},
     careCircleClaims: seedCareCircleClaims(),
     inventoryChecked: {},
+    vaultEntries: seedVaultEntries(),
     familyTasksDone: {},
     tasks: {},
     sectionExpanded: {},

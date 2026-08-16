@@ -168,13 +168,13 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
 
 /**
  * The gathering plan's lighter variant: no guardrails or deadlines to
- * weigh, just a nudge toward the next unchecked inventory item, or the
- * same rest state once everything's gathered.
+ * weigh, just a nudge toward the next thing that isn't yet stored in the
+ * vault, or the same rest state once everything's in.
  */
 export function RightNowInventoryPrompt({ plan }: { plan: GatheringPlanData }) {
   const { progress } = useIntake()
 
-  const nextItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.inventoryChecked[item.id])
+  const nextItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
 
   return (
     <RightNowCard
@@ -182,8 +182,8 @@ export function RightNowInventoryPrompt({ plan }: { plan: GatheringPlanData }) {
         nextItem
           ? {
               title: nextItem.label,
-              body: "A good next thing to gather.",
-              actionLabel: "Go to The inventory",
+              body: "A good next thing to store.",
+              actionLabel: "Go to The vault",
               onAct: () => {
                 track("right_now_acted", { target: nextItem.id })
                 scrollToSectionId("inventory")
