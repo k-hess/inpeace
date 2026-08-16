@@ -15,7 +15,7 @@ import {
   type FamilyTask,
   type NotificationItem,
 } from "#/data/paperwork"
-import { accessNote, inventoryGroups } from "#/data/inventory"
+import { inventoryGroups, type InventoryCategoryId } from "#/data/inventory"
 import { getConversationNote, questionGroups, type QuestionGroup } from "#/data/questions-to-ask"
 import { religionTimingNote } from "#/data/religion"
 import type { IntakeAnswers, JourneyMode } from "#/types/intake"
@@ -51,6 +51,7 @@ export interface PlanData {
   edgeCases: PlanCard[]
   /** Every triggered rule with a real deadline, nearest first — feeds the "Right now" block. */
   deadlineTasks: DeadlineTask[]
+  vaultGroups: VaultGroup[]
   paperwork: {
     recommendedCopies: number
     showFamilyView: boolean
@@ -141,7 +142,41 @@ export function buildPlan(answers: IntakeAnswers): PlanData | null {
       familyTasks: buildFamilyTasks(answers.assets, answers.will),
       notifications: buildNotifications(answers.assets, answers.will),
     },
+    vaultGroups: buildVaultGroups(answers, answers.mode),
   }
+}
+
+/** One vault group as rendered: the inventory data resolved for a mode, with triggered-off items removed. */
+export interface VaultGroup {
+  id: InventoryCategoryId
+  label: string
+  blurb: string
+  items: { id: string; label: string; whereToLook: string; easilyMissed?: boolean }[]
+}
+
+/**
+ * The vault renders on every door. The "for-self" door swaps in the
+ * self-directed hints; the after-death and for-family doors use the
+ * default hints, which are written for someone searching on another
+ * person's behalf.
+ */
+export function buildVaultGroups(answers: IntakeAnswers, mode: JourneyMode): VaultGroup[] {
+  const self = mode === "for-self"
+  return inventoryGroups
+    .map((group) => ({
+      id: group.id,
+      label: group.label,
+      blurb: self ? (group.blurbSelf ?? group.blurb) : group.blurb,
+      items: group.items
+        .filter((item) => !item.trigger || item.trigger(answers))
+        .map((item) => ({
+          id: item.id,
+          label: item.label,
+          whereToLook: self ? (item.whereToLookSelf ?? item.whereToLook) : item.whereToLook,
+          easilyMissed: item.easilyMissed,
+        })),
+    }))
+    .filter((group) => group.items.length > 0)
 }
 
 export interface GatheringPlanData {
@@ -149,13 +184,7 @@ export interface GatheringPlanData {
   headline: string
   sub: string
   stateName: string
-  groups: {
-    id: string
-    label: string
-    blurb: string
-    items: { id: string; label: string; whereToLook: string; easilyMissed?: boolean }[]
-  }[]
-  accessNote: { title: string; body: string }
+  vaultGroups: VaultGroup[]
   questionGroups: QuestionGroup[]
   conversationNote: { title: string; body: string }
   religionNote: { title: string; body: string } | null
@@ -179,22 +208,6 @@ export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | 
   const mode = answers.mode
   const stateConfig = answers.state === "TX" ? texas : california
 
-  const groups = inventoryGroups
-    .map((group) => ({
-      id: group.id,
-      label: group.label,
-      blurb: mode === "for-self" ? (group.blurbSelf ?? group.blurb) : group.blurb,
-      items: group.items
-        .filter((item) => !item.trigger || item.trigger(answers))
-        .map((item) => ({
-          id: item.id,
-          label: item.label,
-          whereToLook: mode === "for-self" ? (item.whereToLookSelf ?? item.whereToLook) : item.whereToLook,
-          easilyMissed: item.easilyMissed,
-        })),
-    }))
-    .filter((group) => group.items.length > 0)
-
   const { headline, sub } = GATHERING_INTRO[mode]
 
   return {
@@ -202,8 +215,7 @@ export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | 
     headline,
     sub,
     stateName: stateConfig.name,
-    groups,
-    accessNote,
+    vaultGroups: buildVaultGroups(answers, mode),
     questionGroups,
     conversationNote: getConversationNote(mode),
     religionNote: religionTimingNote(answers.religion),

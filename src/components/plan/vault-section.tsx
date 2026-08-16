@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Lock, Check, Paperclip, Pencil, X } from "lucide-react"
 import { cn, formatRelativeTime } from "#/lib/utils"
-import type { GatheringPlanData } from "#/lib/plan-engine"
+import type { VaultGroup } from "#/lib/plan-engine"
 import { useIntake, type VaultContributor, type VaultEntry } from "#/store/intake-context"
-import type { InventoryCategoryId } from "#/data/inventory"
+import { accessNote, type InventoryCategoryId } from "#/data/inventory"
 import { Button } from "#/components/ui/button"
 import { Input } from "#/components/ui/input"
 import { Textarea } from "#/components/ui/textarea"
@@ -32,7 +32,7 @@ function AvatarCircle({ name, className }: { name: VaultContributor; className?:
   )
 }
 
-type Group = GatheringPlanData["groups"][number]
+type Group = VaultGroup
 type Item = Group["items"][number]
 
 interface FormState {
@@ -195,7 +195,7 @@ function VaultForm({
   )
 }
 
-export function VaultSection({ groups, id }: { groups: GatheringPlanData["groups"]; id: string }) {
+export function VaultSection({ groups, id }: { groups: VaultGroup[]; id: string }) {
   const { progress, updateProgress } = useIntake()
   const entries = progress.vaultEntries
   const [openForms, setOpenForms] = useState<Record<string, FormState>>({})
@@ -299,6 +299,11 @@ export function VaultSection({ groups, id }: { groups: GatheringPlanData["groups
         Add what you find as you find it, and everyone here sees it. Stays on this device in this prototype.
       </p>
 
+      <div className="protect-card mb-6 px-6 py-5">
+        <p className="font-medium">{accessNote.title}</p>
+        <p className="mt-1.5 text-sm leading-relaxed opacity-90">{accessNote.body}</p>
+      </div>
+
       <div className="card-surface mb-6 rounded-2xl px-6 py-5">
         <div className="flex items-center gap-2">
           <Lock className="size-4 text-muted-foreground" />
@@ -328,7 +333,7 @@ export function VaultSection({ groups, id }: { groups: GatheringPlanData["groups
 
       <div className="flex flex-col gap-4">
         {groups.map((group) => {
-          const groupId = group.id as InventoryCategoryId
+          const groupId: InventoryCategoryId = group.id
           const customEntries = allEntries.filter(
             (entry) => entry.groupId === groupId && entry.itemId.startsWith("custom-"),
           )

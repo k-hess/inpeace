@@ -174,7 +174,7 @@ export function RightNowSection({ plan }: { plan: PlanData }) {
 export function RightNowInventoryPrompt({ plan }: { plan: GatheringPlanData }) {
   const { progress } = useIntake()
 
-  const nextItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
+  const nextItem = plan.vaultGroups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
 
   return (
     <RightNowCard
@@ -186,7 +186,7 @@ export function RightNowInventoryPrompt({ plan }: { plan: GatheringPlanData }) {
               actionLabel: "Go to The vault",
               onAct: () => {
                 track("right_now_acted", { target: nextItem.id })
-                scrollToSectionId("inventory")
+                scrollToSectionId("vault")
               },
             }
           : null

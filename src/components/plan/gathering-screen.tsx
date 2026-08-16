@@ -20,7 +20,7 @@ import type { GatheringPlanData } from "#/lib/plan-engine"
  * own gating in GatheringScreen below.
  */
 function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
-  const inventory: PlanNavSection = { id: "inventory", label: "The vault" }
+  const inventory: PlanNavSection = { id: "vault", label: "The vault" }
   const questions: PlanNavSection = {
     id: "questions",
     label: plan.mode === "for-self" ? "Answers to have ready" : "The conversation",
@@ -39,15 +39,6 @@ function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
 
 /** Reference sections (change 4) that collapse to a summary by default — just Choosing on this plan. */
 const COLLAPSIBLE_SECTION_IDS = new Set(["choosing"])
-
-function AccessNote({ accessNote }: { accessNote: GatheringPlanData["accessNote"] }) {
-  return (
-    <div className="protect-card mb-8 px-6 py-5">
-      <p className="font-medium">{accessNote.title}</p>
-      <p className="mt-1.5 text-sm leading-relaxed opacity-90">{accessNote.body}</p>
-    </div>
-  )
-}
 
 function ReligionNote({ religionNote }: { religionNote: NonNullable<GatheringPlanData["religionNote"]> }) {
   return (
@@ -69,15 +60,10 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
     track("section_expanded", { section: id })
   }
 
-  const nextVaultItem = plan.groups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
+  const nextVaultItem = plan.vaultGroups.flatMap((group) => group.items).find((item) => !progress.vaultEntries[item.id])
   const nextThingLine = nextVaultItem ? `Next up: ${nextVaultItem.label.toLowerCase()}.` : null
 
-  const inventory = (
-    <>
-      <AccessNote accessNote={plan.accessNote} />
-      <VaultSection groups={plan.groups} id="inventory" />
-    </>
-  )
+  const inventory = <VaultSection groups={plan.vaultGroups} id="vault" />
   const questions = (
     <QuestionsSection
       questionGroups={plan.questionGroups}

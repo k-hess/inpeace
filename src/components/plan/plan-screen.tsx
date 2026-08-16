@@ -9,6 +9,7 @@ import { FuneralGuidanceSection } from "#/components/plan/funeral-guidance-secti
 import { CareCircleSection } from "#/components/plan/care-circle-section"
 import { CanWaitSection } from "#/components/plan/can-wait-section"
 import { PaperworkSection } from "#/components/plan/paperwork-section"
+import { VaultSection } from "#/components/plan/vault-section"
 import { LiabilitiesSection } from "#/components/plan/liabilities-section"
 import { EdgeCasesSection } from "#/components/plan/edge-cases-section"
 import { ChoosingSection } from "#/components/plan/choosing-section"
@@ -44,6 +45,7 @@ function buildNavSections(plan: PlanData, hasRestingCards: boolean): PlanNavSect
     { id: "care-circle", label: "Let people help" },
     (plan.canWait.length > 0 || hasRestingCards) && { id: "can-wait", label: "It can wait" },
     { id: "paperwork", label: "Paperwork" },
+    { id: "vault", label: "The vault" },
     plan.liabilities.length > 0 && { id: "liabilities", label: "Debts" },
     plan.edgeCases.length > 0 && { id: "edge-cases", label: "Easy to miss" },
     choosingVisible && { id: "choosing", label: "Choosing well" },
@@ -131,6 +133,7 @@ export function PlanScreen({ plan, answers }: { plan: PlanData; answers: IntakeA
           <CareCircleSection id="care-circle" />
           <CanWaitSection items={plan.canWait} resting={restingCards} id="can-wait" />
           <PaperworkSection paperwork={plan.paperwork} firstName={plan.firstName} id="paperwork" />
+          <VaultSection groups={plan.vaultGroups} id="vault" />
           <LiabilitiesSection
             cards={plan.liabilities}
             id="liabilities"
