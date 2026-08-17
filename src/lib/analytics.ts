@@ -4,15 +4,10 @@
  * names centralized-ish and means analytics can be killed in one place
  * (flip ENABLED to false) without touching call sites.
  *
- * IMPORTANT: only a public project API key (starts "phc_") belongs here —
- * that's the one meant to be embedded in a client bundle. Do NOT put a
- * personal API key (starts "phx_") in this file: those grant broad
- * account-level access and leaking one into shipped JS is a real
- * credential exposure, not just a config mistake. See the build report —
- * ~/.secrets/posthog-parkerstreet.txt currently holds a phx_ personal key,
- * confirmed via a direct capture-endpoint request (401 "API key is not
- * valid: personal_api_key"), so it's deliberately left blank below until
- * the correct phc_ project key is supplied.
+ * Only a public PostHog project key (starts "phc_") belongs here. Never a
+ * personal key ("phx_"): those grant account-level access and must not
+ * ship in client JS. Left blank until a project key is set, at which point
+ * tracking turns on with no other change.
  *
  * No PII is ever sent in event properties.
  */

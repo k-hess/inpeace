@@ -1,0 +1,359 @@
+keyword,stage,substage,search_volume,cpc,competition,vol_12mo_avg,vol_12mo_min,vol_12mo_max
+what to do when someone dies,crisis,generic,1600,3.31,LOW,1600.0,1300,1900
+what to do when someone dies at home,crisis,generic,590,6.71,LOW,616.7,480,720
+what to do when a parent dies,crisis,generic,1000,2.01,LOW,955.0,880,1300
+what to do when your mom dies,crisis,generic,140,,LOW,148.3,90,170
+what to do when your dad dies,crisis,generic,90,,LOW,78.3,50,110
+what to do when a spouse dies,crisis,generic,590,2.23,LOW,555.0,480,720
+what to do when a family member dies,crisis,generic,320,1.35,LOW,302.5,210,390
+my dad just died what do i do,crisis,generic,50,,LOW,47.5,30,70
+my mom just died what do i do,crisis,generic,50,0.2,LOW,52.5,20,70
+mom died now what,crisis,generic,20,0.67,LOW,21.7,10,40
+dad died now what,crisis,generic,,,,,,
+husband died now what,crisis,generic,20,0.74,LOW,16.7,10,30
+wife died now what,crisis,generic,,,,,,
+who to call when someone dies at home,crisis,generic,210,8.47,LOW,215.0,140,320
+who to call when someone dies at home hospice,crisis,generic,,,,,,
+who to call when someone dies in the hospital,crisis,generic,,,,,,
+who to call when someone dies at a nursing home,crisis,generic,,,,,,
+what to do first when someone dies,crisis,generic,30,0.27,MEDIUM,26.7,20,50
+steps to take when someone dies,crisis,generic,260,1.74,MEDIUM,280.0,260,320
+checklist when a parent dies,crisis,generic,110,7.25,LOW,112.5,70,140
+checklist for when someone dies,crisis,generic,320,2.19,LOW,341.7,260,480
+what happens immediately after death,crisis,generic,210,27.33,LOW,213.3,170,260
+hospice death what to do,crisis,generic,,,,,,
+unattended death what to do,crisis,generic,,,,,,
+death at home no hospice what to do,crisis,generic,,,,,,
+coroner called when someone dies,crisis,generic,,,,,,
+when does a coroner get involved,crisis,generic,20,,LOW,19.2,10,30
+autopsy after death,crisis,generic,30,,LOW,31.7,20,50
+do i need an autopsy,crisis,generic,,,,,,
+who do i need to notify when someone dies,crisis,generic,30,0.86,MEDIUM,29.2,10,40
+who to notify after a death checklist,crisis,generic,,,,,,
+cancel subscriptions after death,crisis,generic,,,,,,
+what to do with a deceased person's phone,crisis,generic,,,,,,
+pronouncing someone dead at home,crisis,generic,,,,,,
+signs of imminent death,crisis,generic,1600,0.92,LOW,1691.7,1300,2400
+how to know when someone has died,crisis,generic,,,,,,
+grief support after sudden death,crisis,generic,,,,,,
+sudden death of a parent what to do,crisis,generic,,,,,,
+unexpected death of a spouse what to do,crisis,generic,,,,,,
+death of a child what to do,crisis,generic,,,,,,
+how soon after death is the funeral,crisis,generic,6600,2.03,LOW,7225.0,6600,8100
+how long can a body stay at home after death,crisis,generic,10,,LOW,10.8,10,20
+what happens to a dead body legally,crisis,generic,,,,,,
+do you need a death certificate to plan a funeral,crisis,generic,,,,,,
+notifying social security of a death,crisis,generic,2400,4.04,LOW,2316.7,1900,2900
+how to notify social security someone died,crisis,generic,,,,,,
+reporting a death to social security,crisis,generic,2900,4.22,LOW,2991.7,2400,3600
+how many death certificates do i need,crisis,death_certificate,1000,7.02,LOW,1040.0,880,1300
+how to get a death certificate,crisis,death_certificate,12100,2.92,MEDIUM,13225.0,12100,14800
+how long does it take to get a death certificate,crisis,death_certificate,5400,1.96,LOW,5800.0,5400,6600
+cost of a death certificate,crisis,death_certificate,390,1.7,LOW,384.2,320,390
+certified copy of death certificate,crisis,death_certificate,4400,3.14,LOW,4850.0,2900,9900
+how to order death certificate,crisis,death_certificate,720,4.14,MEDIUM,775.8,590,880
+death certificate requirements,crisis,death_certificate,40,,LOW,37.5,30,50
+how to write an obituary,crisis,obituary,9900,1.71,MEDIUM,10850.0,8100,12100
+obituary examples,crisis,obituary,22200,0.53,HIGH,24716.7,18100,27100
+obituary templates,crisis,obituary,18100,1.42,HIGH,19533.3,14800,22200
+how much does an obituary cost,crisis,obituary,390,6.95,LOW,420.0,390,480
+funeral cost,crisis,funeral_cost,5400,6.17,LOW,4900.0,4400,5400
+average funeral cost,crisis,funeral_cost,5400,4.44,LOW,5916.7,4400,6600
+cremation cost,crisis,funeral_cost,18100,6.85,MEDIUM,19466.7,18100,22200
+how much does cremation cost,crisis,funeral_cost,12100,5.76,MEDIUM,12100.0,12100,12100
+cheapest way to bury someone,crisis,funeral_cost,70,8.86,LOW,70.0,50,110
+funeral home cost breakdown,crisis,funeral_cost,40,5.15,LOW,35.0,20,70
+funeral costs without life insurance,crisis,funeral_cost,,,,,,
+how to pay for a funeral with no money,crisis,funeral_cost,320,5.77,MEDIUM,311.7,260,390
+can you get help paying for a funeral,crisis,funeral_cost,10,,LOW,9.2,0,10
+funeral planning after death,crisis,funeral_cost,,,,,,
+how to plan a funeral in a week,crisis,funeral_cost,,,,,,
+funeral home paperwork checklist,crisis,funeral_cost,,,,,,
+what documents are needed for a funeral,crisis,funeral_cost,,,,,,
+do i need a funeral director,crisis,funeral_cost,10,,,8.3,0,10
+direct cremation vs funeral,crisis,funeral_cost,,,,,,
+funeral home near me,crisis,funeral_cost,201000,4.29,LOW,220500.0,165000,246000
+cremation near me,crisis,funeral_cost,22200,9.85,MEDIUM,19875.0,14800,22200
+embalming vs cremation,crisis,funeral_cost,50,,LOW,48.3,30,70
+green burial options,crisis,funeral_cost,390,5.85,MEDIUM,395.8,260,590
+veteran burial benefits,crisis,funeral_cost,6600,3.22,LOW,7475.0,6600,8100
+funeral costs by state,crisis,funeral_cost,40,,LOW,39.2,10,260
+cremation vs burial cost comparison,crisis,funeral_cost,,,,,,
+how to find a funeral home,crisis,funeral_cost,10,,MEDIUM,12.5,10,20
+organ donation after death,crisis,body_organ,,,,,,
+how long after death can you donate organs,crisis,body_organ,,,,,,
+body transport after death,crisis,body_organ,70,25.01,MEDIUM,60.0,10,140
+how to transport a body across state lines,crisis,body_organ,10,,LOW,13.3,10,30
+what happens to the body after death at home,crisis,body_organ,,,,,,
+what is probate,executor,probate_generic,27100,1.29,LOW,24241.7,22200,27100
+how does probate work,executor,probate_generic,1600,2.54,MEDIUM,1500.0,1300,1600
+do i need probate,executor,probate_generic,40,1.89,LOW,43.3,30,50
+how long does probate take,executor,probate_generic,3600,2.32,LOW,4066.7,3600,4400
+how much does probate cost,executor,probate_generic,1300,4.06,LOW,1150.0,1000,1600
+probate process step by step,executor,probate_generic,10,0.32,MEDIUM,13.3,10,30
+probate timeline,executor,probate_generic,170,1.83,LOW,181.7,110,320
+avoiding probate,executor,probate_generic,880,4.81,LOW,869.2,590,1600
+how to avoid probate,executor,probate_generic,2400,3.24,LOW,2358.3,1900,2900
+probate lawyer cost,executor,probate_generic,6600,10.06,LOW,6616.7,4400,8100
+do i need a lawyer for probate,executor,probate_generic,320,5.12,MEDIUM,291.7,170,480
+how to file for probate,executor,probate_generic,260,6.45,MEDIUM,256.7,210,320
+probate court process,executor,probate_generic,2900,3.52,LOW,3250.0,1900,5400
+how to probate a will without a lawyer,executor,probate_generic,40,1.19,MEDIUM,34.2,10,110
+diy probate,executor,probate_generic,70,7.99,MEDIUM,66.7,50,90
+online probate service,executor,probate_generic,30,9.02,MEDIUM,33.3,20,90
+probate attorney near me,executor,probate_generic,27100,17.04,MEDIUM,28033.3,18100,33100
+estate lawyer near me,executor,probate_generic,22200,9.03,HIGH,22400.0,18100,27100
+how to find estate attorney,executor,probate_generic,20,,MEDIUM,19.2,10,30
+what happens if there is no will,executor,intestate,260,1.36,LOW,247.5,140,320
+dying without a will,executor,intestate,720,3.23,LOW,738.3,590,880
+intestate succession,executor,intestate,2900,1.3,LOW,2733.3,1900,5400
+who inherits if no will,executor,intestate,70,1.8,LOW,70.8,40,90
+executor of estate duties,executor,executor_duties,720,1,MEDIUM,687.5,590,720
+what does an executor do,executor,executor_duties,590,0.28,LOW,553.3,480,590
+how to become an executor,executor,executor_duties,70,13.89,LOW,61.7,50,70
+executor of estate responsibilities,executor,executor_duties,720,1.3,MEDIUM,719.2,590,880
+executor compensation,executor,executor_duties,140,0.18,LOW,137.5,110,170
+how much does an executor get paid,executor,executor_duties,1300,0.49,LOW,1250.0,1000,1600
+can an executor be a beneficiary,executor,executor_duties,720,0.73,LOW,762.5,590,880
+removing an executor,executor,executor_duties,20,,LOW,22.5,10,40
+how to remove an executor,executor,executor_duties,10,,LOW,14.2,10,30
+executor vs administrator,executor,executor_duties,480,0.75,LOW,442.5,390,480
+personal representative duties,executor,executor_duties,50,0.47,LOW,57.5,40,70
+letters testamentary,executor,executor_duties,14800,1.87,LOW,14400.0,12100,18100
+how to get letters testamentary,executor,executor_duties,880,6.27,LOW,860.0,720,1000
+letters of administration,executor,executor_duties,2900,6.38,LOW,2666.7,1900,3600
+what is a fiduciary duty of executor,executor,executor_duties,,,,,,
+executor not communicating with beneficiaries,executor,executor_duties,40,,LOW,41.7,20,50
+executor stealing from estate,executor,executor_duties,10,,LOW,13.3,10,20
+how to choose an executor,executor,executor_duties,50,0.42,LOW,46.7,20,70
+how to close an estate,executor,settle_estate,170,3.41,LOW,173.3,140,210
+how to settle an estate,executor,settle_estate,170,4.85,LOW,166.7,140,210
+how to settle an estate without a lawyer,executor,settle_estate,40,4.57,LOW,42.5,20,70
+estate settlement process,executor,settle_estate,90,5.15,LOW,91.7,50,110
+estate administration checklist,executor,settle_estate,50,3.28,MEDIUM,45.0,20,90
+inventory of estate assets,executor,settle_estate,20,13.01,MEDIUM,20.0,10,40
+appraisal of estate assets for probate,executor,settle_estate,,,,,,
+how to distribute inheritance to siblings,executor,settle_estate,,,,,,
+dividing inheritance among siblings,executor,settle_estate,10,0.16,LOW,10.8,10,20
+estate distribution timeline,executor,settle_estate,10,,LOW,9.2,0,10
+how long to distribute estate assets,executor,settle_estate,10,,LOW,2.5,0,10
+small estate affidavit,executor,small_estate_affidavit,14800,3.98,MEDIUM,13900.0,12100,14800
+small estate affidavit requirements,executor,small_estate_affidavit,20,,LOW,16.7,10,30
+how to file a small estate affidavit,executor,small_estate_affidavit,90,2.92,MEDIUM,98.3,70,140
+small estate affidavit form,executor,small_estate_affidavit,1600,3.1,MEDIUM,1758.3,1300,2400
+what qualifies as a small estate,executor,small_estate_affidavit,,,,,,
+affidavit of heirship,executor,small_estate_affidavit,8100,2.31,LOW,8725.0,6600,9900
+how to close bank account of deceased person,executor,accounts,90,0.09,LOW,97.5,90,140
+closing a deceased person's bank account,executor,accounts,30,0.06,LOW,28.3,10,50
+deceased person's bank account access,executor,accounts,,,,,,
+how to notify banks of a death,executor,accounts,10,9.9,LOW,6.7,0,10
+how to notify credit bureaus of a death,executor,accounts,480,6.02,LOW,480.8,320,590
+estate bank account,executor,accounts,1000,5.38,LOW,1115.0,880,1300
+how to open an estate account,executor,accounts,1000,3.68,LOW,1055.0,880,1300
+ein for estate,executor,accounts,2400,,LOW,2400.0,1900,2900
+how to get a tax id for an estate,executor,accounts,1900,,LOW,1766.7,1300,2400
+transfer car title deceased owner,executor,property,,,,,,
+how to transfer car title after death,executor,property,390,,LOW,381.7,320,480
+deceased parent's house,executor,property,,,,,,
+selling a deceased parent's house,executor,property,,,,,,
+transferring house title after death,executor,property,70,15.42,LOW,63.3,40,110
+transfer on death deed,executor,property,14800,1.97,LOW,14675.0,12100,18100
+deceased homeowner mortgage,executor,property,10,,LOW,9.2,0,10
+what happens to a mortgage when the owner dies,executor,property,,,,,,
+life insurance claim after death,executor,insurance_retirement,50,3.17,LOW,53.3,40,70
+how to file a life insurance claim,executor,insurance_retirement,110,23.02,LOW,120.8,90,260
+life insurance payout process,executor,insurance_retirement,10,,LOW,12.5,10,20
+how long does a life insurance claim take,executor,insurance_retirement,210,1.88,LOW,214.2,140,320
+401k inherited rules,executor,insurance_retirement,10,,LOW,9.2,0,20
+inherited ira rules,executor,insurance_retirement,6600,2.57,MEDIUM,6783.3,4400,8100
+inherited ira rmd rules,executor,insurance_retirement,8100,1.59,LOW,7733.3,5400,12100
+how to claim inherited 401k,executor,insurance_retirement,,,,,,
+beneficiary ira after death,executor,insurance_retirement,,,,,,
+deceased person's pension benefits,executor,insurance_retirement,,,,,,
+surviving spouse benefits,executor,insurance_retirement,1600,1.3,LOW,1550.0,1300,1900
+widow benefits social security,executor,insurance_retirement,8100,0.71,LOW,8425.0,6600,9900
+deceased person's social security overpayment,executor,insurance_retirement,,,,,,
+returning social security payment after death,executor,insurance_retirement,,,,,,
+creditor claims against estate,executor,debt_tax,70,,LOW,60.8,40,90
+debt after death who is responsible,executor,debt_tax,,,,,,
+am i responsible for my parents debt,executor,debt_tax,390,0.03,LOW,358.3,140,480
+what happens to credit card debt when someone dies,executor,debt_tax,720,0.22,LOW,780.8,590,880
+final tax return for deceased,executor,debt_tax,110,4.38,LOW,109.2,30,260
+how to file taxes for a deceased person,executor,debt_tax,720,1.99,LOW,763.3,210,1900
+estate tax return,executor,debt_tax,1600,4.01,LOW,1575.0,1000,2900
+form 1041 estate,executor,debt_tax,210,1.16,LOW,195.0,70,320
+do you have to pay taxes on inheritance,executor,debt_tax,6600,1.01,LOW,6675.0,5400,8100
+inheritance tax by state,executor,debt_tax,2900,1.26,LOW,2950.0,2400,3600
+notify creditors of death,executor,debt_tax,70,0.36,LOW,64.2,40,90
+probate notice to creditors,executor,debt_tax,50,,LOW,57.5,40,70
+canceling deceased person's credit cards,executor,debt_tax,,,,,,
+deceased person's utility bills,executor,debt_tax,,,,,,
+how to find a will,executor,will_disputes,1300,3.05,MEDIUM,1350.0,1300,1600
+where to find a deceased person's will,executor,will_disputes,,,,,,
+reading of the will process,executor,will_disputes,,,,,,
+contesting a will,executor,will_disputes,2900,6.47,LOW,2733.3,1600,12100
+how to contest a will,executor,will_disputes,1000,4.22,MEDIUM,1105.0,880,1600
+will dispute process,executor,will_disputes,,,,,,
+does power of attorney end at death,executor,will_disputes,2400,2.14,LOW,2191.7,1900,2400
+power of attorney ends at death,executor,will_disputes,110,1.72,LOW,102.5,70,140
+probate in texas,executor,state_TX,590,4.46,LOW,544.2,480,590
+texas probate process,executor,state_TX,260,3.88,LOW,253.3,210,320
+texas small estate affidavit,executor,state_TX,2400,3.83,MEDIUM,2483.3,1900,2900
+how long does probate take in texas,executor,state_TX,390,6,LOW,374.2,320,480
+probate in california,executor,state_CA,260,7.08,MEDIUM,267.5,210,320
+california probate process,executor,state_CA,260,2.91,LOW,282.5,210,480
+california small estate affidavit,executor,state_CA,1600,3.3,LOW,1550.0,1300,1600
+how long does probate take in california,executor,state_CA,480,6.37,LOW,432.5,320,590
+probate in florida,executor,state_FL,390,9.51,MEDIUM,429.2,390,590
+florida probate process,executor,state_FL,260,6.65,MEDIUM,247.5,170,390
+florida small estate affidavit,executor,state_FL,1000,4.26,MEDIUM,1055.0,880,1300
+how long does probate take in florida,executor,state_FL,480,4.9,LOW,500.0,390,590
+probate in new york,executor,state_NY,390,3.56,LOW,396.7,320,590
+new york probate process,executor,state_NY,170,3.41,MEDIUM,160.0,140,170
+new york small estate affidavit,executor,state_NY,880,3.24,LOW,886.7,720,1000
+how long does probate take in new york,executor,state_NY,320,3.24,LOW,295.0,260,320
+probate in ohio,executor,state_OH,210,2.74,LOW,213.3,170,260
+ohio probate process,executor,state_OH,110,1.32,LOW,109.2,70,210
+ohio small estate affidavit,executor,state_OH,480,3.52,MEDIUM,510.8,390,590
+how long does probate take in ohio,executor,state_OH,210,3.84,LOW,216.7,170,320
+probate in pennsylvania,executor,state_PA,90,8.66,LOW,80.8,50,140
+pennsylvania probate process,executor,state_PA,170,2.43,LOW,168.3,140,210
+pennsylvania small estate affidavit,executor,state_PA,390,2.62,LOW,355.8,260,390
+how long does probate take in pennsylvania,executor,state_PA,50,0.15,LOW,50.0,40,70
+probate in illinois,executor,state_IL,480,3.15,LOW,468.3,390,590
+illinois probate process,executor,state_IL,480,3.15,LOW,468.3,390,590
+illinois small estate affidavit,executor,state_IL,1600,2.87,LOW,1550.0,1300,1900
+how long does probate take in illinois,executor,state_IL,170,0.02,LOW,165.0,140,170
+probate in georgia,executor,state_GA,720,8.04,LOW,703.3,590,880
+georgia probate process,executor,state_GA,90,5.14,MEDIUM,101.7,70,140
+georgia small estate affidavit,executor,state_GA,210,3.25,LOW,205.0,170,260
+how long does probate take in georgia,executor,state_GA,140,0.89,LOW,125.8,90,170
+probate in north carolina,executor,state_NC,390,2.46,LOW,364.2,320,480
+north carolina probate process,executor,state_NC,170,6.25,MEDIUM,158.3,140,210
+north carolina small estate affidavit,executor,state_NC,480,3.02,LOW,490.8,390,590
+how long does probate take in north carolina,executor,state_NC,40,,LOW,37.5,30,50
+probate in michigan,executor,state_MI,210,9.41,MEDIUM,207.5,170,260
+michigan probate process,executor,state_MI,90,5.6,MEDIUM,85.0,70,110
+michigan small estate affidavit,executor,state_MI,880,4.99,LOW,893.3,720,1000
+how long does probate take in michigan,executor,state_MI,170,6.57,LOW,160.8,110,210
+probate in arizona,executor,state_AZ,320,9.14,MEDIUM,300.0,210,480
+arizona probate process,executor,state_AZ,90,5.69,LOW,79.2,50,140
+arizona small estate affidavit,executor,state_AZ,880,3.85,LOW,906.7,720,1000
+how long does probate take in arizona,executor,state_AZ,110,4.72,LOW,107.5,90,140
+probate in virginia,executor,state_VA,320,4.76,LOW,316.7,260,390
+virginia probate process,executor,state_VA,110,2.59,LOW,105.0,90,140
+virginia small estate affidavit,executor,state_VA,1300,4.13,LOW,1225.0,1000,1600
+how long does probate take in virginia,executor,state_VA,90,2.46,LOW,100.0,70,140
+probate in washington state,executor,state_WA,720,4.88,LOW,762.5,590,880
+washington state probate process,executor,state_WA,140,3.45,LOW,147.5,90,210
+washington state small estate affidavit,executor,state_WA,1300,3.42,MEDIUM,1250.0,1000,1600
+how long does probate take in washington state,executor,state_WA,210,1.64,LOW,197.5,170,260
+probate lawyer cost texas,executor,state_TX,10,,LOW,10.0,10,10
+does texas require probate,executor,state_TX,,,,,,
+california probate threshold,executor,state_CA,90,0.47,LOW,78.3,50,110
+probate lawyer cost california,executor,state_CA,10,,MEDIUM,8.3,0,10
+estate planning,pre-need,estate_planning_general,33100,6.66,LOW,36800.0,33100,40500
+estate planning checklist,pre-need,estate_planning_general,1600,3.56,MEDIUM,1450.0,1000,1900
+estate planning cost,pre-need,estate_planning_general,1300,6.05,MEDIUM,1325.0,1000,1900
+estate planning attorney,pre-need,estate_planning_general,368000,6.49,LOW,364916.7,301000,450000
+estate planning attorney near me,pre-need,estate_planning_general,40500,6.49,MEDIUM,43491.7,27100,74000
+how much does estate planning cost,pre-need,estate_planning_general,880,4.87,LOW,873.3,720,1000
+estate planning for dummies,pre-need,estate_planning_general,320,2.31,HIGH,350.0,260,590
+estate planning documents,pre-need,estate_planning_general,5400,4.62,LOW,5483.3,2900,8100
+estate planning checklist for parents,pre-need,estate_planning_general,,,,,,
+online estate planning,pre-need,estate_planning_general,1300,13.56,MEDIUM,1300.0,720,2900
+do it yourself estate planning,pre-need,estate_planning_general,50,3.57,HIGH,56.7,30,70
+when should you start estate planning,pre-need,estate_planning_general,20,6.74,LOW,22.5,10,30
+estate planning for young families,pre-need,estate_planning_general,30,9.57,LOW,34.2,20,70
+estate planning for married couples,pre-need,estate_planning_general,880,14.61,LOW,806.7,720,1000
+estate planning checklist pdf,pre-need,estate_planning_general,170,5.17,MEDIUM,158.3,70,260
+estate planning software,pre-need,estate_planning_general,1900,28.05,LOW,2100.0,1000,2900
+estate planning lawyer cost near me,pre-need,estate_planning_general,,,,,,
+estate planning for high net worth,pre-need,estate_planning_general,320,50.48,LOW,360.8,210,720
+when to update your will,pre-need,estate_planning_general,10,,LOW,11.7,10,30
+how often should you update your estate plan,pre-need,estate_planning_general,,,,,,
+estate planning after divorce,pre-need,estate_planning_general,170,,LOW,167.5,110,210
+estate planning after remarriage,pre-need,estate_planning_general,,,,,,
+second marriage estate planning,pre-need,estate_planning_general,390,,LOW,401.7,320,590
+last will and testament,pre-need,wills,12100,5.23,MEDIUM,12225.0,9900,14800
+how to write a will,pre-need,wills,6600,2.53,MEDIUM,6475.0,5400,8100
+how to make a will,pre-need,wills,6600,4.17,MEDIUM,6825.0,5400,9900
+cost of making a will,pre-need,wills,390,2.91,MEDIUM,381.7,320,480
+online will maker,pre-need,wills,3600,8.77,LOW,3808.3,1900,9900
+free will template,pre-need,wills,4400,3.65,MEDIUM,4216.7,2900,5400
+will vs trust,pre-need,wills,18100,2.67,MEDIUM,19808.3,18100,22200
+who needs a will,pre-need,wills,90,2.91,LOW,91.7,50,140
+what happens if i die without a will,pre-need,wills,260,0.79,LOW,276.7,210,320
+guardian for minor children in a will,pre-need,wills,,,,,,
+naming a guardian for children,pre-need,wills,,,,,,
+legalzoom will cost,pre-need,wills,320,5.56,MEDIUM,312.5,210,390
+rocket lawyer will cost,pre-need,wills,50,5.64,MEDIUM,46.7,20,90
+pour over will,pre-need,wills,8100,3.59,LOW,8158.3,5400,12100
+living trust,pre-need,trusts,33100,5.1,MEDIUM,34450.0,27100,40500
+revocable living trust,pre-need,trusts,33100,3.32,MEDIUM,30933.3,22200,40500
+what is a living trust,pre-need,trusts,18100,1.9,MEDIUM,16175.0,14800,18100
+living trust vs will,pre-need,trusts,12100,3.44,MEDIUM,12408.3,9900,14800
+how to set up a living trust,pre-need,trusts,2400,2.98,MEDIUM,2483.3,1900,2900
+irrevocable trust,pre-need,trusts,40500,3.45,MEDIUM,43633.3,33100,49500
+trust fund,pre-need,trusts,27100,12.46,LOW,26875.0,22200,33100
+setting up a trust,pre-need,trusts,4400,7.25,MEDIUM,5000.0,3600,5400
+revocable trust vs irrevocable trust,pre-need,trusts,22200,1.75,MEDIUM,24241.7,22200,27100
+living trust cost,pre-need,trusts,3600,4.74,MEDIUM,3266.7,2400,3600
+how much does a trust cost,pre-need,trusts,2900,3.1,LOW,2733.3,2400,2900
+family trust,pre-need,trusts,12100,1.03,LOW,11958.3,9900,14800
+special needs trust,pre-need,trusts,12100,4.25,LOW,11408.3,9900,14800
+charitable trust,pre-need,trusts,1600,6.58,LOW,1700.0,1300,1900
+trust and will reviews,pre-need,trusts,5400,6.53,MEDIUM,5300.0,3600,8100
+will and trust package cost,pre-need,trusts,,,,,,
+power of attorney,pre-need,poa_directives,90500,4.48,MEDIUM,86375.0,74000,90500
+durable power of attorney,pre-need,poa_directives,49500,3.38,MEDIUM,47883.3,33100,60500
+medical power of attorney,pre-need,poa_directives,18100,4.23,MEDIUM,18575.0,14800,22200
+power of attorney form,pre-need,poa_directives,33100,4.3,HIGH,37183.3,27100,49500
+how to get power of attorney,pre-need,poa_directives,12100,3.33,MEDIUM,13000.0,12100,14800
+power of attorney for elderly parent,pre-need,poa_directives,1900,5.28,LOW,2075.0,1600,2900
+power of attorney vs guardianship,pre-need,poa_directives,2400,4.91,LOW,2525.0,2400,2900
+how to choose a power of attorney,pre-need,poa_directives,50,1.11,LOW,45.0,20,70
+advance directive,pre-need,poa_directives,60500,2.57,LOW,68375.0,60500,74000
+advance healthcare directive,pre-need,poa_directives,60500,2.57,LOW,68375.0,60500,74000
+living will,pre-need,poa_directives,33100,3.76,MEDIUM,30100.0,27100,33100
+what is a living will,pre-need,poa_directives,12100,1.27,LOW,13000.0,12100,14800
+healthcare proxy,pre-need,poa_directives,14800,2.39,LOW,14350.0,12100,14800
+do not resuscitate order,pre-need,poa_directives,480,1.48,LOW,521.7,390,720
+dnr order,pre-need,poa_directives,1000,1.71,LOW,1005.0,880,1300
+beneficiary designation,pre-need,beneficiary,2400,8.15,LOW,2500.0,1900,3600
+how to update beneficiary designations,pre-need,beneficiary,,,,,,
+transfer on death designation,pre-need,beneficiary,90,1.19,LOW,82.5,50,140
+payable on death account,pre-need,beneficiary,590,1.86,LOW,620.8,390,1000
+get affairs in order,pre-need,affairs_in_order,140,2.94,LOW,140.0,110,170
+how to get my affairs in order,pre-need,affairs_in_order,20,,LOW,22.5,10,30
+affairs in order checklist,pre-need,affairs_in_order,20,1.51,LOW,15.0,10,30
+end of life planning checklist,pre-need,affairs_in_order,720,2.66,HIGH,669.2,480,1300
+end of life planning,pre-need,affairs_in_order,1600,4.33,MEDIUM,1600.0,1300,1900
+how to talk to parents about estate planning,pre-need,affairs_in_order,20,,LOW,15.8,10,20
+talking to elderly parents about finances,pre-need,affairs_in_order,10,,,9.2,0,10
+checklist for aging parents,pre-need,affairs_in_order,140,1.99,MEDIUM,145.8,110,210
+what documents do elderly parents need,pre-need,affairs_in_order,,,,,,
+important documents for aging parents,pre-need,affairs_in_order,,,,,,
+aging parent finances checklist,pre-need,affairs_in_order,,,,,,
+helping elderly parents with paperwork,pre-need,affairs_in_order,,,,,,
+caring for aging parents financially,pre-need,affairs_in_order,10,,LOW,1.7,0,10
+digital estate planning,pre-need,affairs_in_order,390,8.83,LOW,386.7,320,590
+password manager for after death,pre-need,affairs_in_order,,,,,,
+funeral pre planning,pre-need,funeral_preplan,880,9.04,LOW,905.0,720,1300
+prepaid funeral plans,pre-need,funeral_preplan,1900,9.04,MEDIUM,1758.3,1000,2400
+pre need funeral arrangements,pre-need,funeral_preplan,90,8.77,LOW,85.0,30,260
+funeral trust,pre-need,funeral_preplan,480,4.15,LOW,473.3,320,590
+estate tax exemption,pre-need,tax_elder_law,2900,5.22,LOW,2791.7,1900,8100
+gift tax exemption,pre-need,tax_elder_law,1900,1.96,LOW,1775.0,1300,2900
+annual gift tax exclusion,pre-need,tax_elder_law,2400,2.87,LOW,2500.0,1900,3600
+succession planning family business,pre-need,tax_elder_law,2900,13.99,LOW,2866.7,1000,9900
+retirement and estate planning,pre-need,tax_elder_law,210,25.57,MEDIUM,211.7,140,320
+long term care planning,pre-need,tax_elder_law,590,5.26,LOW,539.2,320,880
+long term care insurance,pre-need,tax_elder_law,74000,9.03,MEDIUM,72208.3,49500,90500
+medicaid planning for nursing home,pre-need,tax_elder_law,210,0.39,LOW,193.3,90,390
+medicaid asset protection trust,pre-need,tax_elder_law,14800,6.16,LOW,14816.7,9900,18100
+elder law attorney,pre-need,tax_elder_law,27100,9.23,LOW,24966.7,18100,33100
+elder law attorney near me,pre-need,tax_elder_law,22200,7.19,MEDIUM,23900.0,18100,27100
+nursing home planning checklist,pre-need,tax_elder_law,,,,,,
+how to protect assets from nursing home costs,pre-need,tax_elder_law,50,0.48,LOW,45.8,20,70
+five year lookback medicaid,pre-need,tax_elder_law,170,,LOW,178.3,90,210

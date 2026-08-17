@@ -1,202 +1,70 @@
-Welcome to your new TanStack Start app! 
+# In Peace
 
-# Getting Started
+A calm guide for the weeks after a death, and for getting a family's affairs in order before one. Prototype, live at https://inpeace.kylehess.workers.dev.
 
-To run this application:
+Someone answers a few questions (which situation they're in, state, date, whether there was a will, what assets exist, who's around to help) and gets a plan: a phased timeline with real computed deadlines, an inventory of accounts and people to notify, guidance on funeral costs and rights, what can wait, and who to lean on. Everything runs in the browser. There is no account, no server, and no data leaves the device.
+
+The research and the plan behind the product are in [`docs/`](docs/README.md). The group deck is at [`public/deck.html`](public/deck.html).
+
+## Run it
+
+Needs [Bun](https://bun.sh).
 
 ```bash
 bun install
-bun --bun run dev
+bun run dev        # http://localhost:3000
 ```
 
-# Building For Production
-
-To build this application for production:
+Other commands:
 
 ```bash
-bun --bun run build
+bun run build      # production build to dist/client
+bun run typecheck  # tsc, no emit
+bun run preview    # serve the production build locally
 ```
 
-## Testing
+Demo scenarios, useful for skipping the intake: `/plan?demo=a` (Texas, no will, alone, veteran), `/plan?demo=b` (California, will, home and retirement, with family), `/plan?demo=c` and `/plan?demo=d` (the two planning-ahead doors). There's also a small "demo" link in the footer.
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+## Making changes with an AI agent
 
-```bash
-bun --bun run test
+The repo is set up so you can hand it to Claude, ChatGPT, Cursor, or similar and describe the change in plain language. [`AGENTS.md`](AGENTS.md) tells the agent how the codebase is organized and what the conventions are. Good asks look like:
+
+- "Add Florida to the state rules engine, with its small-estate affidavit threshold and waiting period."
+- "Add a card to the funeral guidance section about veterans' burial benefits."
+- "Change the wording of the 'It can wait' section on the landing page."
+- "Add a religion option for Buddhist and adjust the funeral timing note."
+
+Most content lives in plain TypeScript data files under `src/data/`, so many changes are copy edits, not code.
+
+## How it's built
+
+TanStack Start (React 19, file-based routing) as a client-only SPA, Tailwind 4 with shadcn/ui components, deployed as static assets on Cloudflare Workers. State is a single React context persisted to `localStorage`.
+
+```
+src/
+  routes/          three pages: / (landing), /start (intake), /plan (the plan)
+  components/
+    landing/       landing page sections
+    intake/        the question wizard, one file per step
+    plan/          plan screen sections (timeline, inventory, care circle, guidance, ...)
+    layout/        header and footer
+    ui/            shadcn primitives
+  data/            all guidance content, as typed data
+    states/        per-state rules (tx.ts, ca.ts) and the Rule type
+    *.ts           funeral guidance, certificates, edge cases, inventory, people, religion, ...
+  lib/
+    plan-engine.ts turns intake answers into a plan (which rules fire, computed dates, sections)
+    analytics.ts   PostHog wrapper, key intentionally blank
+  store/           intake context and localStorage persistence
+  types/           IntakeAnswers and friends
+public/
+  deck.html        the group deck, self-contained HTML
+  fonts/           self-hosted Fraunces
+docs/              research and the phased plan
 ```
 
-## Styling
+The core idea in the code: a `Rule` has a `trigger(answers)`, a `copy(ctx)` that returns a title and body, an optional `computeDate(ctx)`, and a phase (this week / this month / months ahead). The plan engine collects the rules that fire for a given set of answers, sorts them into phases, and the plan screen renders them. Adding guidance usually means adding a rule to a data file.
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+## Deploy
 
-### Removing Tailwind CSS
-
-If you prefer not to use Tailwind CSS:
-
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `bun install @tailwindcss/vite tailwindcss -D`
-
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpm dlx shadcn@latest add button
-```
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+`bun run build && bunx wrangler deploy`. `wrangler.jsonc` targets the ParkerStreet Cloudflare account; you'll need access to that account, or change the `account_id` to deploy elsewhere.

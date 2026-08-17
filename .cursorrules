@@ -1,7 +1,3 @@
-# shadcn instructions
+See AGENTS.md for how this repo is organized and the conventions to follow.
 
-Use the latest version of Shadcn to install new components, like this command to add a button component:
-
-```bash
-bunx --bun shadcn@latest add button
-```
+Add shadcn components with: bunx --bun shadcn@latest add <name>
