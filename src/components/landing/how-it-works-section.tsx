@@ -6,15 +6,15 @@ interface Step {
 const STEPS: Step[] = [
   {
     title: "Answer a few questions",
-    body: "A few short questions. Nothing to prepare, nothing to get right.",
+    body: "A few short questions. There's nothing to prepare.",
   },
   {
     title: "See your plan",
-    body: "A calm, personal rundown of what's this week, what's this month, and what can wait.",
+    body: "A calm, personal rundown of what needs you this month and what can wait.",
   },
   {
     title: "Come back whenever",
-    body: "It's still here next week, next month. Nothing expires and nothing nags you.",
+    body: "It's still here next week and next month. Nothing expires.",
   },
 ]
 

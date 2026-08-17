@@ -6,16 +6,16 @@ interface Pillar {
 /** Mirrors the product's own four layers, condensed into three plain ideas. */
 const PILLARS: Pillar[] = [
   {
-    title: "A plan that breathes",
-    body: "Built around how you're doing and what they left behind: real dates, not a generic checklist. Rest is part of the plan, not something you're behind on.",
+    title: "Paced to how you're doing",
+    body: "Built around how you're doing and what they left behind, with real dates. Rest is part of the plan.",
   },
   {
     title: "Protection from the mistakes nobody warns you about",
-    body: "Decisions that can't be undone, like missed deadlines, signed-away rights, or deals made too fast, get flagged gently, before they happen, not after.",
+    body: "Decisions that can't be undone, like missed deadlines, signed-away rights, or deals made too fast, get flagged gently, before they happen.",
   },
   {
     title: "People, when you want them",
-    body: "Grief support, death doulas, estate attorneys: introduced only when they'd help, never as a pitch.",
+    body: "Grief support, death doulas, estate attorneys: introduced when they'd help.",
   },
 ]
 

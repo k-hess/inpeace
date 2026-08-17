@@ -24,7 +24,7 @@ export const conversationNote: { title: string; body: string } = {
 }
 
 export const conversationNoteSelf: { title: string; body: string } = {
-  title: "This isn't about asking anyone. It's about writing it down",
+  title: "You already know most of this. Write it down",
   body: "You already know most of these answers. What makes them useful later is getting them out of your head: written down somewhere your family would think to look, or said out loud to whoever you'd trust with this. Working through it together turns it into a shared task instead of something you're carrying alone.",
 }
 
@@ -76,7 +76,7 @@ export const questionGroups: QuestionGroup[] = [
   {
     id: "questions-practical-nobody-asks",
     label: "The practical ones nobody asks",
-    blurb: "Easy to skip, expensive to skip.",
+    blurb: "Easy to skip, and costly later.",
     questions: [
       "Is there a pre-paid funeral or cemetery plot already?",
       "Am I on any of your accounts?",

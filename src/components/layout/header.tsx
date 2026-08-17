@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router"
-import { Waves } from "lucide-react"
 import { useIntake } from "#/store/intake-context"
 
 /**
@@ -17,7 +16,7 @@ export function Header() {
           to="/"
           className="inline-flex items-center gap-2 font-serif text-lg tracking-[-0.01em] text-foreground transition hover:text-foreground/80"
         >
-          <Waves className="h-3.5 w-3.5 text-primary/70" aria-hidden />
+          <img src="/favicon.svg" alt="" className="h-5 w-5 rounded-[3px]" aria-hidden />
           In Peace
         </Link>
         <HeaderAction />

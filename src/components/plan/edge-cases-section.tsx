@@ -18,13 +18,13 @@ export function EdgeCasesSection({
     <ReferenceSection
       id={id}
       kicker="Easy to miss"
-      heading="The things people find out too late."
+      heading="Worth knowing before you need it."
       essence="Nothing urgent today, but each one is cheaper to know about in advance than to discover in the moment."
       expanded={expanded}
       onExpand={onExpand}
     >
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
-        The things people find out too late.
+        Worth knowing before you need it.
       </h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
         None of these are urgent today, but each one is the kind of thing that's much cheaper to know

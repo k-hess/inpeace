@@ -192,11 +192,11 @@ export interface GatheringPlanData {
 
 const GATHERING_INTRO: Record<Extract<JourneyMode, "for-family" | "for-self">, { headline: string; sub: string }> = {
   "for-self": {
-    headline: "Getting this together now is a gift to whoever would otherwise have to guess.",
+    headline: "Getting this together now saves whoever comes after you from guessing.",
     sub: "None of this is morbid or urgent. It's easier to gather at your own pace than to have someone else piece it together later.",
   },
   "for-family": {
-    headline: "The conversation is the hard part. This is the list that makes it concrete.",
+    headline: "The conversation is the hard part. This list gives it somewhere to start.",
     sub: "You don't need to ask everything at once. This turns a vague, uncomfortable topic into a short set of questions and a list of what to look for.",
   },
 }

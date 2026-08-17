@@ -51,8 +51,7 @@ export function NotificationTracker({
     <div className="card-surface rounded-2xl px-6 py-6">
       <p className="font-medium text-foreground">Who's been told</p>
       <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-        This is the fan-out nobody tracks: every place that needs to hear about it, in one list
-        instead of scattered across memory and notebooks.
+        Every place that needs to hear about it, in one list.
       </p>
 
       <ul className="mt-5 flex flex-col gap-2">

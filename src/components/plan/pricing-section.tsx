@@ -9,13 +9,13 @@ export function PricingSection() {
       <p className="kicker kicker-rule mb-4">Pricing</p>
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="card-surface rounded-2xl px-6 py-5">
-          <p className="font-medium text-foreground">In Peace — $149</p>
+          <p className="font-medium text-foreground">In Peace, $149</p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-            Your plan, the deadlines for your state, and the trackers, for as long as this takes.
+            Your plan, the deadlines for your state, and the trackers, for as long as you need them.
           </p>
         </div>
         <div className="card-surface rounded-2xl px-6 py-5">
-          <p className="font-medium text-foreground">In Peace, guided — from $500</p>
+          <p className="font-medium text-foreground">In Peace guided, from $500</p>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             The same plan, plus a person who has done this hundreds of times, on call through the
             months.

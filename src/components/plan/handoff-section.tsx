@@ -37,11 +37,10 @@ export function HandoffSection({ id }: { id: string }) {
     <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Who can open this</p>
       <h2 className="display text-2xl leading-snug text-foreground sm:text-3xl">
-        This only helps if it reaches someone.
+        Who gets this list
       </h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        A list like this is only useful if it gets to the right person when the time comes, not sooner
-        and not never. Here's who that would be for this plan.
+        A list like this is only useful if it gets to the right person when the time comes. Here's who that would be for this plan.
       </p>
       <div className="flex flex-col gap-3">
         {PLACEHOLDER_PEOPLE.map((person) => (

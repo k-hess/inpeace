@@ -7,7 +7,7 @@ export function ProtectionSection({ cards, id }: { cards: PlanCard[]; id: string
     <section id={id} className="section-anchor mb-16">
       <p className="kicker kicker-rule mb-4">Protect yourself</p>
       <p className="mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        Nothing is wrong. These are the few mistakes that can't be undone, listed here so they never happen.
+        Nothing is wrong. These are the few mistakes that can't be undone, listed here so you see them early.
       </p>
       <div className="flex flex-col gap-3">
         {cards.map((card) => (

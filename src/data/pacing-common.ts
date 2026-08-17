@@ -60,7 +60,7 @@ export const commonPacingRules: Rule[] = [
     phase: "months-ahead",
     trigger: () => true,
     copy: (ctx) => ({
-      title: "Their final tax return, next spring, not now",
+      title: "Their final tax return, next spring",
       body: `A final return still gets filed for the year they died. It is due ${formatDateLong(
         nextAprilFifteenth(ctx.dateOfDeath),
       )}. Nothing about it needs attention now; it's on the list so it never surprises you.`,

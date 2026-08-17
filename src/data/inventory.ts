@@ -88,7 +88,7 @@ export const inventoryGroups: InventoryGroup[] = [
         id: "money-safe-deposit",
         label: "Safe deposit box",
         whereToLook: "A small key in a drawer or lockbox, and a bank statement showing a rental fee.",
-        whereToLookSelf: "If you have one, write down the bank and where the key actually lives, not only in a drawer only you know about.",
+        whereToLookSelf: "If you have one, write down the bank and where the key is.",
       },
       {
         id: "money-life-insurance",
@@ -164,7 +164,7 @@ export const inventoryGroups: InventoryGroup[] = [
         id: "documents-will",
         label: "Will or trust",
         whereToLook: "A home safe, a filing cabinet, or the estate attorney who drafted it.",
-        whereToLookSelf: "Note where your will or trust actually lives, and make sure at least one other person knows. A will nobody can find works the same as no will.",
+        whereToLookSelf: "Note where your will or trust lives, and make sure at least one other person knows. A will nobody can find works the same as no will.",
       },
       {
         id: "documents-deed",
@@ -276,7 +276,7 @@ export const inventoryGroups: InventoryGroup[] = [
         id: "digital-cloud-storage",
         label: "Cloud storage and photos",
         whereToLook: "Their phone's settings, or an email account's linked services.",
-        whereToLookSelf: "Note where your photos and files actually live: which service, under which account.",
+        whereToLookSelf: "Note where your photos and files live: which service, under which account.",
       },
       {
         id: "digital-social",

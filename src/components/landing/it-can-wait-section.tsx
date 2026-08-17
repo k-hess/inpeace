@@ -13,8 +13,7 @@ export function ItCanWaitSection() {
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-pretty text-muted-foreground">
           Urgency leads to the decisions people regret later: signing whatever's put in front of them,
-          selling too fast, agreeing to something to make it stop. Grief already makes it hard to think
-          clearly. A deadline that isn't real makes it worse.
+          selling too fast, agreeing to something to make it stop. Grief already makes it hard to think clearly, and a deadline that isn't real makes it harder.
         </p>
       </div>
     </section>

@@ -94,7 +94,7 @@ function RightNowCard({ content }: { content: RightNowContent | null }) {
             </button>
           </>
         ) : (
-          <p className="text-foreground">Nothing needs you today. Rest counts.</p>
+          <p className="text-foreground">Nothing needs you today. Resting is part of the plan.</p>
         )}
       </div>
     </section>

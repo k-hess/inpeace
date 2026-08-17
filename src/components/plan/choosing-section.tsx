@@ -26,8 +26,7 @@ export function ChoosingSection({
         Ask about how they're paid before anything else.
       </h2>
       <p className="mt-5 mb-6 max-w-lg leading-relaxed text-pretty text-muted-foreground">
-        In every one of these relationships, you can predict the advice from the incentive behind it. One
-        question up front tells you most of what you need to know.
+        How someone is paid shapes the advice they give. One question up front tells you most of what you need to know.
       </p>
       <div className="flex flex-col gap-4">
         {choosingGuides.map((guide) => (
