@@ -38,3 +38,10 @@ export function religionTimingNote(religion: Religion): { title: string; body: s
       return null
   }
 }
+
+/** One note per selected religion, in selection order, skipping any with no timing note. */
+export function religionTimingNotes(religions: Religion[]): { title: string; body: string }[] {
+  return religions
+    .map((religion) => religionTimingNote(religion))
+    .filter((note): note is { title: string; body: string } => note !== null)
+}

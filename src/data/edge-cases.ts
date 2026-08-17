@@ -47,6 +47,30 @@ export const edgeCaseCards: SimpleCard[] = [
     }),
   },
   {
+    id: "edge-obituary",
+    trigger: () => true,
+    copy: () => ({
+      title: "Writing the obituary and placing it are two different jobs",
+      body: "Newspapers charge for obituaries by length, often several hundred dollars, and have a submission deadline that usually falls a day or two before print. Most want the funeral home involved or a death certificate to verify it. Legacy.com aggregates many papers if you're not sure where to place it. The funeral home's website, a memorial page, and social media are free. If a service is announced in it, treat placing it as a this-week task so it runs before the service. A remembrance without a service date can wait.",
+    }),
+  },
+  {
+    id: "edge-friends-want-to-help",
+    trigger: () => true,
+    copy: () => ({
+      title: "Friends will want to help pay for the funeral",
+      body: "It's normal for people to want to give money. The easiest way to let them is one link, a memorial fund through a payment app or crowdfunding page, put in the obituary and the memorial page. Name one person to hold it. Most platforms take a small fee. We don't run the fund or take any cut, we just point to it.",
+    }),
+  },
+  {
+    id: "edge-death-away-from-home",
+    trigger: () => true,
+    copy: () => ({
+      title: "Dying away from home, in another state or city",
+      body: "The death certificate is issued where the death happened, not where they lived. A funeral home in that place has to release the body, and a funeral home at home receives it. Funeral homes coordinate this routinely. Ask for a \"forwarding remains\" or \"receiving remains\" price, which the FTC Funeral Rule requires them to itemize. If flying is involved, airlines generally ship remains as cargo through a known-shipper funeral home rather than as checked luggage. Hospitals only hold a body for a limited time, so this is worth starting quickly.",
+    }),
+  },
+  {
     id: "edge-autopays",
     trigger: () => true,
     copy: () => ({

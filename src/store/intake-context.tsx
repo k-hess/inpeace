@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useRef, useState, type ReactNode } from "react"
-import { EMPTY_ANSWERS, type IntakeAnswers } from "#/types/intake"
+import { EMPTY_ANSWERS, type IntakeAnswers, type Religion } from "#/types/intake"
 import { scenarios } from "#/data/scenarios"
 import { careCircleSlots } from "#/data/care-circle"
 import type { InventoryCategoryId } from "#/data/inventory"
@@ -162,6 +162,24 @@ interface CoreState {
   progress: ProgressState
 }
 
+/**
+ * Old persisted answers stored a single `religion: Religion`; the intake
+ * now collects `religions: Religion[]` so mixed-faith families can pick
+ * more than one. Migrate in place on read rather than bumping the storage
+ * version, so a returning visitor's in-progress plan and vault entries
+ * aren't discarded just for this.
+ */
+function migrateAnswers(raw: unknown): Partial<IntakeAnswers> {
+  if (!raw || typeof raw !== "object") return {}
+  const answers = raw as Partial<IntakeAnswers> & { religion?: Religion }
+  if (answers.religions) return answers
+  if (answers.religion) {
+    const { religion, ...rest } = answers
+    return { ...rest, religions: religion === "unspecified" ? [] : [religion] }
+  }
+  return answers
+}
+
 function readPersisted(): PersistedRoot {
   const fallback: PersistedRoot = {
     version: CURRENT_VERSION,
@@ -177,7 +195,7 @@ function readPersisted(): PersistedRoot {
     if (parsed.version !== CURRENT_VERSION) return fallback
     return {
       version: CURRENT_VERSION,
-      answers: { ...EMPTY_ANSWERS, ...parsed.answers },
+      answers: { ...EMPTY_ANSWERS, ...migrateAnswers(parsed.answers) },
       progress: { ...createDefaultProgress(), ...parsed.progress },
       lastVisit: typeof parsed.lastVisit === "number" ? parsed.lastVisit : null,
     }

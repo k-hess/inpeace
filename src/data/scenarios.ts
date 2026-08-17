@@ -19,7 +19,7 @@ export const scenarios: Record<"a" | "b" | "c" | "d", IntakeAnswers> = {
     firstName: null,
     veteran: true,
     mode: "after",
-    religion: "unspecified",
+    religions: [],
   },
   // California, will, home + retirement + investments, with siblings, died 6 weeks ago.
   b: {
@@ -31,7 +31,7 @@ export const scenarios: Record<"a" | "b" | "c" | "d", IntakeAnswers> = {
     firstName: "Robert",
     veteran: false,
     mode: "after",
-    religion: "unspecified",
+    religions: [],
   },
   // Texas, helping a family member get ready, will unclear, a couple of
   // assets, Jewish — exercises the religion timing note.
@@ -44,7 +44,7 @@ export const scenarios: Record<"a" | "b" | "c" | "d", IntakeAnswers> = {
     firstName: null,
     veteran: false,
     mode: "for-family",
-    religion: "jewish",
+    religions: ["jewish"],
   },
   // California, getting your own affairs in order, will in place, several
   // assets, religion left unspecified.
@@ -57,6 +57,6 @@ export const scenarios: Record<"a" | "b" | "c" | "d", IntakeAnswers> = {
     firstName: null,
     veteran: false,
     mode: "for-self",
-    religion: "unspecified",
+    religions: [],
   },
 }

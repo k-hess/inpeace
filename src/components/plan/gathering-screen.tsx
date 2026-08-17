@@ -1,4 +1,5 @@
 import { VaultSection } from "#/components/plan/vault-section"
+import { ChangeAnswersLink } from "#/components/plan/change-answers-link"
 import { QuestionsSection } from "#/components/plan/questions-section"
 import { ChoosingSection } from "#/components/plan/choosing-section"
 import { HandoffSection } from "#/components/plan/handoff-section"
@@ -40,12 +41,16 @@ function buildNavSections(plan: GatheringPlanData): PlanNavSection[] {
 /** Reference sections (change 4) that collapse to a summary by default — just Choosing on this plan. */
 const COLLAPSIBLE_SECTION_IDS = new Set(["choosing"])
 
-function ReligionNote({ religionNote }: { religionNote: NonNullable<GatheringPlanData["religionNote"]> }) {
+function ReligionNotes({ notes }: { notes: GatheringPlanData["religionNotes"] }) {
   return (
-    <div className="protect-card mb-8 px-6 py-5">
-      <p className="font-medium">{religionNote.title}</p>
-      <p className="mt-1.5 text-sm leading-relaxed opacity-90">{religionNote.body}</p>
-    </div>
+    <>
+      {notes.map((note) => (
+        <div key={note.title} className="protect-card mb-8 px-6 py-5">
+          <p className="font-medium">{note.title}</p>
+          <p className="mt-1.5 text-sm leading-relaxed opacity-90">{note.body}</p>
+        </div>
+      ))}
+    </>
   )
 }
 
@@ -83,12 +88,15 @@ export function GatheringScreen({ plan }: { plan: GatheringPlanData }) {
             <p className="kicker kicker-rule mb-5">Your gathering plan · {plan.stateName}</p>
             <h1 className="display text-[2.1rem] leading-[1.15] text-foreground sm:text-[2.6rem]">{plan.headline}</h1>
             <p className="mt-4 max-w-lg leading-relaxed text-pretty text-muted-foreground">{plan.sub}</p>
+            <p className="mt-5">
+              <ChangeAnswersLink mode={plan.mode} />
+            </p>
           </header>
 
           <ReturnStrip returnGapMs={returnGapMs} progress={progress} movedLine={null} nextThingLine={nextThingLine} />
           <RightNowInventoryPrompt plan={plan} />
 
-          {plan.religionNote ? <ReligionNote religionNote={plan.religionNote} /> : null}
+          {plan.religionNotes.length > 0 ? <ReligionNotes notes={plan.religionNotes} /> : null}
 
           {plan.mode === "for-self" ? (
             <>

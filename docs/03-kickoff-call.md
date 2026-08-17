@@ -10,7 +10,7 @@ Two buckets, and the group picked bucket 1 as the hero.
 
 **Bucket 2, the week of.** Funeral and wake logistics, florists, meal funds, task delegation. Kelly's model was a BabyList-style registry and checklist. Group consensus: the vendor and marketplace half is phase 2 or later. It's time-bound, vendor-dependent, liability-exposed, and state-regulated. VJ: "a bad experience... they said they'll help you with all that, they made my life worse."
 
-**Community as the third leg.** Laura's Comfort Club is the live proof; grief groups, message boards, a podcast tie-in. Framed as the trust-builder and adoption driver, not a revenue line.
+**Community as the third leg.** Kelly's Comfort Club is the live proof; grief groups, message boards, a podcast tie-in. Framed as the trust-builder and adoption driver, not a revenue line.
 
 Principles the group agreed on without prompting:
 

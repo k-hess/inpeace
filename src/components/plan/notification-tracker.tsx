@@ -66,6 +66,9 @@ export function NotificationTracker({
             >
               <div className="flex flex-1 flex-col gap-0.5">
                 <span className="text-sm text-foreground">{item.label}</span>
+                {item.note ? (
+                  <span className="text-xs text-muted-foreground">{item.note}</span>
+                ) : null}
                 {item.needsCert ? (
                   <span className="text-xs text-muted-foreground">Needs a certified copy</span>
                 ) : null}

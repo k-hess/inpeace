@@ -1,3 +1,5 @@
+import { ChangeAnswersLink } from "#/components/plan/change-answers-link"
+
 interface PlanHeaderProps {
   headline: string
   sub: string
@@ -16,6 +18,9 @@ export function PlanHeader({ headline, sub, stateName, firstName }: PlanHeaderPr
       <p className="mt-7 max-w-lg font-serif text-base italic leading-relaxed text-muted-foreground">
         You've done enough for today by getting this far. Come back whenever you want. Nothing here
         expires.
+      </p>
+      <p className="mt-5">
+        <ChangeAnswersLink mode="after" />
       </p>
     </header>
   )

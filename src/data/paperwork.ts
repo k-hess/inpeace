@@ -41,6 +41,8 @@ export interface NotificationItem {
   id: string
   label: string
   needsCert: boolean
+  /** Optional detail shown under the label, for items that need more than a name to be useful. */
+  note?: string
 }
 
 /**
@@ -60,7 +62,12 @@ export function buildNotifications(assets: AssetKey[], will: WillStatus | null):
   ]
 
   if (assets.includes("car")) {
-    items.push({ id: "notify-dmv", label: "DMV, title transfer for the car", needsCert: true })
+    items.push({
+      id: "notify-dmv",
+      label: "DMV, title transfer for the car",
+      needsCert: true,
+      note: "If there's more than one vehicle, each one is its own title transfer, filed separately.",
+    })
   }
   if (assets.includes("investments")) {
     items.push({ id: "notify-brokerage", label: "Brokerage", needsCert: true })
@@ -68,7 +75,15 @@ export function buildNotifications(assets: AssetKey[], will: WillStatus | null):
 
   items.push(
     { id: "notify-subscriptions", label: "Subscriptions and phone plan", needsCert: false },
-    { id: "notify-employer", label: "Employer", needsCert: false },
+    {
+      id: "notify-employer",
+      label:
+        "Employer's HR or benefits team, if they were working, or retired from an employer with benefits",
+      needsCert: true,
+      // COBRA continuation for a surviving spouse: generally up to 36 months
+      // after the covered employee's death. 29 U.S.C. § 1163.
+      note: "Group life insurance, an accidental death rider, a final paycheck, unused PTO, and 401(k) or pension beneficiaries usually go through HR or benefits, not an insurer directly. A surviving spouse can generally continue coverage through COBRA for up to 36 months.",
+    },
   )
 
   return items

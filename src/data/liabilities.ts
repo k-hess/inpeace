@@ -42,6 +42,14 @@ export const liabilityCards: SimpleCard[] = [
     }),
   },
   {
+    id: "liability-other-property",
+    trigger: (answers) => answers.assets.includes("home"),
+    copy: () => ({
+      title: "A second property carries its own costs",
+      body: "A second home, a rental, or land needs its own insurance, utilities, and taxes kept current. Vacant-property clauses can void coverage after roughly 30 to 60 days empty, so an unoccupied property is worth checking on sooner rather than later. If it's rented out, tenants need to be told who to pay.",
+    }),
+  },
+  {
     id: "liability-dont-rush",
     trigger: () => true,
     copy: () => ({

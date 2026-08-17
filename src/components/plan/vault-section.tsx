@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Lock, Check, Paperclip, Pencil, X } from "lucide-react"
+import { ChevronDown, Lock, Check, Paperclip, Pencil, X } from "lucide-react"
 import { cn, formatRelativeTime } from "#/lib/utils"
 import type { VaultGroup } from "#/lib/plan-engine"
 import { useIntake, type VaultContributor, type VaultEntry } from "#/store/intake-context"
@@ -199,8 +199,23 @@ export function VaultSection({ groups, id }: { groups: VaultGroup[]; id: string 
   const { progress, updateProgress } = useIntake()
   const entries = progress.vaultEntries
   const [openForms, setOpenForms] = useState<Record<string, FormState>>({})
+  // Manual expand/collapse overrides, keyed by item id — only set once
+  // someone taps a row. Undefined falls back to the default (open if it
+  // already has a saved entry, or is flagged easily missed; collapsed
+  // otherwise), so newly-saved items open on their own without a click.
+  const [expandOverrides, setExpandOverrides] = useState<Record<string, boolean>>({})
 
   if (groups.length === 0) return null
+
+  function isItemExpanded(item: Item, hasEntry: boolean): boolean {
+    const override = expandOverrides[item.id]
+    if (override !== undefined) return override
+    return hasEntry || Boolean(item.easilyMissed)
+  }
+
+  function toggleItemExpanded(item: Item, hasEntry: boolean) {
+    setExpandOverrides((prev) => ({ ...prev, [item.id]: !isItemExpanded(item, hasEntry) }))
+  }
 
   function openForm(key: string, form: FormState) {
     setOpenForms((prev) => ({ ...prev, [key]: form }))
@@ -356,23 +371,38 @@ export function VaultSection({ groups, id }: { groups: VaultGroup[]; id: string 
                 {group.items.map((item) => {
                   const entry = entries[item.id]
                   const form = openForms[item.id]
+                  const expanded = isItemExpanded(item, Boolean(entry))
                   return (
                     <li key={item.id} className="rounded-xl border border-border/70 bg-secondary/30 px-4 py-3">
-                      {entry ? (
-                        <div>
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex items-start gap-2">
-                              <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <button
+                        type="button"
+                        onClick={() => toggleItemExpanded(item, Boolean(entry))}
+                        aria-expanded={expanded}
+                        className="flex w-full items-center justify-between gap-3 text-left"
+                      >
+                        <div className="flex items-center gap-2">
+                          {entry ? <Check className="size-4 shrink-0 text-primary" /> : null}
+                          <span className="text-sm text-foreground">{item.label}</span>
+                          {item.easilyMissed ? (
+                            <span className="rounded-full border border-dashed border-border px-2 py-0.5 text-[10px] text-muted-foreground/80">
+                              easy to miss
+                            </span>
+                          ) : null}
+                        </div>
+                        <ChevronDown
+                          className={cn(
+                            "size-4 shrink-0 text-muted-foreground transition-transform",
+                            expanded && "rotate-180",
+                          )}
+                          aria-hidden
+                        />
+                      </button>
+                      {expanded ? (
+                        entry ? (
+                          <div className="mt-2">
+                            <div className="flex items-start justify-between gap-3">
                               <div>
-                                <div className="flex items-center gap-2">
-                                  <span className="text-sm text-foreground">{item.label}</span>
-                                  {item.easilyMissed ? (
-                                    <span className="rounded-full border border-dashed border-border px-2 py-0.5 text-[10px] text-muted-foreground/80">
-                                      easy to miss
-                                    </span>
-                                  ) : null}
-                                </div>
-                                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{entry.where}</p>
+                                <p className="text-xs leading-relaxed text-muted-foreground">{entry.where}</p>
                                 {entry.detail ? (
                                   <p className="mt-1 rounded-md bg-background/60 px-2 py-1 font-mono text-xs leading-relaxed text-muted-foreground">
                                     {entry.detail}
@@ -398,72 +428,62 @@ export function VaultSection({ groups, id }: { groups: VaultGroup[]; id: string 
                                   </span>
                                 </div>
                               </div>
-                            </div>
-                            <div className="flex shrink-0 items-center gap-3">
-                              <button
-                                type="button"
-                                onClick={() => editEntry(entry)}
-                                className="inline-flex items-center gap-1 text-xs text-muted-foreground transition hover:text-foreground"
-                              >
-                                <Pencil className="size-3" />
-                                Edit
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => removeEntry(item.id)}
-                                className="text-xs text-muted-foreground underline decoration-dashed underline-offset-4 transition hover:text-foreground"
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          </div>
-                          {form ? (
-                            <VaultForm
-                              form={form}
-                              onChange={(next) => updateForm(item.id, next)}
-                              onSave={() => saveKnownItem(item, groupId)}
-                              onCancel={() => closeForm(item.id)}
-                              wherePlaceholder={item.whereToLook}
-                              showLabelField={false}
-                            />
-                          ) : null}
-                        </div>
-                      ) : (
-                        <div>
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2">
-                                <span className="text-sm text-foreground">{item.label}</span>
-                                {item.easilyMissed ? (
-                                  <span className="rounded-full border border-dashed border-border px-2 py-0.5 text-[10px] text-muted-foreground/80">
-                                    easy to miss
-                                  </span>
-                                ) : null}
+                              <div className="flex shrink-0 items-center gap-3">
+                                <button
+                                  type="button"
+                                  onClick={() => editEntry(entry)}
+                                  className="inline-flex items-center gap-1 text-xs text-muted-foreground transition hover:text-foreground"
+                                >
+                                  <Pencil className="size-3" />
+                                  Edit
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => removeEntry(item.id)}
+                                  className="text-xs text-muted-foreground underline decoration-dashed underline-offset-4 transition hover:text-foreground"
+                                >
+                                  Remove
+                                </button>
                               </div>
-                              <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{item.whereToLook}</p>
                             </div>
-                            {!form ? (
-                              <button
-                                type="button"
-                                onClick={() => openForm(item.id, emptyForm())}
-                                className="shrink-0 text-xs font-medium text-primary underline decoration-dashed underline-offset-4 transition hover:opacity-80"
-                              >
-                                Add
-                              </button>
+                            {form ? (
+                              <VaultForm
+                                form={form}
+                                onChange={(next) => updateForm(item.id, next)}
+                                onSave={() => saveKnownItem(item, groupId)}
+                                onCancel={() => closeForm(item.id)}
+                                wherePlaceholder={item.whereToLook}
+                                showLabelField={false}
+                              />
                             ) : null}
                           </div>
-                          {form ? (
-                            <VaultForm
-                              form={form}
-                              onChange={(next) => updateForm(item.id, next)}
-                              onSave={() => saveKnownItem(item, groupId)}
-                              onCancel={() => closeForm(item.id)}
-                              wherePlaceholder={item.whereToLook}
-                              showLabelField={false}
-                            />
-                          ) : null}
-                        </div>
-                      )}
+                        ) : (
+                          <div className="mt-2">
+                            <div className="flex items-start justify-between gap-3">
+                              <p className="flex-1 text-xs leading-relaxed text-muted-foreground">{item.whereToLook}</p>
+                              {!form ? (
+                                <button
+                                  type="button"
+                                  onClick={() => openForm(item.id, emptyForm())}
+                                  className="shrink-0 text-xs font-medium text-primary underline decoration-dashed underline-offset-4 transition hover:opacity-80"
+                                >
+                                  Add
+                                </button>
+                              ) : null}
+                            </div>
+                            {form ? (
+                              <VaultForm
+                                form={form}
+                                onChange={(next) => updateForm(item.id, next)}
+                                onSave={() => saveKnownItem(item, groupId)}
+                                onCancel={() => closeForm(item.id)}
+                                wherePlaceholder={item.whereToLook}
+                                showLabelField={false}
+                              />
+                            ) : null}
+                          </div>
+                        )
+                      ) : null}
                     </li>
                   )
                 })}

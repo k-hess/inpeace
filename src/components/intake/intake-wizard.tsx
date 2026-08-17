@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "@tanstack/react-router"
+import { useEffect } from "react"
+import { useNavigate, useSearch } from "@tanstack/react-router"
 import { useIntake } from "#/store/intake-context"
 import { ModeStep } from "#/components/intake/mode-step"
 import { StateStep } from "#/components/intake/state-step"
@@ -9,9 +9,11 @@ import { AssetsStep } from "#/components/intake/assets-step"
 import { SupportStep } from "#/components/intake/support-step"
 import { ReligionStep } from "#/components/intake/religion-step"
 import { track } from "#/lib/analytics"
-import { isIntakeComplete, type AssetKey, type JourneyMode } from "#/types/intake"
+import { isIntakeComplete, type AssetKey, type JourneyMode, type Religion } from "#/types/intake"
 
-type StepKey = "mode" | "state" | "date" | "will" | "assets" | "support" | "religion"
+export type StepKey = "mode" | "state" | "date" | "will" | "assets" | "support" | "religion"
+
+export const ALL_STEP_KEYS: StepKey[] = ["mode", "state", "date", "will", "assets", "support", "religion"]
 
 const STEPS_BY_MODE: Record<JourneyMode, StepKey[]> = {
   after: ["mode", "state", "date", "will", "assets", "support", "religion"],
@@ -22,35 +24,71 @@ const STEPS_BY_MODE: Record<JourneyMode, StepKey[]> = {
 // Before a mode is chosen there's nothing to branch on yet — just show the door.
 const DEFAULT_STEPS: StepKey[] = ["mode"]
 
+/** The last question in a given mode's flow — where "Change your answers" lands. */
+export function lastStepForMode(mode: JourneyMode): StepKey {
+  const steps = STEPS_BY_MODE[mode]
+  return steps[steps.length - 1]
+}
+
+/** "none" is exclusive: picking it clears every other pick, and picking anything else clears "none". */
+function toggleReligion(current: Religion[], religion: Religion): Religion[] {
+  if (religion === "none") {
+    return current.includes("none") ? [] : ["none"]
+  }
+  const withoutNone = current.filter((r) => r !== "none")
+  return withoutNone.includes(religion)
+    ? withoutNone.filter((r) => r !== religion)
+    : [...withoutNone, religion]
+}
+
 export function IntakeWizard() {
   const { answers, patch, reset } = useIntake()
-  const [step, setStep] = useState(0)
+  const { step: stepParam } = useSearch({ from: "/start" })
   const navigate = useNavigate()
 
+  const steps = answers.mode ? STEPS_BY_MODE[answers.mode] : DEFAULT_STEPS
+
   // A completed prior run (e.g. from viewing a demo scenario) shouldn't leak
-  // into what's supposed to be a fresh intake. Mid-intake resume is fine —
-  // only a fully-answered set of prior answers gets cleared.
+  // into what's supposed to be a fresh intake — that's a genuine "Begin"
+  // from the landing page, which never carries a step param. Arriving with
+  // a step param (from the browser back button or "Change your answers" on
+  // the plan page) means resuming, so answers are preserved.
   useEffect(() => {
-    if (isIntakeComplete(answers)) reset()
+    if (!stepParam && isIntakeComplete(answers)) reset()
     // Only run once, on mount.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const steps = answers.mode ? STEPS_BY_MODE[answers.mode] : DEFAULT_STEPS
-  const stepCount = steps.length
-  const key = steps[Math.min(step, stepCount - 1)]
-  const position = `${step + 1} of ${stepCount}`
+  // No step param: always start at the first step ("mode"). A step param
+  // naming a step that isn't in the current mode's list (e.g. stale from a
+  // different mode, or from before a mode was chosen) clamps to the last
+  // valid step instead of crashing or landing somewhere confusing.
+  const paramIndex = stepParam ? steps.indexOf(stepParam) : -1
+  const stepIndex = stepParam === undefined ? 0 : paramIndex === -1 ? steps.length - 1 : paramIndex
+  const key = steps[stepIndex]
+  const position = `${stepIndex + 1} of ${steps.length}`
+
+  function goToStep(nextKey: StepKey) {
+    navigate({ to: "/start", search: { step: nextKey } })
+  }
 
   function next(modeOverride?: JourneyMode) {
     // Selecting a door patches `answers.mode` and calls next() in the same
     // tick — the closed-over `answers.mode` is still stale then, so the
-    // caller passes the new mode explicitly for that one step.
-    track("intake_step_completed", { step: key, mode: modeOverride ?? answers.mode ?? "unknown" })
-    setStep((s) => Math.min(s + 1, stepCount - 1))
+    // caller passes the new mode explicitly for that one step. Guarded
+    // with typeof: AssetsStep wires its Continue button as
+    // `onClick={onNext}` (onNext being this function), so a plain click
+    // calls next(clickEvent) — a non-string argument must fall back to the
+    // real steps list rather than trying to index STEPS_BY_MODE with it.
+    track("intake_step_completed", { step: key, mode: (typeof modeOverride === "string" ? modeOverride : null) ?? answers.mode ?? "unknown" })
+    const activeSteps = typeof modeOverride === "string" ? STEPS_BY_MODE[modeOverride] : steps
+    const nextIndex = Math.min(stepIndex + 1, activeSteps.length - 1)
+    goToStep(activeSteps[nextIndex])
   }
 
   function back() {
-    setStep((s) => Math.max(s - 1, 0))
+    const prevIndex = Math.max(stepIndex - 1, 0)
+    goToStep(steps[prevIndex])
   }
 
   function toggleAsset(asset: AssetKey) {
@@ -140,15 +178,15 @@ export function IntakeWizard() {
     case "religion":
       return (
         <ReligionStep
-          value={answers.religion}
+          value={answers.religions}
           onBack={back}
-          onSelect={(religion) => {
-            patch({ religion })
+          onToggle={(religion) => patch({ religions: toggleReligion(answers.religions, religion) })}
+          onContinue={() => {
             track("intake_step_completed", { step: "religion", mode: answers.mode ?? "unknown" })
             navigate({ to: "/plan" })
           }}
           onSkip={() => {
-            patch({ religion: "unspecified" })
+            patch({ religions: [] })
             track("intake_step_completed", { step: "religion", mode: answers.mode ?? "unknown" })
             navigate({ to: "/plan" })
           }}

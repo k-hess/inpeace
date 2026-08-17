@@ -17,7 +17,7 @@ import {
 } from "#/data/paperwork"
 import { inventoryGroups, type InventoryCategoryId } from "#/data/inventory"
 import { getConversationNote, questionGroups, type QuestionGroup } from "#/data/questions-to-ask"
-import { religionTimingNote } from "#/data/religion"
+import { religionTimingNotes } from "#/data/religion"
 import type { IntakeAnswers, JourneyMode } from "#/types/intake"
 
 export interface PlanCard extends RuleCopy {
@@ -187,7 +187,7 @@ export interface GatheringPlanData {
   vaultGroups: VaultGroup[]
   questionGroups: QuestionGroup[]
   conversationNote: { title: string; body: string }
-  religionNote: { title: string; body: string } | null
+  religionNotes: { title: string; body: string }[]
 }
 
 const GATHERING_INTRO: Record<Extract<JourneyMode, "for-family" | "for-self">, { headline: string; sub: string }> = {
@@ -218,6 +218,6 @@ export function buildGatheringPlan(answers: IntakeAnswers): GatheringPlanData | 
     vaultGroups: buildVaultGroups(answers, mode),
     questionGroups,
     conversationNote: getConversationNote(mode),
-    religionNote: religionTimingNote(answers.religion),
+    religionNotes: religionTimingNotes(answers.religions),
   }
 }

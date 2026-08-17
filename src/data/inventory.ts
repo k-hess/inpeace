@@ -39,7 +39,7 @@ export interface InventoryGroup {
 /** The user-facing trust note explaining what the vault holds and how it's kept, in this prototype and in the real product. */
 export const accessNote: { title: string; body: string } = {
   title: "What the vault holds",
-  body: "Where each thing is, how to get in, and anything your family finds along the way. In this prototype everything stays on this device. In the real product it would be encrypted and shared only with the people you invite.",
+  body: "Where each thing is, and anything your family finds along the way. For an account, that means the institution's name and the last four digits, or a photo of a statement, never a login or a full account number. In this prototype everything stays on this device. In the real product it would be encrypted and shared only with the people you invite.",
 }
 
 export const inventoryGroups: InventoryGroup[] = [
@@ -51,26 +51,26 @@ export const inventoryGroups: InventoryGroup[] = [
       {
         id: "money-bank",
         label: "Bank accounts",
-        whereToLook: "Recent statements, mail, or the banking app on their phone.",
-        whereToLookSelf: "You already know these. List the banks by name. No need to write down balances or numbers, just which ones exist.",
+        whereToLook: "Recent statements, mail, or the banking app on their phone. The bank's name and the last four digits of the account are enough, never a login.",
+        whereToLookSelf: "You already know these. List each bank by name and the last four digits of the account, or leave a photo of a statement. No login, no full account number.",
       },
       {
         id: "money-cards",
         label: "Credit cards",
-        whereToLook: "Their wallet, recent statements, or a credit report pull.",
-        whereToLookSelf: "List the cards you carry. If you've got one your family wouldn't guess at, a store card, one in a drawer, that's the one worth writing down.",
+        whereToLook: "Their wallet, recent statements, or a credit report pull. The card issuer and last four digits are enough to work from.",
+        whereToLookSelf: "List the cards you carry by issuer and last four digits, or leave a photo of a statement. If you've got one your family wouldn't guess at, a store card, one in a drawer, that's the one worth writing down.",
       },
       {
         id: "money-brokerage",
         label: "Brokerage accounts",
-        whereToLook: "Tax documents (1099s) or statements from a brokerage.",
-        whereToLookSelf: "Note which brokerage you use. Your 1099s or account statements are there if you need to double-check the name.",
+        whereToLook: "Tax documents (1099s) or statements from a brokerage. The firm's name and last four digits are enough.",
+        whereToLookSelf: "Note which brokerage you use and the last four digits of the account, or leave a photo of a statement.",
       },
       {
         id: "money-retirement",
         label: "Retirement accounts (401k/IRA)",
-        whereToLook: "Pay stubs, HR benefits portal, or year-end account statements.",
-        whereToLookSelf: "List your 401(k) and IRA providers, including any from a former employer. Those are the easiest to lose track of.",
+        whereToLook: "Pay stubs, HR benefits portal, or year-end account statements. The provider's name and last four digits are enough.",
+        whereToLookSelf: "List your 401(k) and IRA providers, including any from a former employer, with the last four digits of each account. Those are the easiest to lose track of.",
       },
       {
         id: "money-pension",
@@ -307,11 +307,27 @@ export const inventoryGroups: InventoryGroup[] = [
         trigger: (answers) => answers.assets.includes("home"),
       },
       {
+        id: "property-other",
+        label: "Other property (a second home, a rental, land, a storage unit)",
+        whereToLook: "The deed and county property tax records, an insurance policy, utility accounts in the address, and any HOA. If it's a rental, look for a lease or tenant contact. A storage unit usually shows up as a recurring charge on autopay.",
+        whereToLookSelf: "List anything beyond the main home: a second home, a rental, land, a storage unit. Note where the deed is, which insurance covers it, who pays the utilities and HOA, and, if it's rented out, who the tenant is and how they'd be told who to pay.",
+        trigger: (answers) => answers.assets.includes("home"),
+        easilyMissed: true,
+      },
+      {
         id: "property-vehicles",
         label: "Vehicles",
         whereToLook: "The title in a filing cabinet, or the registration in the glove compartment.",
         whereToLookSelf: "Note where your title and registration are kept.",
         trigger: (answers) => answers.assets.includes("car"),
+      },
+      {
+        id: "property-other-vehicles",
+        label: "Other vehicles (a second car, boat, RV, motorcycle, trailer)",
+        whereToLook: "Each one has its own title, filed by state, and its own DMV or state wildlife/parks agency registration for boats. Check for insurance covering it, a loan tied to it, and any storage or slip fee on autopay.",
+        whereToLookSelf: "List every vehicle you own beyond the main car: title location, which state it's registered in, insurance, any loan, and where the storage or slip fee is charged.",
+        trigger: (answers) => answers.assets.includes("car"),
+        easilyMissed: true,
       },
       {
         id: "property-storage",

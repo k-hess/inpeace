@@ -34,7 +34,8 @@ export interface IntakeAnswers {
   /** Optional — a quiet checkbox on the assets step. Surfaces VA-specific pacing cards. */
   veteran: boolean
   mode: JourneyMode
-  religion: Religion
+  /** Empty array means unspecified/skipped. "none" is exclusive of every other option. */
+  religions: Religion[]
 }
 
 export const EMPTY_ANSWERS: IntakeAnswers = {
@@ -46,7 +47,7 @@ export const EMPTY_ANSWERS: IntakeAnswers = {
   firstName: null,
   veteran: false,
   mode: "after",
-  religion: "unspecified",
+  religions: [],
 }
 
 /**
